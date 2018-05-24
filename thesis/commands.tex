@@ -1,0 +1,184 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% User commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\subsubsubsection}{\paragraph}
+
+\newcommand{\levela}{}
+\newcommand{\levelb}{}
+\newcommand{\levelc}{}
+\newcommand{\leveld}{}
+\newcommand{\levele}{}
+
+\newcommand{\sublevela}{}
+\newcommand{\sublevelb}{}
+\newcommand{\sublevelc}{}
+
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO}: #1}}
+
+% *** regular text ***
+
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\eg}{e.g.\xspace}
+\newcommand{\quot}[1]{``#1''\xspace}
+\newcommand{\secs}{$\,$s}
+\newcommand{\urlwofont}[1]{\urlstyle{same}\url{#1}}
+\newcommand{\keyword}[1]{\emph{#1}\index{#1}\xspace}
+
+\newcommand{\imgcopyright}[2][]{{\scriptsize{#1 \copyright~#2}}}
+\newcommand{\imgnote}[1]{{\scriptsize{#1}}}
+
+\newenvironment{itemize*}%
+  {\begin{itemize}%
+    \setlength{\itemsep}{0.5ex}%
+    \setlength{\parskip}{0pt}}%
+  {\end{itemize}}
+
+\newenvironment{enumerate*}%
+  {\begin{enumerate}%
+    \setlength{\itemsep}{0.5ex}%
+    \setlength{\parskip}{0pt}}%
+  {\end{enumerate}}
+ 
+\newenvironment{tabbing*}
+   {\setlength{\topsep}{-\parskip}%
+    \setlength{\partopsep}{0pt}%
+    \tabbing}
+   {\endtabbing}
+
+\definecolor{shadecolor}{rgb}{0.92,0.92,0.92}
+\newenvironment{pquery}
+   {\hspace{1cm}\begin{minipage}{0.9\linewidth}\slshape\footnotesize\begin{shaded}\begin{tabbing*}}
+   {\end{tabbing*}\end{shaded}\end{minipage}}
+   
+ \newcommand{\queryEmph}[1]{\textbf{#1}}
+
+% *** general formula stuff
+
+%\newcommand{\mw}[1]{\mathrm{\textsl{#1}}}
+\newcommand{\mw}[1]{\mbox{\textsl{#1}}}
+\newcommand{\mword}[1]{\mw{#1}}
+%\newcommand{\argmax}{\operatornamewithlimits{arg\,max\,}}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+
+\newcommand{\wwedge}{\,\wedge\,}
+
+% functions and constants
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\dom}{\mathrm{dom}}
+\newcommand{\cnt}{\mathrm{\textsl{count}}}
+\newcommand{\true}{\mathrm{\textsl{True}}}
+\newcommand{\false}{\mathrm{\textsl{False}}}
+\newcommand{\True}{\true}
+\newcommand{\False}{\false}
+\newcommand{\pa}{\mathrm{par}}
+\newcommand{\Pa}{\mathrm{Par}}
+\newcommand{\hatF}{\hat{F}}
+\newcommand{\hatf}{\hat{f}}
+\newcommand{\hatw}{\hat{w}}
+\newcommand{\hatlambda}{\hat{\lambda}}
+
+\newcommand{\impl}{\Rightarrow}
+\newcommand{\biimpl}{\Leftrightarrow}
+\newcommand{\given}{\mid}
+\newcommand{\deriv}[1]{\frac{\delta}{\delta #1}\,}
+\renewcommand{\hat}{\widehat}
+%\newcommand{\mod}{\ \mathrm{mod}\ }
+
+% MLNs
+\newcommand{\mrf}{M_{L,D}}
+\newcommand{\bird}{\mw{bird}}
+\newcommand{\flies}{\mw{flies}}
+\newcommand{\veg}{\mw{vegetarian}}
+\newcommand{\vegdish}{\mw{vegDish}}
+\newcommand{\friends}{\mw{friends}}
+\newcommand{\female}{\mw{female}}
+\newcommand{\orders}{\mw{orders}}
+\newcommand{\evar}{e}
+
+% probability constraints
+\newcommand{\probconstr}{\mathcal{R}_F}
+\newcommand{\gndfpcf}{\hatF_{R_k}}
+
+% uncertain evidence
+\newcommand{\se}{{s_E}}
+
+% confidence intervals
+\newcommand{\smax}{s_\mathrm{max}}
+\newcommand{\ubound}{p_u}
+\newcommand{\lbound}{p_l}
+\newcommand{\pmode}{\tilde{p}}
+
+% *** names ***
+
+\newcommand{\probcog}{\textsc{ProbCog}\xspace}
+\newcommand{\knowrob}{\textsc{KnowRob}\xspace}
+\newcommand{\cram}{\textsc{CRAM}\xspace}
+\newcommand{\cpl}{\textsc{CRAM-PL}\xspace}
+\newcommand{\cogito}{\textsc{Cogito}\xspace}
+\newcommand{\cotesys}{CoTeSys\xspace}
+\newcommand{\kcopman}{\textsc{K-CoPMan}\xspace}
+\newcommand{\rosie}{TUM-Rosie\xspace}
+\newcommand{\james}{TUM-James\xspace}
+
+% *** algorithm stuff ***
+
+\newcommand{\IFTHEN}[2]{\STATE \algorithmicif\ #1\ \algorithmicthen\ {#2}}
+\renewcommand{\listalgorithmname}{Algorithmenverzeichnis} % Renaming List of Algorithm 
+% \algorithmicendif}
+
+% *** listings and code snippets ***
+
+\definecolor{randvarcolor}{HTML}{B1CBDA} % colour of random variables everywhere
+\definecolor{darkrandvarcolor}{HTML}{004F9E} %{00476D} % darker, more saturated version of the former colour
+
+\lstset{
+	basicstyle=\sffamily\footnotesize,
+	keywordstyle=\color{darkrandvarcolor}\bfseries,
+	morekeywords={type,random,isa,logical,relationKey,prolog,fragments,constraints,guaranteed,combining,rule,uniform,default},
+	numbers=left,
+	xleftmargin=25pt,
+	escapeinside={(@}{@)}
+}
+
+\lstnewenvironment{blnlisting}
+{\lstset{
+		basicstyle=\sffamily\footnotesize,
+		keywordstyle=\color{darkrandvarcolor}\bfseries,
+		morekeywords={type,random,isa,logical,relationKey,prolog,fragments,constraints,guaranteed,combining,rule,uniform,default},
+		numbers=left,
+		xleftmargin=25pt,
+		breaklines=true,
+		columns=fullflexible,
+		escapeinside={(@}{@)}
+		}}
+{\vspace{-0.5\baselineskip}\ignorespacesafterend}
+
+\newcommand{\inputbln}[1]{\lstinputlisting[
+		basicstyle=\sffamily\scriptsize,
+		keywordstyle=\color{darkrandvarcolor}\bfseries,
+		morekeywords={type,random,isa,logical,relationKey,prolog,fragments,constraints,constraint,guaranteed,combining,rule,uniform,default},
+		numbers=left,
+		xleftmargin=25pt,
+		breaklines=true,
+		columns=fullflexible,
+		escapeinside={(@}{@)}
+]{#1}}
+
+\newcommand{\blncode}[1]{{\small\textsf{#1}}}
+
+\newenvironment{mln}[1][l]{
+
+\vspace{1.5ex}
+
+\hspace{0.7cm}\begin{minipage}{0.9\linewidth}\small
+\begin{tabular}{l@{\hspace{2ex}}#1}}
+{\end{tabular}\end{minipage}
+
+\vspace{1.5ex}
+
+\noindent}
+
+\DeclareCaptionType[fileext=lomln,placement={!ht}]{mlnmodel}[MLN]
+\DeclareCaptionType[fileext=lobln,placement={!ht}]{blnmodel}[BLN]
+\newsubfloat{blnmodel} % enable subfloats in blnmodel env.

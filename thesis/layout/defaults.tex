@@ -1,0 +1,20 @@
+
+% default stuff that need to always be defined can be specifically overwritten by layouts
+
+\newcommand{\listofinclusions}{
+	
+\phantomsection
+	\addcontentsline{toc}{chapter}{Bildverzeichnis}
+	\listoffigures
+	\cleardoublepage
+
+\phantomsection
+	\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+	\listoftables
+	\cleardoublepage
+
+\phantomsection
+	\addcontentsline{toc}{chapter}{Algorithmenverzeichnis}
+	\listofalgorithms
+	\cleardoublepage
+}

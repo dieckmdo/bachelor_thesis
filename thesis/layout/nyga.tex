@@ -1,0 +1,234 @@
+% ------------------------------------------------------------------------
+%	Die KOMA-Script Dokumentklasse 'scrreprt' verwenden.
+% http://www.dml.drzoom.ch/
+% ------------------------------------------------------------------------
+\documentclass[	pdftex, 
+								a4paper,
+								11pt, DIV11, BCOR5mm,
+								parskip,								
+								%draft,										
+								%chapterprefix,					% entfernen	
+								%pointlessnumbers					
+								]{scrbook}
+%
+\makeatletter %%%%%%%%%%%%%%%%%%%%				% @ zu einem TeX-Zeichen machen
+%
+% ------------------------------------------------------------------------
+%	Seitenlayout
+% ------------------------------------------------------------------------
+%\usepackage{setspace}
+%\onehalfspace        										
+%
+\setcounter{secnumdepth}{4} 
+\setcounter{tocdepth}{1}
+%
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+\usepackage{url}
+\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{amsfonts} 	
+
+								
+\usepackage{bbm}
+% ------------------------------------------------------------------------
+%	Schrift von serifenloser in Schrift *mit* Serifen ndern
+% ------------------------------------------------------------------------
+% alle auf einmal
+%\setkomafont{sectioning}{\normalfont\bfseries}
+%
+%	Oder detailierter
+%
+
+
+
+%\setkomafont{chapter}{\normalfont\bfseries\sffamily\huge\color{chaptercolor}}				% fr Chapter
+%\setkomafont{section}{\normalfont\bfseries\Large\color{chaptercolor}}			% fr Section
+%\setkomafont{subsection}{\normalfont\bfseries\large\color{chaptercolor}}		% fr Subsection
+%\setkomafont{subsubsection}{\normalfont\bfseries\color{chaptercolor}}			% fr SubSubSection
+%\setkomafont{paragraph}{\normalfont\bfseries}					% fr Paragraph
+%\setkomafont{subparagraph}{\normalfont\bfseries}				% fr SubParagraph
+%\setkomafont{captionlabel}{\normalfont\bfseries\small} % fr Caption (Bildunterschrift usw.)
+%
+
+
+%\usepackage{times}
+
+% ------------------------------------------------------------------------
+%	Einstellen der deutschen Sprache, Verwendung von Umlauten, etc.
+% ------------------------------------------------------------------------
+%\usepackage[ngerman]{babel}							% neue deutsche Rechtschreibung
+\usepackage[utf8]{inputenc}						% Eingabe von Umlauten ermglichen
+%\usepackage[T1]{fontenc}								% Auswahl der Schrift
+%\usepackage{ae}
+\nonfrenchspacing 											% Nach Satzende groesserer Abstand
+%
+% ------------------------------------------------------------------------
+%	Kopfzeilen
+% http://www.physik.tu-berlin.de/pcpool/phcd/Dokumentation/LatexDoku/Proseminar/V07-footnote.pdf
+% ftp://ftp.ctan.org/tex-archive/macros/latex/contrib/koma-script/scrguide.pdf (nach chaptermarkformat suchen)
+% ------------------------------------------------------------------------
+% 
+\usepackage[automark,headsepline,headinclude]{scrpage2}
+
+            
+	% Kapitelnummer vor Kapiteltitel stellen
+%\renewcommand*{\chaptermarkformat}{}			% nur Kapitel ohne 'Kapitel' oder Nummer anzeigen
+%\renewcommand*{\sectionmarkformat}{}			% nur Section ohne Nummer anzeigen
+
+
+\pagestyle{scrheadings}
+\clearscrheadings													% Voreinstellugnen lschen
+\clearscrplain														% Voreinstellugnen lschen
+%\ohead{\leftmark\ -\ \rightmark}				% oben links: 'Kapitel - Section'
+\ihead{\leftmark}													% oben links: 'Kapitel'
+\ohead{\thepage}												% oben rechts aktuelle Seite
+%\cfoot{\thepage}													
+\setheadsepline{.4pt} 										% Linie unter der Kopfzeile
+%\setfootsepline{.4pt}
+\setlength{\headheight}{1.1\baselineskip}	% bei 1,5-fachem Zeilenabstand
+
+%
+% ------------------------------------------------------------------------
+%	Glossar
+% http://mrunix.de/forums/showthread.php?t=39944
+%	http://www.dante.de/CTAN/macros/latex/contrib/nomencl/nomencl.pdf
+% ------------------------------------------------------------------------
+%
+%\usepackage[german]{nomencl}							% nomenclature Glossar verwenden
+%\usepackage{nomencl}
+%\renewcommand{\nomname}{Glossary}					% Symbolverzeichnis in Glossar umbenennen
+%\setlength{\nomlabelwidth}{.25\hsize}			% Breite des Begriffs (hier: 25% der Gesamtbreite)
+%\renewcommand{\nomlabel}[1]{#1 \dotfill}	% Abstand zwischen Begriff und Beschreibung mit Punkten fllen
+%\setlength{\nomitemsep}{-\parsep}					% Abstand der Linien zueinander
+%
+%\makenomenclature													% Glossar erzeugen
+%\input{glossary/glossary}									% Glossareintrge aus extra Datei lesen
+%
+% ------------------------------------------------------------------------
+%	Literaturverzeichnis
+% ------------------------------------------------------------------------
+%
+%\usepackage{bibgerm}											% deutsche Anpassungen ans Literaturverzeichnis
+%
+%
+% ------------------------------------------------------------------------
+%	Stichwortverzeichnis
+% http://www2.informatik.hu-berlin.de/~goerlach/Indexerstellung.pdf
+% ------------------------------------------------------------------------
+%
+%\usepackage{makeidx}
+%\makeindex																% Stichwortverzeichnis erzeugen
+%
+% ------------------------------------------------------------------------
+%	PDF-Einstellungen
+% http://www.math.uni-hamburg.de/home/iffland/Materialien/Einf_hyperref.pdf
+% ------------------------------------------------------------------------
+
+%\usepackage{lmodern}
+\usepackage[pdfpagelabels,
+						bookmarksopen,
+						pdfstartview={FitV},
+						plainpages=false,
+						breaklinks=true,
+						linkbordercolor={1 1 1},
+						citebordercolor={1 1 1},
+						urlbordercolor={1 1 1}]{hyperref}  % Stellt Verlinkungen im Dokument her
+% Beim mehrmaligen vergeben von Seitenummern (rmisch,arabisch) gibt es gelegentlich
+% Warnungen. Diese knnen aber ignoriert werden. siehe hierzu: 
+% http://www.tex.ac.uk/cgi-bin/texfaq2html?label=hyperdupdest
+%
+
+
+% ------------------------------------------------------------------------
+%	Grafics
+% ------------------------------------------------------------------------
+%\usepackage{graphicx}
+%\usepackage[rm,bf,it,RM,IT]{subfigure}
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{mblue}{gray}{0.5} % For some reason, this color is needed for sections			
+%
+% ------------------------------------------------------------------------
+%	extended Tables
+% ------------------------------------------------------------------------
+%\usepackage{tabularx}
+%\usepackage{booktabs}
+%\usepackage{multirow}
+%\usepackage{multicol}
+%
+% ------------------------------------------------------------------------
+%	Font Settings
+%  Available: Font Styles: cmr, guc; phv , pbk, pzc, ptm, ppl, pag
+% ------------------------------------------------------------------------
+% nonfree: ul9, ulg, ual
+%\usepackage{kpfonts}
+%\usepackage{lmodern}
+%\usepackage{times}
+%\usepackage{iwona}
+%\usepackage{arev}
+%\usepackage{cmbright}
+\usepackage[charter]{mathdesign}
+%\renewcommand{\sfdefault}{cmbr} %fvs
+%\renewcommand{\rmdefault}{cmr}%{ppl}
+
+
+\definecolor{chaptercolor}{rgb}{0,.639,.827}
+\definecolor{sectioncolor}{rgb}{0,.639,.827}
+%\definecolor{chapterbar}{rgb}{.56,.8,.56}%{.4,.639,.827}
+\definecolor{chapterbar}{rgb}{.84,.09,.23}%AI Color
+
+%\addtokomafont{chapter}{\usefont{T1}{fav}{b}{it}\color{black}}
+\addtokomafont{section}{\usefont{T1}{fav}{b}{}\color{black}}
+\addtokomafont{subsection}{\usefont{T1}{fav}{b}{}\color{black}}
+\addtokomafont{subsubsection}{\usefont{T1}{fav}{b}{}\color{black}}
+
+\addtokomafont{captionlabel}{\usefont{T1}{ppl}{b}{it}}%lmss
+\addtokomafont{caption}{\usefont{T1}{ppl}{m}{it}}
+
+\addtokomafont{sectioning}{\usefont{T1}{fav}{b}{it}}
+
+\renewcommand{\headfont}{\usefont{T1}{lmss}{m}{it}}%uop
+
+\usepackage{titlesec,xcolor,lipsum}
+\automark[section]{chapter}
+
+\setlength{\unitlength}{1cm}
+\titleformat{\chapter}[display]
+    { \usefont{T1}{fav}{b}{it}}
+    { \hspace{1.5cm} \large{\chaptertitlename} \thechapter} 
+    { .1pc }
+    { \begin{picture}(10,0)(0,0)\color{chapterbar}\linethickness{.25cm}\put(.5,-.3){\line(0,1){2}} \hspace{1.5cm} \color{black}\Huge\usefont{T1}{fav}{b}{}}
+    [ \end{picture} ]
+
+%\usepackage{shadethm}
+
+%\newshadetheorem{thms}{Theorem}[chapter]
+
+%\newenvironment{thm}[1][]{%
+%  \definecolor{shadethmcolor}{rgb}{.929,.968,.992}%
+ % \definecolor{shaderulecolor}{rgb}{0.0,0.0,0.4}%
+ % \setlength{\shadeboxrule}{1.5pt}%
+%  \usefont{T1}{lmss}{m}{it}
+%  \begin{thms}[#1]\hspace*{1mm}%
+%}{\end{thms}}
+
+
+%
+% ------------------------------------------------------------------------
+%	Erweiterung um MetaPost-Dateien direkt einzubinden.
+% ------------------------------------------------------------------------
+%\makeatletter
+%\@ifundefined{pdfoutput}{}{\DeclareGraphicsRule{*}{mps}{*}{}}
+%\makeatother
+%
+% ------------------------------------------------------------------------
+%	Fuﬂzeilen in \caption einer float Umgebung verwenden.
+% http://www.tex.ac.uk/tex-archive/macros/latex/contrib/ccaption/ccaption.pdf
+% ------------------------------------------------------------------------
+\usepackage[caption2]{ccaption}
+\usepackage{dsfont}
+
+\newenvironment{items}{\begin{itemize}\setlength{\itemsep}{-5mm} \setlength{\topsep}{-10mm} \setlength{\parsep}{20mm}}{\end{itemize}} 
+
+\newenvironment{enum}{\begin{enumerate}\setlength{\itemsep}{-5mm} \setlength{\topsep}{-5mm} \setlength{\parsep}{-5mm}}{\end{enumerate}}

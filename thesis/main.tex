@@ -1,0 +1,258 @@
+%\documentclass[12pt,a4paper,twoside,openright]{amsbook} %{scrreprt}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\newcommand{\subsubsubsection}{\paragraph}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%% Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{fix-cm}
+\input{layout/defaults}
+\input{layout/nyga}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Include Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[nonumberlist,toc,acronym]{glossaries}
+\usepackage[british,english,ngerman]{babel}
+\usepackage[section]{placeins}
+\usepackage{epstopdf}
+\usepackage{textpos}
+%\usepackage{comment}
+%\usepackage{etex}
+\usepackage{changepage}
+%\usepackage{epsfig}
+\usepackage{theorem}
+%\usepackage{amsthm}
+%\usepackage{float}
+\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+%\usepackage{framed}
+%\usepackage{graphics}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\usepackage{iasbib} % use the IAS bibliography files (needs iasdocs repository)
+%\usepackage{ifthen}
+%\usepackage[intoc,noprefix]{nomencl} % for list of symbols, notations
+\usepackage{listings}
+%\usepackage{longtable} \usepackage{makeidx}
+%\usepackage{multicol}
+%\usepackage{multirow}
+%\usepackage[round,comma,colon,authoryear]{natbib}
+\usepackage[square,comma,numbers,sort]{natbib}
+%\usepackage{setspace}
+\usepackage[format=hang]{subfig} % format=hang
+%\usepackage{times}
+%usepackage{units}
+%\usepackage{upgreek}
+%\usepackage{url}
+%\usepackage{tabularx}
+\usepackage{booktabs}
+%\usepackage{texinclude/mysects}
+%\usepackage{texinclude/tumlogo}
+%\usepackage{texinclude/tumabakus}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings,arrows,positioning,trees,calc,fit,shapes}
+\usepackage{varwidth}
+%\usepackage{tikz}
+%\usepackage{wrapfig}
+%\usepackage{xspace}
+%\usepackage{import}
+%\usepackage{enumerate}
+%\usepackage{colonequals}
+%\usepackage{eso-pic}
+%\usepackage{algorithm2e}
+\usepackage[noend]{algorithmic}
+\usepackage{algorithm}
+%\usepackage{cancel}
+%\usepackage{multimedia}
+%\usepackage{iaspresentationdefs}
+%\usepackage[chapter]{algorithm}
+%\usepackage[noend]{algorithmic}
+\usepackage{environ}
+%\usepackage{colortbl}
+%\usepackage[pdftex]{hyperref}
+%\usepackage[utf8]{inputenc}
+%\usepackage{bbm} % enables \mathbbm as a perhaps nicer alternative version of \mathbb
+%\usepackage{tweaklist}
+%\usepackage{pbox}
+%\usepackage{varwidth}
+%\usepackage[leftcaption]{sidecap}
+%\usepackage{bibentry}
+%\usepackage{blindtext}
+
+\usetikzlibrary{decorations}
+
+	% BIBLIOGRAPHY SETTINGS
+\bibliographystyle{unsrt}
+
+%\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO}: #1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frenchspacing
+\newglossary[slg]{symbolslist}{syi}{syg}{Symbols}
+\renewcommand*{\glspostdescription}{}
+\makeglossaries
+\makeindex
+%\makenomenclature       % helps build the list of symbols/notes
+\renewcommand*{\glossaryentrynumbers}[1]{}
+
+
+\NewEnviron{centerbox}[1][\linewidth]{% \begin{centerbox}[..] ... \end{centerbox}
+  \noindent\makebox[\linewidth][c]{%
+    \begin{minipage}{#1}%
+      \raggedright% Minipage alignment
+      \BODY% Typeset body/contents
+    \end{minipage}%
+  }
+}
+
+\NewEnviron{texto}{%
+    \begin{center}
+        \begin{varwidth}[t]{\textwidth}
+
+        \raggedright
+        \BODY
+        \end{varwidth}
+    \end{center}
+}
+
+
+\graphicspath{./img}
+%%%%%%%%%%%%%%%%%%%%Declare tikz external images%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pgfdeclareimage{cheese}{cheese.jpg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Relevant Thesis Information %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{thesis_info}
+
+
+
+
+\newcommand{\dotrule}[1]{%
+   \parbox[t]{#1}{\dotfill}}
+\newcommand{\chairman}{\dotrule{7cm}}
+%\newcommand{\firstreviewer}{\dotrule{7cm}}
+%\newcommand{\secondreviewer}{\dotrule{7cm}}
+%\newcommand{\thirdreviewer}{\dotrule{7cm}}
+\newcommand{\handindate}{\dotrule{4cm}}
+\newcommand{\acceptancedate}{\dotrule{4cm}}
+
+
+\hypersetup{
+  pdftitle={\pdftitle},
+  pdfauthor={\myauthor},
+  pdfcreator={\myauthor},
+  pdfproducer={\myauthor}
+}
+
+
+%\pdfinfo { /Title \pdftitle           /Author \myauthor}
+\theoremstyle{plain}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{example}{Example}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% User commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.jpg}
+%\graphicspath{{./}{./bln/techrep/}{../../../pictures/src/probcog/AMLNs/}{../../../pictures/src/probcog/AMLNs/weightcurves/}{../../../pictures/src/probcog/MCSATPC/}{../../../pictures/bin/}{../../../pictures/src/}{../../../pictures/src/probcog/}{../../../../code/SRLDB/experiments/sampling/}}
+\input{commands}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Glossary %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Document start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\lstset{language=C++}
+\setcounter{page}{-2}
+\pagestyle{empty}
+\pagenumbering{none}
+
+\include{glossary}
+\include{frontcover}
+
+\cleardoublepage
+
+\pagestyle{headings}
+%\include{title}
+%\cleardoublepage
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\phantomsection
+\addcontentsline{toc}{chapter}{Eidesstattliche Erkl\"arung}
+\include{eidestaatliche}
+\cleardoublepage
+
+%\phantomsection
+%\addcontentsline{toc}{chapter}{Acknowledgements}
+%\include{ack}
+%\cleardoublepage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Kurzfassung}
+\include{abstract}
+\cleardoublepage
+
+%\addcontentsline{toc}{chapter}{Kurzfassung}
+%\include{kurzfassung}
+%\cleardoublepage
+
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Inhaltsverzeichnis}
+\tableofcontents
+\cleardoublepage
+% list of all inclusions (figures, tables, etc)
+\listofinclusions % defined in layout/defaults.tex or overridden by the layout
+\cleardoublepage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Main Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\include{chapters}
+
+\pagenumbering{arabic}
+
+\printglossary[style=altlist,title=Glossary]
+\printglossary[type=\acronymtype,style=long]
+%\printglossary[type=symbolslist,style=long]
+%\printnomenclature
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\cleardoublepage
+
+
+
+%\setcounter{page}{1}
+\pagenumbering{alph}
+
+
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\bibliography{bib}
+%\cleardoublepage
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex
+
+
+
+
+\include{appendix}
+
+\end{document}

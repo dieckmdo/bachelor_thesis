@@ -12,7 +12,7 @@
 %%% Include Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[nonumberlist,toc,acronym]{glossaries}
+\usepackage[toc,acronym]{glossaries}
 \usepackage[british,english,ngerman]{babel}
 \usepackage[section]{placeins}
 \usepackage{epstopdf}
@@ -163,14 +163,12 @@
 
 %\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.jpg}
 %\graphicspath{{./}{./bln/techrep/}{../../../pictures/src/probcog/AMLNs/}{../../../pictures/src/probcog/AMLNs/weightcurves/}{../../../pictures/src/probcog/MCSATPC/}{../../../pictures/bin/}{../../../pictures/src/}{../../../pictures/src/probcog/}{../../../../code/SRLDB/experiments/sampling/}}
-\newcommand{\wichtig}[1]{\textbf{#1}}
-\newcommand{\test}[1]{\emph{#1}\index{#1}}
-%\input{commands}
+\input{commands}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Glossary %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\input{glossary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Document start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -182,7 +180,7 @@
 \pagestyle{empty}
 \pagenumbering{none}
 
-\include{glossary}
+%\include{glossary}
 \include{frontcover}
 
 \cleardoublepage
@@ -236,7 +234,7 @@
 
 
 \printglossary[style=altlist,title=Glossar]
-\printglossary[type=\acronymtype,style=long]
+\printglossary[type=\acronymtype,style=altlist,title=Akronyme]
 %\printglossary[type=symbolslist,style=long]
 %\printnomenclature
 \clearpage{\pagestyle{empty}\cleardoublepage}

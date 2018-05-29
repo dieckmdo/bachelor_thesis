@@ -84,7 +84,7 @@
 \usetikzlibrary{decorations}
 
 	% BIBLIOGRAPHY SETTINGS
-\bibliographystyle{unsrt}
+\bibliographystyle{alphadin}
 
 %\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO}: #1}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,7 +128,7 @@
 %%% Relevant Thesis Information %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\include{thesis_info}
+\input{thesis_info}
 
 
 
@@ -163,7 +163,9 @@
 
 %\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.jpg}
 %\graphicspath{{./}{./bln/techrep/}{../../../pictures/src/probcog/AMLNs/}{../../../pictures/src/probcog/AMLNs/weightcurves/}{../../../pictures/src/probcog/MCSATPC/}{../../../pictures/bin/}{../../../pictures/src/}{../../../pictures/src/probcog/}{../../../../code/SRLDB/experiments/sampling/}}
-\input{commands}
+\newcommand{\wichtig}[1]{\textbf{#1}}
+\newcommand{\test}[1]{\emph{#1}\index{#1}}
+%\input{commands}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Glossary %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,6 +213,7 @@
 
 
 \phantomsection
+\setcounter{tocdepth}{5}
 \addcontentsline{toc}{chapter}{Inhaltsverzeichnis}
 \tableofcontents
 \cleardoublepage
@@ -231,13 +234,13 @@
 
 \pagenumbering{arabic}
 
-\printglossary[style=altlist,title=Glossary]
+
+\printglossary[style=altlist,title=Glossar]
 \printglossary[type=\acronymtype,style=long]
 %\printglossary[type=symbolslist,style=long]
 %\printnomenclature
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \cleardoublepage
-
 
 
 %\setcounter{page}{1}

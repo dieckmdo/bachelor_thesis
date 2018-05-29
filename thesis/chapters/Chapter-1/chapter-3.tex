@@ -5,4 +5,36 @@
 \label{chap:software}
 %	\input{\CHAPTERONE /motivation}
 
+\section{Unreal Engine}
+\label{chap:unrealengine}
 
+\subsection{URoboVision}
+\label{chap:urobovision}
+
+\subsection{RSpawnBox}
+\label{chap:rspawnbox}
+
+\section{ROS}
+\label{chap:ros}
+
+Das Robot Operating System (ROS) ist ein quelloffenes, modular designtes Framework für die Entwicklung von Robotersoftware. ROS bietet dafür eine Kommunikationsebene über dem Betriebssystem der einzelnen Computer innerhalb eines Robotersystems und eine Menge hilfreicher Werkzeuge an \cite{qui}.\par 
+
+Zu Grunde liegt dem eine Peer-To-Peer Topologie, sodass theoretisch jeder Prozess oder Computer mit jedem anderen kommunizieren kann. Dank eines Programmiersprachen-neutralen Designs ist dies auch über verschiedene Sprachen hinweg kein Problem und ermöglicht so die Berücksichtigung der Bevorzugung bestimmter Sprachen für bestimmte zu implementierende Probleme, wie auch Präferenzen des Entwicklers.\par
+
+Die Kommunikation läuft über sogenannte \textit{Nodes}. Ein \textit{Node} ist ein Prozess der eine bestimmte Aufgabe bearbeitet. Der Datenaustauch findet nun über \textit{Topics} oder \textit{Services} statt. Beide haben eindeutig identifizierbare Namen und \textit{Nodes} können sich an ihnen als \textit{Publisher} anmelden oder als \textit{Subscriber} auf sie horchen. \textit{Nodes}, die als \textit{Publisher} tätig sind, veröffentlichen nun auf der gegebenem \textit{Topic} oder \textit{Service} Daten, während \textit{Subscriber} die Daten von den entsprechenden \textit{Topics} oder \textit{Services} erhalten. Der Unterschied besteht darin, dass \textit{Services} einmalig sind, während es mehrere \textit{Nodes} geben kann, die Daten auf einer bestimmten \textit{Topic} veröffentlichen. Der Austausch von Daten passiert dann in Form von \textit{Messages}. Dies sind feste Datenstrukturen, zum Beispiel die primitiven Datentypen integer und boolean, aber auch Arrays und \textit{Messages} selbst. \par
+
+ROS kommt mit einer Reihe von Werkzeugen zur Entwicklung, die in jeweils eigenen Modulen implementiert sind, um so erhöhte Stabilität und verringerte Komplexität zu erreichen. Das Kernmodul, der ROS-master, enthält somit nur die Kernfunktionalität. Die zusätzlichen Werkzeuge ermöglichen unter anderem das Debuggen einzelner \textit{Nodes}, die Visualisierung des Datenaustausches oder einzelner \textit{Topics}, das Starten ganzer \textit{Node}-Verbünde und die mehrfach Instanziierung von solchen, sowie das Erstellen von \textit{ROS-Packages}. Letzteres erlaubt das Aufteilen einzelner Funktionalitäten in Pakete und so das einfache Zusammenarbeiten mehrerer Entwickler. Jedes Paket kann jeweils seine eigenen Drittbibliothek-und Paketabhängigkeiten haben, sowie auch auch beliebig tief geschachtelt werden. Ein Paket kann also aus weiteren Paketen bestehen, wie zum Beispiel das im Rahmen dieser Arbeit verwendete ROBOSHERLOCK [Verweis]. Zum Zeitpunkt dieser Arbeit existieren über 3000 öffentliche \textit{ROS-Packages}.   
+
+\section{ROBOSHERLOCK}
+\label{chap:robosherlock}
+
+\subsection{classifiers}
+\label{chap:classifiers}
+
+
+\section{MongoDB}
+\label{chap:mongodb}
+
+
+\section{pracmln}
+\label{chap:pracmln}

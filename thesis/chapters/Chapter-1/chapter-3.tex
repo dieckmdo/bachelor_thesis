@@ -1,13 +1,13 @@
 \graphicspath{{./images/}}      
 \def\CHAPTERONE{./chapters/Chapter-1} 
 
-\chapter{Verwendete Software}
+\chapter{Grundlagen}
 \label{chap:software}
 %	\input{\CHAPTERONE /motivation}
 
 \section{Unreal Engine}
-\label{chap:unrealengine}
-Die von Epic Games entwickelte Unreal Engine ist eine \gls{gameengine} zur Entwicklung von Videospielen und zur Erstellung von filmischen Erfahrungen \cite{featUnreal}. Mittlerweile befindet sich die Unreal Engine in ihrer vierten Generation und enthält nicht nur die \acrshort{engine} selbst, sondern auch eine Vielzahl an Werkzeugen, die alle in die \acrshort{engine} integriert oder angebunden sind, um den Workflow der Nutzer zu vereinfachen und effizienter zu gestalten. Erhältlich ist die \acrshort{engine} für die Betriebssysteme Windows, MacOS und Linux. \par
+\label{sec:unrealengine}
+Die von Epic Games\footnote{\url{https://www.epicgames.com}} entwickelte Unreal Engine\footnote{\url{https://www.unrealengine.com}} ist eine \gls{gameengine} zur Entwicklung von Videospielen und zur Erstellung von filmischen Erfahrungen \cite{featUnreal}. Mittlerweile befindet sich die Unreal Engine in ihrer vierten Generation und enthält nicht nur die \acrshort{engine} selbst, sondern auch eine Vielzahl an Werkzeugen, die alle in die \acrshort{engine} integriert oder angebunden sind, um den Workflow der Nutzer zu vereinfachen und effizienter zu gestalten. Erhältlich ist die \acrshort{engine} für die Betriebssysteme Windows, MacOS und Linux. \par
 
 Im Kern bietet die Unreal Engine eine Möglichkeit zur Echtzeit Manipulation und Erstellung von Anwendungen wie Spielen. Dazu gehören zum Beispiel \gls{fotoreal}, VR Unterstützung und Entwicklung, ein Partikel- und VFX-System, sowie ein KI-System. Weitere Tools umfassen unter anderem einen Animator und einen Sequencer, der zur Erstellung und Editierung von filmischen Sequenzen benutzt werden kann. \par 
 
@@ -16,17 +16,17 @@ Seit Februar 2015 ist der C++ Quellcode der Unreal Engine offen und für jeden k
 Für diese Arbeit interessant ist das \gls{fotoreal} in Echtzeit: die Unreal Engine bietet damit eine Möglichkeit echt wirkende Szenarien zu erstellen, aus denen dann Perzeptionsalgorithmen die Informationen herausfiltern, die für das Trainieren einer KB wichtig sind. Natürlich setzt das voraus, dass die Objekte in der zu rendernden Szene auch realistische Modelle besitzen. Dazu mehr in folgenden Abschnitten [Verweis].       
 
 \subsection{Küchen Umgebung}
-\label{chap:kitchenenvironment}
+\label{subsec:kitchenenvironment}
 
 \subsection{URoboVision}
-\label{chap:urobovision}
+\label{subsec:urobovision}
 
 \subsection{RSpawnBox}
-\label{chap:rspawnbox}
+\label{sec:rspawnbox}
 
 \section{ROS}
-\label{chap:ros}
-Das \gls{ros} ist ein quelloffenes, modular designtes Framework für die Entwicklung von Robotersoftware. \gls{ros} bietet dafür eine Kommunikationsebene über dem Betriebssystem der einzelnen Computer innerhalb eines Robotersystems und eine Menge hilfreicher Werkzeuge an \cite{qui}.\par 
+\label{sec:ros}
+Das \gls{ros}\footnote{\url{http://www.ros.org}} ist ein quelloffenes, modular designtes Framework für die Entwicklung von Robotersoftware. \gls{ros} bietet dafür eine Kommunikationsebene über dem Betriebssystem der einzelnen Computer innerhalb eines Robotersystems und eine Menge hilfreicher Werkzeuge an \cite{qui}.\par 
 
 Zu Grunde liegt dem eine Peer-To-Peer Topologie, sodass theoretisch jeder Prozess oder Computer mit jedem anderen kommunizieren kann. Dank eines Programmiersprachen-neutralen Designs ist dies auch über verschiedene Sprachen hinweg kein Problem und ermöglicht so die Berücksichtigung der Bevorzugung bestimmter Sprachen für bestimmte zu implementierende Probleme, wie auch Präferenzen des Entwicklers.\par
 
@@ -35,15 +35,18 @@ Die Kommunikation läuft über sogenannte \textit{Nodes}. Ein \textit{Node} ist 
 \gls{ros} kommt mit einer Reihe von Werkzeugen zur Entwicklung, die in jeweils eigenen Modulen implementiert sind, um so erhöhte Stabilität und verringerte Komplexität zu erreichen. Das Kernmodul, der \textit{ROS-master}, enthält somit nur die Kernfunktionalität. Die zusätzlichen Werkzeuge ermöglichen unter anderem das Debuggen einzelner \textit{Nodes}, die Visualisierung des Datenaustausches oder einzelner \textit{Topics}, das Starten ganzer \textit{Node}-Verbünde und die mehrfach Instanziierung von solchen, sowie das Erstellen von \textit{ROS-Packages}. Letzteres erlaubt das Aufteilen einzelner Funktionalitäten in Pakete und so das einfache Zusammenarbeiten mehrerer Entwickler. Jedes Paket kann jeweils seine eigenen Drittbibliothek-und Paketabhängigkeiten haben, sowie auch auch beliebig tief geschachtelt werden. Ein Paket kann also aus weiteren Paketen bestehen, wie zum Beispiel das im Rahmen dieser Arbeit verwendete ROBOSHERLOCK [Verweis]. Zum Zeitpunkt dieser Arbeit existieren über 3000 öffentliche \textit{ROS-Packages}.   
 
 \section{ROBOSHERLOCK}
-\label{chap:robosherlock}
+\label{sec:robosherlock}
 
 \subsection{classifiers}
-\label{chap:classifiers}
+\label{sec:classifiers}
 
 
 \section{MongoDB}
-\label{chap:mongodb}
+\label{sec:mongodb}
 
 
-\section{pracmln}
-\label{chap:pracmln}
+\section{Markov Logic Networks}
+\label{sec:mln}
+
+\subsection{pracmln}
+\label{subsec:pracmln}

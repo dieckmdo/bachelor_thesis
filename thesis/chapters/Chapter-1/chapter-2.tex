@@ -39,7 +39,41 @@ Zeigt, dass Kombination verschiedener Attributklassifizierer die einzelnen Outpe
 of examples will be particularly important in the context of
 teaching robots about objects and attributes.'' \par
 
+
+\cite{pronobis1} \newline
+Zusammenführung von verschiedenen Informationsquellen mit verschiedenem Datentypen (Aussehen und Geometrie von Orten, Objekt informationen, Topologische Struktur, mensch Input). Kern: kompakte Repräsentation von komplexem, dynamischen, räumlichen Wissen. \newline
+Kompakt: robuster mit Dynamik. \newline
+Infer zusaätzliches Wissen aus Wissen + Sehen. \newline
+KB in 4 Layers, categorical Layer hat Modelle von Objekten, Landmarks, room shapes. \newline
+conceptual layer: Common-sense conceptual knowledge + Taxonomy von räumlichen Konzepten. Hier Info, dass kÜche enthält Milch und durch inferenz: sehe Milch also bin wahrscheinlich in Küche. Darstellung in realtionalen Beziehungen(kitchen has-object milk) und Instance-Wissen (obj1 is-a milk, place1 has-object obj1).\newline
+Properties of Space: Ort bekommt Attribute, um ihn zu beschreiben.(objects, size, shape) \newline
+Conceptual Map (KB): chain graph. Erlaubt reasoning über unbekannte Räume
+
+
+
+
+\todo{PR2 Loóking at Things}
+
 \subsection{Frameworks und andere Algorithmen?!?}
+
+\cite{multimodalTemplate} \newline
+Objekterkennung mit Template matching (Abgleich mit Vorlage, besser als featurePoint für gering texturierte Objs). Verbesserung von simplem TempMatch (Probleme mit viel Hintergrund Stördaten) durch multi-modalities(multi-Modalitäten) in Templates. Also zusätzliche Informationen mit Farbbild und Tiefenbild.\newline
+Template matching kann schnell online gelernt werden, anders als andere Verfahren. \newline 
+Farbbild Gradienten: robuster als Greyscale und bei untexturiert einzige Hinweise in Bildern. \newline
+Tiefenbild: 3D Oberflächen Normale. \newline
+Sehr Robust, hohe Erkkennrate: features/cues/Hinweise ergänzen sich gegenseitig.  \newline
+Speed: template learning schnell: einfach multimodal features ectrahieren und teamplate anlegen. Schnell, da LINE-MOD nur abhängig von Nummer der features und nicht Größe der temapltes. \par
+
+
+\cite{moped} \newline
+framework zur Objekterkennung. Veruscht in Szenen mit hoher Komplexität zu arbeiten und mit geringer Latenz. \newline
+Erreicht mit ICE(Iterative Clustering-Estimation): schätzt Featuregruppen (via SIFT, keypoints) ab, die wahrscheinlich zu Objekt gehören. SUcht Objekt-Hypothesen darin. Damit dann verbesserung der FeatGruppe und damit Hypo (``ICE iteratively executes clustering and pose estimation to progressively rene which features belong to each object instance, and to compute the object poses that best each object instance.'')... Einfache Paralellisierung möglich (Latenz bewältigen) \newline
+Projection Clustering (Pose clustering algorithm): da Hypothesen von noisy Kamerabilder: Ausreißer! Jeder Typ wird ausgewertet und falsche Hypos mit den wahrscheinlich richtigen vereinigt. \newline
+Ziel MOPED: Input:Bilder u DB. Output: Erkennung u Pose Estiamtion von Objekten. \newline
+Learning der DB über 3D Modelle, die durch verschiedene Viewpoint Bilder der Objekte erstellt werden. \newline
+Per image: 1 featExtraction, 1 matching, iter ICE ( 2 times), final cluster merging to merge not yet merged double detections. \newline
+Medel creation braucht menschliche Interaktion. \par
+
 
 \cite{3dnet} \newline
 3DNet: DB mit 3D-CAD Modellen. + Framework: basiert auf PCL. bietet Deskriptoren, die mit 3D-Modellen traniiert werden und so echtzeit Objekt- und Objektklassen klassifizierung und Pose recognition bieten. In ROS integrierbar. Kinect Bilder zur Klassifikation. \newline
@@ -55,25 +89,6 @@ Parameter und Deskriptoren Gewichtung Lernen ohne echte Szenen \newline
 Intention von 3DNet: quelloffenes Framework mit TestDBs für Benchmarking zum objektiven Vergleich von Shape-Deskriptoren. \par
 
 
-\cite{moped} \newline
-framework zur Objekterkennung. Veruscht in Szenen mit hoher Komplexität zu arbeiten und mit geringer Latenz. \newline
-Erreicht mit ICE(Iterative Clustering-Estimation): schätzt Featuregruppen (via SIFT, keypoints) ab, die wahrscheinlich zu Objekt gehören. SUcht Objekt-Hypothesen darin. Damit dann verbesserung der FeatGruppe und damit Hypo (``ICE iteratively executes clustering and pose estimation to progressively rene which features belong to each object instance, and to compute the object poses that bestt each object instance.'')... Einfache Paralellisierung möglich (Latenz bewältigen) \newline
-Projection Clustering (Pose clustering algorithm): da Hypothesen von noisy Kamerabilder: Ausreißer! Jeder Typ wird ausgewertet und falsche Hypos mit den wahrscheinlich richtigen vereinigt. \newline
-Ziel MOPED: Input:Bilder u DB. Output: Erkennung u Pose Estiamtion von Objekten. \newline
-Learning der DB über 3D Modelle, die durch verschiedene Viewpoint Bilder der Objekte erstellt werden. \newline
-Per image: 1 featExtraction, 1 matching, iter ICE ( 2 times), final cluster merging to merge not yet merged double detections. \newline
-Medel creation braucht menschliche Interaktion. \par
-
-
-\cite{multimodalTemplate} \newline
-Objekterkennung mit Template matching (Abgleich mit Vorlage, besser als featurePoint für gering texturierte Objs). Verbesserung von simplem TempMatch (Probleme mit viel Hintergrund Stördaten) durch multi-modalities(multi-Modalitäten) in Templates. Also zusätzliche Informationen mit Farbbild und Tiefenbild.\newline
-Template matching kann schnell online gelernt werden, anders als andere Verfahren. \newline 
-Farbbild Gradienten: robuster als Greyscale und bei untexturiert einzige Hinweise in Bildern. \newline
-Tiefenbild: 3D Oberflächen Normale. \newline
-Sehr Robust, hohe Erkkennrate: features/cues/Hinweise ergänzen sich gegenseitig.  \newline
-Speed: template learning schnell: einfach multimodal features ectrahieren und teamplate anlegen. Schnell, da LINE-MOD nur abhängig von Nummer der features und nicht Größe der temapltes. \par
-
- 
 
 \section{Reasoning}
 

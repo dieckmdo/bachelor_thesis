@@ -18,9 +18,15 @@ Wichitg für Umgebung einordung und objekterkennung.
 
 Algorithmen, Systeme, Trends \par
 
+\subsection{Attribute Based Object Identification}
 
-\cite{descObjbyAtr}
-
+\cite{descObjbyAtr} \newline
+Attribute von bekannten und unbekannten Objekten, um diese zu beschreiben, vergleichen und kategorisieren. Generalisierung von Kategorien einfacher mit Attributen. Attributklassifizierer nur mit features trainieren, die für das Attribut relevant sind (Farbe unwichitg für Form). Vermeidung von lernen des Korrelierenden Attributes. (wheel with Cars ->learn metallic. Wodden carriages??)\newline
+Beschreibe unbekannte Objekte und lerne schnell Dinge über sie. \newline 
+Semantische Attribute (Form, Material) nicht immer genug, also auch UnterscheidungsAttribute (Katzen und Hunde haben es, Pferde nicht).\newline
+Mehrere Objekte teilen sich Attribute. Deshalb Verwendung von vorhergesehenen Attributen als features = kompakter, weniger features insgesamt. Damit nicht nur Erkennung sondern auch Unbekanntes beschreibbar. Fehlen oder Vorhandensein atypischer Attribute aufzeigbar. Modellernen mit wenig Beispielen und neue Kategorien auch aus Text allein ohne Bilder. \newline
+Zeigt: \textit{selected feature} lernen (bei wheel, Bilder mit wheel und ohne, um lernen von metallic zu vermeiden) verbessert Klassifizierung (cross Category generalization). Mit allen feats scheint zu verwirren aka Traning set Korrelation bias. \newline
+image features zu Kategorie bei Unbekannten hilflos. Also Attribute benutzen. So nicht nur Name sondern Eigenschaften benennbar.
 
 \par
 
@@ -33,6 +39,41 @@ Zeigt, dass Kombination verschiedener Attributklassifizierer die einzelnen Outpe
 of examples will be particularly important in the context of
 teaching robots about objects and attributes.'' \par
 
+\subsection{Frameworks und andere Algorithmen?!?}
+
+\cite{3dnet} \newline
+3DNet: DB mit 3D-CAD Modellen. + Framework: basiert auf PCL. bietet Deskriptoren, die mit 3D-Modellen traniiert werden und so echtzeit Objekt- und Objektklassen klassifizierung und Pose recognition bieten. In ROS integrierbar. Kinect Bilder zur Klassifikation. \newline
+Objektklassen über Link zu WordNet. \newline 
+Training mit 3D Modellen bietet Vorteile: 
+\begin{itemize}
+	\item Completeness
+	\item Parameterizable
+	\item sensor independence
+	\item additional info available
+\end{itemize}
+Parameter und Deskriptoren Gewichtung Lernen ohne echte Szenen \newline
+Intention von 3DNet: quelloffenes Framework mit TestDBs für Benchmarking zum objektiven Vergleich von Shape-Deskriptoren. \par
+
+
+\cite{moped} \newline
+framework zur Objekterkennung. Veruscht in Szenen mit hoher Komplexität zu arbeiten und mit geringer Latenz. \newline
+Erreicht mit ICE(Iterative Clustering-Estimation): schätzt Featuregruppen (via SIFT, keypoints) ab, die wahrscheinlich zu Objekt gehören. SUcht Objekt-Hypothesen darin. Damit dann verbesserung der FeatGruppe und damit Hypo (``ICE iteratively executes clustering and pose estimation to progressively rene which features belong to each object instance, and to compute the object poses that bestt each object instance.'')... Einfache Paralellisierung möglich (Latenz bewältigen) \newline
+Projection Clustering (Pose clustering algorithm): da Hypothesen von noisy Kamerabilder: Ausreißer! Jeder Typ wird ausgewertet und falsche Hypos mit den wahrscheinlich richtigen vereinigt. \newline
+Ziel MOPED: Input:Bilder u DB. Output: Erkennung u Pose Estiamtion von Objekten. \newline
+Learning der DB über 3D Modelle, die durch verschiedene Viewpoint Bilder der Objekte erstellt werden. \newline
+Per image: 1 featExtraction, 1 matching, iter ICE ( 2 times), final cluster merging to merge not yet merged double detections. \newline
+Medel creation braucht menschliche Interaktion. \par
+
+
+\cite{multimodalTemplate} \newline
+Objekterkennung mit Template matching (Abgleich mit Vorlage, besser als featurePoint für gering texturierte Objs). Verbesserung von simplem TempMatch (Probleme mit viel Hintergrund Stördaten) durch multi-modalities(multi-Modalitäten) in Templates. Also zusätzliche Informationen mit Farbbild und Tiefenbild.\newline
+Template matching kann schnell online gelernt werden, anders als andere Verfahren. \newline 
+Farbbild Gradienten: robuster als Greyscale und bei untexturiert einzige Hinweise in Bildern. \newline
+Tiefenbild: 3D Oberflächen Normale. \newline
+Sehr Robust, hohe Erkkennrate: features/cues/Hinweise ergänzen sich gegenseitig.  \newline
+Speed: template learning schnell: einfach multimodal features ectrahieren und teamplate anlegen. Schnell, da LINE-MOD nur abhängig von Nummer der features und nicht Größe der temapltes. \par
+
+ 
 
 \section{Reasoning}
 

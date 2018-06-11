@@ -98,6 +98,21 @@ WWW hat gute CAD-Modelle von Büromöbeln (wg. Hobby, Hersteller). Experimente m
 Roboter in der Lage unbekannte Möbel zu erkennen und kategorisieren. \par
 
 
+\cite{3DCNNObjRec} \newline
+3D Objekterkennung in echten 2D-Bildern mit CNN-Model trainiert auf 3D-Modellen. \newline
+Synthetische Erstellung von Trainingdaten mit 3D-Modellen und verschieden Viewpoints. \newline
+Feature-based objet recognition \newline
+Hohe Erkennrate (besser als MOPED). Nur wenn akkurate 3D-Modelle vorhanden und ein 3D-Model für eine Objektinstanz.
+
+
+\cite{synthImg} \newline
+Kleine Menge echter Bilder als Seed, um daraus synthetische Blder zu gernerieren, mit denen ein Klassifizierer trainiert wird. \newline
+Nicht ganz deatiltreue 3D-Modelle. Diese werden in Background eingefügt + automatisch ausgewähltes postprocessing (MotionBlur, Noise, etc), um dem echten Bild möglichst nahe zu kommen. Dann Position + Orientierung des Objekts veränderbar, um so viele synthetische Bilder zu kriegen. \newline
+Gleichheit mit Funktion: wichitger, was fürs Training wichtig als größte Gleichheit. Also Gleicheit abhängig von features die classifier bei Detektion benutzt. \newline
+12 real seed Bilder reichen, um genug syn Bilder zu erzeugen, um einen classifier zu outperformen der mit $>=12*8$ realen Bildern gemacht. \newline
+Gute Ergebnisse. Outperformence von classifier nur mit Real Bildern traniert. 
+
+
 \section{Reasoning}
 
 Wchitg für was soll cih tun? Was ist das? Kenne ich das schon.

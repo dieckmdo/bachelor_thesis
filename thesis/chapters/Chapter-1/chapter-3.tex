@@ -17,12 +17,18 @@ Für diese Arbeit interessant ist das \gls{fotoreal} in Echtzeit: die Unreal Eng
 
 \subsection{Küchen Umgebung}
 \label{subsec:kitchenenvironment}
-
+Um in einer Game Engine ein zu spielendes \textit{Level} (oder \textit{Map}) mit Objekten, mit denen der Spieler interagieren kann, zu füllen, braucht man sogenannte \textit{Assets}. Dies sind 3D-Modelle, die in einem 3D-Modellierungsprogramm erstellt wurden oder 3D-Scans von echten Objekten, die dann in ein passendes Format überführt wurden. Auch wenn im Rahmen dieser Arbeit kein Bedarf besteht, das \textit{Level} zu spielen, werden trotzdem \textit{Assets} benötigt. Diese können dann so angeordnet werden, dass eine Kamera ein Bild von der Szene macht, über das dann die Perzeptionspipeline läuft. \par
+Das IAI besitzt \textit{Assets} für eine realistische Küchenumgebung, die eine Nachbildung einer echten Küche im Institut ist. Sie wird im Rahmen des Projekts RobCoG\footnote{\url{http://www.robcog.org/}} ständig verbessert und erweitert. Das Ziel von RobCoG ist es Robotern über \textit{Serious Games} mit Commonsense und Wissen über Physik auszustatten. Da bei dem Erstellen und Abnehmen eines Bildes aus der \acrshort{engine} kein Bedarf besteht Schubladen zu öffnen, Objekte anzuheben oder die Herdplatten anzustellen, wird eine Version der Küche benutzt, die auf unnötige Funktionen verzichtet.\footnote{\url{https://github.com/robcog-iai/RobCoG/tree/dev-env}} \par
+Die Objekte des täglichen Bedarfs, die im Rahmen dieser Arbeit erkannt werden sollen, sind auch Teil der Küchenumgebung. Es handelt sich bei ihnen um eingescannte echte Objekte, sodass sie einen hohen Detail- und Realitätsgrad besitzen und sich auch vom Roboter auch in der echten Küche finden lassen können.
+ 
 \subsection{URoboVision}
 \label{subsec:urobovision}
+Damit die Bilder aus der Unreal Engine von der Perzeptionspipline in ROBOSHRLOCK verarbeitet werden können, wird ein Unreal Engine Plugin verwendet. URoboVision\footnote{\url{https://github.com/robcog-iai/URoboVision}} bietet eine Kamera, die die benötigten Informationen aus der Unreal Engine zieht und dann über eine TCP-Verbindung an ROBOSHERLOCK schickt. Dazu werden drei Bilder, ein Farbbild, ein Tiefenbild, und eine Objektmaske von der Szene erzeugt. Letzteres ist ein Bild, in dem jedes Objekt in einer anderen Farbe eingefärbt ist. Zusätzlich wird noch eine Map übermittelt, in der jede Farbe ein eindeutiger Objektname zugeordnet ist. Daraus kann später die Groundtruth für Objekthypothesen  ermittelt werden (mehr in \todo{wo ist das?}).   
 
 \subsection{RSpawnBox}
 \label{sec:rspawnbox}
+
+Im Rahmen des Bachelor Projekts UnrealRobots im WiSe16/17 SoSe17 der Universität Bremen hat der Autor dieser Arbeit im VisionScanning-Subprojekt\footnote{\url{https://gitlab.informatik.uni-bremen.de/dieckmdo/P12-VisionScanning-UR16} GitLab Account der Universität Bremen notwendig} die RSpawnBox Klasse für die Unreal Engine implementiert. Diese bietet die Möglichkeit ausgewählte Objekte innerhalb einer Bounding Box an zufälligen Plätzen erscheinen zu lassen. Zusätzlich rotierte eine Kamera in anpassbarem Abstand und Winkel um die erschienenen Objekte. Im Rahmen dieser Arbeit wurde letzterer Teil der Klasse in stark modifizierter Form verwendet, um Bilder aus verschiedenen Ansichten der Szene mit der URoboVision Kamera aufzunehmen. Mehr dazu in \todo{wahrscheinlich Implementierung}.         
 
 \section{ROS}
 \label{sec:ros}

@@ -42,7 +42,18 @@ Die Kommunikation läuft über sogenannte \textit{Nodes}. Ein \textit{Node} ist 
 
 \section{ROBOSHERLOCK}
 \label{sec:robosherlock}
-
+ROBOSHERLOCK ist ein quelloffenes Framework zur Implementierung von Roboter Perzeptionssystemen. Dabei bietet ROBOSHERLOCK auch die Möglichkeit, Wissen zu akquirieren und darüber zu Schlussfolgern, als auch Fragen zu der wahrgenommenen Szene zu beantworten. Dabei bekommt der Roboter die Aufgabe nach Objekten einer bestimmten Beschreibung Ausschau zu halten und kann über diese dann zusätzliche Informationen erfahren. \par
+ROBOSHERLOCK basiert auf dem \textit{unstructred information management}, was alle Daten als unstrukturiert ansieht, da ihnen Struktur und Semantik fehlt. Sogenannte \textit{Annotatoren} extrahieren nun Informationen aus den unstrukturierten Daten und geben ihnen so eine Bedeutung. Jeder \textit{Annotator} ist als \textit{Experte} auf eine bestimmte Information angesetzt, so kann ein der \textit{PlaneAnnotator} die den Objekten unterliegende Tischplatte finden oder der \todo{nettes Beisiel}. ROBOSHERLOCK bietet die Möglichkeit, dass mehrere \textit{Annotatoren} als Ensemble auf dem selben Daten arbeiten. So können sie sich gegenseitig ergänzen \todo{Verweis auf den einen Perceptionblock mit ensemble} und bessere Ergebnisse erzielen. Zusätzlich können durch die Kapselung bestimmter Aufgaben in \textit{Experten} neue Perzeptionsalgorithmen einfach als zusätzliche \textit{Annotatoren} eingepflegt werden. \par 
+Als Eingabe erhält ROBOSHERLOCK verschiedene Sensordaten, die an sich unstrukturiert sind. Diese werden mit einer Struktur zum Speichern der \textit{Annotationen} der \textit{Annotatoren} und einem \textit{type system} in einer \textit{Common Analysis Structure (CAS)} gespeichert. ROBOSHERLOCK versucht nun Objekthypothesen zu erstellen, also welche Datenschnipsel könnten zu einem Objekt gehören. Diese Hypothesen werden in eindeutig identifizierbaren Strukturen, den \textit{Subjects of Anaylsis (SOFAs)}, gespeichert und zur \textit{CAS} hinzugefügt. Auf diesen können nun weitere \textit{Experten} laufen und so zusätzliche Informationen über die potenziellen Objekte zu erhalten. \par
+\textit{Annotatoren} gibt es in zwei Varianten: \textit{general-purpose} und \textit{perception task-specific}. Erstere können auf jedem SOFA laufen, wie Farbe und Form, während letztere nur bei bestimmten Aufgaben zum Einsatz kommen. \newline
+zwie AE formen: primitve and aggregate. \newline
+1: hypthseses generation and SOFA creation \newline
+2: annoate SOFAs (Annotators). Können auf andere Annoationen zugreifen und auf andere SOFAs. Dürfen inkonsistent und contradidtory sein -> auflösen durch folgendes reasoning und hypothesen testing u. ranking. Dazu Robo speichert: wer hat Annotation gemacht und wie sicher ist er. \newline
+Mehrere AE zusammen mit flow controller formen Perzeptionspipeline. \par
+Annoationen in Form von logischen Atomen -> kann Queries beantworten und reaoning über Annoattionen. \newline
+ROBO hat engine zum lernen und schlussfolgern über Probailitische FP KBs, um inkonsistenz der Annotationen zu vernichten. \par 
+meiste AEs mit PCL oder OpenCV 
+  
 \subsection{classifiers}
 \label{sec:classifiers}
 

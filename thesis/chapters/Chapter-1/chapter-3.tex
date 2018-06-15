@@ -11,9 +11,9 @@ Die von Epic Games\footnote{\url{https://www.epicgames.com}} entwickelte Unreal 
 
 Im Kern bietet die Unreal Engine eine Möglichkeit zur Echtzeit Manipulation und Erstellung von Anwendungen wie Spielen. Dazu gehören zum Beispiel \gls{fotoreal}, VR Unterstützung und Entwicklung, ein Partikel- und VFX-System, sowie ein KI-System. Weitere Tools umfassen unter anderem einen Animator und einen Sequencer, der zur Erstellung und Editierung von filmischen Sequenzen benutzt werden kann. \par 
 
-Seit Februar 2015 ist der C++ Quellcode der Unreal Engine offen verfügbar und die \acrshort{engine} selber für jeden kostenlos nutzbar, solange kein Gewinn in einer bestimmten Höhe erzielt wird \cite{freeUnreal}. Damit kann jeder an der Entwicklung der \acrshort{engine} teilhaben und sie für die persönlichen Zwecke individualisieren. Zusätzlich können auf dem Marketplace zusätzliche Inhalte und Plugins von Drittanbietern erworben und dann einfach in die\acrshort{engine} integriert werden, wodurch die Unreal Engine ein hohes Maß an Flexibilität und Individualisierung bietet. \par 
+Seit Februar 2015 ist der C++ Quellcode der Unreal Engine offen verfügbar und die \acrshort{engine} selber für jeden kostenlos nutzbar, solange kein Gewinn in einer bestimmten Höhe erzielt wird \cite{freeUnreal}. Damit kann jeder an der Entwicklung der \acrshort{engine} teilhaben und sie für die persönlichen Zwecke individualisieren. Zusätzlich können auf dem Marketplace zusätzliche Inhalte und Plugins von Drittanbietern erworben und dann einfach in die \acrshort{engine} integriert werden, wodurch die Unreal Engine ein hohes Maß an Flexibilität und Individualisierung bietet. \par 
 
-Für diese Arbeit interessant ist das \gls{fotoreal} in Echtzeit: die Unreal Engine bietet damit eine Möglichkeit echt wirkende Szenarien zu erstellen, aus denen dann Perzeptionsalgorithmen die Informationen herausfiltern, die für das Trainieren einer KB wichtig sind. Natürlich setzt das voraus, dass die Objekte in der zu rendernden Szene auch realistische Modelle besitzen. Dazu mehr in folgenden Abschnitten [Verweis].       
+Für diese Arbeit interessant ist das \gls{fotoreal} in Echtzeit: die Unreal Engine bietet damit eine Möglichkeit echt wirkende Szenarien zu erstellen, aus denen dann Perzeptionsalgorithmen die Informationen herausfiltern, die für das Trainieren einer KB wichtig sind. Natürlich setzt das voraus, dass die Objekte in der zu rendernden Szene auch realistische Modelle besitzen.     
 
 \subsection{Küchen Umgebung}
 \label{subsec:kitchenenvironment}
@@ -62,7 +62,8 @@ Beispiele für Annotatoren sind der \textit{ColorClusterHistogrammAnnottator}, d
   
 \subsection{classifiers}
 \label{sec:classifiers}
-
+Für die Perzeptionspipeline, die im nächsten Kapitel vorgestellt wird \todo{Referenz}, werden Klassifizierer für Form, Klasse und Instanz der Objekte benutzt. Implementiert wurden diese im Rahmen einer Masterarbeit von Rakibul Islam als \robosherlock Annotatorern \cite{rakib}. Der Autor dieser Arbeit hat den Code von einer Abhängigkeit von \textit{OpenCV}\footnote{\url{https://opencv.org/}} 2 zu Version 3 migriert. Zu finden sind die Klassifizierer im \textsc{RoboSherlock}-Package \textit{rs\_addons}\footnote{\url{https://github.com/bbferka/rs\_addons}}. \par
+Mit dem \textit{feature\_extractor} werden in einem ersten Schritt mithilfe eines \textit{\gls{vfh}} oder \textit{\gls{cnn}} Merkmale aus den Bildern mit partiellen Sichten\todo{?} der Objekte extrahiert. Dann kann mit den gewonnenen Daten über den \textit{classifier\_trainer} ein Klassifizierer antrainiert werden. Es stehen drei verschiedene Implementationen für sie zur Verfügung: \textit{\gls{rf}}, \textit{\gls{svm}} oder \textit{\gls{knn}}.
 
 \section{MongoDB}
 \label{sec:mongodb}

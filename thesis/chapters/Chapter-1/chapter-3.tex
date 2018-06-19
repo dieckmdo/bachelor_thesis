@@ -5,7 +5,7 @@
 \label{chap:software}
 %	\input{\CHAPTERONE /motivation}
 
-\section{Unreal Engine}
+\section{\unreal}
 \label{sec:unrealengine}
 Die von Epic Games\footnote{\url{https://www.epicgames.com}} entwickelte Unreal Engine\footnote{\url{https://www.unrealengine.com}} ist eine \gls{gameengine} zur Entwicklung von Videospielen und zur Erstellung von filmischen Erfahrungen \cite{featUnreal}. Mittlerweile befindet sich die Unreal Engine in ihrer vierten Generation und enthält nicht nur die \acrshort{engine} selbst, sondern auch eine Vielzahl an Werkzeugen, die alle in die \acrshort{engine} integriert oder angebunden sind, um den Workflow der Nutzer zu vereinfachen und effizienter zu gestalten. Erhältlich ist die \acrshort{engine} für die Betriebssysteme Windows, MacOS und Linux. \par
 
@@ -44,7 +44,7 @@ Die Kommunikation läuft über sogenannte \textit{Nodes}. Ein Node ist ein Proze
 \label{sec:robosherlock}
 \robosherlock\footnote{\url{http://robosherlock.org/}} ist ein quelloffenes \gls{framework} zur Implementierung von Roboter Perzeptionssystemen. Dabei bietet \robosherlock auch die Möglichkeit, Wissen zu akquirieren und darüber zu Schlussfolgern, als auch Fragen zu der wahrgenommenen Szene zu beantworten. Dabei bekommt der Roboter die Aufgabe nach Objekten einer bestimmten Beschreibung Ausschau zu halten und kann über diese dann zusätzliche Informationen erfahren\cite{robosherlock}. \par
 \robosherlock basiert auf der \textit{unstructred information management architecture (UIMA)}\footnote{\url{https://uima.apache.org/}}. Dabei wird davon ausgegangen, dass Daten zwar einer Syntax unterliegen, die Semantik der Daten jedoch unbekannt ist. Ziel ist es nun diese Bedeutung oder das Wissen aus den Daten zu extrahieren. \todo{cite???} Im Falle der Perzeption handelt es sich bei den unstrukturierten Daten um Sensor- und Kameradaten eines Roboters, zum Beispiel Punktwolken oder Farbbilder. Mit \robosherlock können in ihnen nun Hypothesen über potenzielle Objekte innerhalb der wahrgenommenen Szene erstellt werden. \par
-Dazu erstellt \robosherlock in einem ersten Schritt eine \textit{\gls{cas}}. Hier werden die initialen Daten der Szene, plus eine Datenstruktur zum Speichern von \textit{Annotationen} und ein \textit{Typsystem} abgespeichert. Annotationen sind die zu einem späteren Zeitpunkt extrahierten Informationen. Das Typsystem sorgt für ein einheitliches Vokabular innerhalb des Systems. \newline
+Dazu erstellt \robosherlock in einem ersten Schritt eine \textit{\gls{cas}}. Hier werden die initialen Daten der Szene, plus eine Datenstruktur zum Speichern von \textit{Annotationen} und ein \textit{Typsystem} abgespeichert. Annotationen sind die zu einem späteren Zeitpunkt extrahierten Informationen. Das Typsystem sorgt für ein einheitliches Vokabular innerhalb des Systems. \todo{CAS reset every processing loop} \newline
 Nun kommen die \textit{\glspl{ae}} zum Einsatz. Dies sind das Herzstück von \robosherlock, da sie die eigentlichen Perzeptionsalgorithmen enthalten, die die Daten analysieren. Diese können in zwei Formen vorliegen: \textit{primitive} und \textit{aggregate}. \par
 \textbf{primitive \glspl{ae}} fungieren als Experten für ein spezielles Problem und implementieren jeweils einen speziellen Perzeptionsalgorithmus. Sie können wiederum auch in zwei Arten eingeteilt werden:
 \begin{description}
@@ -60,13 +60,20 @@ color(s1, red)
 Beispiele für Annotatoren sind der \textit{ColorClusterHistogrammAnnottator}, dier die Farbe eines Clusters analysiert und \todo{Beispiel}. Die Kapselung der einzelnen Algorithmen macht es möglich neue Perzeptionsalgorithmen in Form von neuen Annotatoren einfach zum System hinzuzufügen. \par
 \textbf{aggregate \glspl{ae}} bestehen aus mehreren primitve und aggregate \glspl{ae}. Zusammen mit einem \textit{flow-controller} werden sie zum Perzeptionspipelines, um so mehrere \glspl{ae} auf den selben Daten arbeiten zu zu lassen und komplexere Aufgaben zu lösen. Perzeptionspipelines lassen die \glspl{ae} in einer sequentiell vorher festgelegten Reihenfolge auf den Daten arbeiten. \robosherlock lässt dabei auch Mehrfachannotationen des gleichen Attributs oder Inkonsistenzen beziehungsweise Widersprüche innerhalb der Annotationen zu. Um diese aufzulösen, besitzt \robosherlock eine Engine zum Lernen und Schlussfolgern über Probabilistische First-Order Wissensbasen und speichert dafür zu jeder Annotation, wer sie gemacht und wie sicher er sich dabei war. Die so arbeitenden Experten werden auch Ensemble genannt, das sie sich  genseitig ergänzen und die Schwächen der Anderen ausgleichen können \cite{polikar}.  
   
-\subsection{classifiers}
+\subsection{Objektklassifizierer}
 \label{sec:classifiers}
 Für die Perzeptionspipeline, die im nächsten Kapitel vorgestellt wird \todo{Referenz}, werden Klassifizierer für Form, Klasse und Instanz der Objekte benutzt. Implementiert wurden diese im Rahmen einer Masterarbeit von Rakibul Islam als \robosherlock Annotatorern \cite{rakib}. Der Autor dieser Arbeit hat den Code von einer Abhängigkeit von \textit{OpenCV}\footnote{\url{https://opencv.org/}} 2 zu Version 3 migriert. Zu finden sind die Klassifizierer im \textsc{RoboSherlock}-Package \textit{rs\_addons}\footnote{\url{https://github.com/bbferka/rs\_addons}}. \par
 Mit dem \textit{feature\_extractor} werden in einem ersten Schritt mithilfe eines \textit{\gls{vfh}} oder \textit{\gls{cnn}} Merkmale aus den Bildern mit partiellen Sichten\todo{?} der Objekte extrahiert. Dann kann mit den gewonnenen Daten über den \textit{classifier\_trainer} ein Klassifizierer antrainiert werden. Es stehen drei verschiedene Implementationen für sie zur Verfügung: \textit{\gls{rf}}, \textit{\gls{svm}} oder \textit{\gls{knn}}.
 
-\section{MongoDB}
+\section{\mongodb}
 \label{sec:mongodb}
+\mongodb\footnote{\url{https://www.mongodb.com/}} ist eine quelloffene und schemafreie Datenbank. Daten werden in \textit{Collections} abgespeichert, die wiederum aus Dokumenten im \gls{bson} Format bestehen. Anders als in Relationalen \textit{Datenbanken} gibt es dabei keine Einschränkungen in welcher Form die Daten gespeichert werden \cite{mongoVsOracle}. Dies wird als schemafrei bezeichnet und passt gut zum Konzept von UIM:
+\begin{quote}
+"This [...] property nicely fits the paradigms of unstructured information processing, as we can not guarantee that every hypotheses will be annotated in the same way, or that every execution loop generates the same views." \hfill -- \cite{episodicMemory}
+\end{quote}
+In Dokumenten werden \textit{Schlüssel-Wert-Paare} gespeichert, die jeweils unterschiedliche Datentypen (z.B. Zahlen, Zeichenketten, Arrays und weitere Dokumente) haben können. Beim Anlegen eines neuen Objekts wird ein Feld mit einer eindeutigen Objekt-Id (\textit{\_id}) für den neuen Eintrag angelegt. So kann das Objekt innerhalb der Collection referenziert werden, sowie über Anfragen gefunden werden. Anfragen und Operationen werden in MongoDB nicht klassisch mit \gls{sql} abgesetzt, sondern über eine \textit{Query-Language}. Insgesamt bietet \mongodb als schemafreie Datenbank ein hohe Flexibilität, Geschwindigkeit und Einfachheit \cite{mongoVsOracle}. \todo{Auzug aus DB als Beispiel} \par 
+\robosherlock ist in der Lage seine Daten in einer laufenden \mongodb-Instanz zu speichern. Kern ist dabei die \gls{cas} Collection. Diese beinhaltet Referenzen zu den anderen relevanten \textit{views}. Dies sind Daten eines Sensors, wie das \gls{rgb}-Bild oder die Objektmaske. Die \textit{Scenes} Collection enthält Informationen, was \robosherlock zu einem bestimmten Zeitpunkt wahrgenommen hat, unter anderem mit Informationen über den Zeitpunkt, den Viewpoint des Roboters, Objekthypothesen und Annotationen \cite{episodicMemory}.  
+
 
 
 \section{Markov Logic Networks}

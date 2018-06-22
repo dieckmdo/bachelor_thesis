@@ -79,7 +79,7 @@ In Dokumenten werden \textit{Schlüssel-Wert-Paare} gespeichert, die jeweils unt
 \section{Markov Logic Network}
 \label{sec:mln}
 \glspl{mln} kombinieren die Ausdrucksstärke der \gls{fo} mit der Effizienz von \glspl{pgm}  Unsicherheit und Inkonsistenz zu behandeln und haben deshalb in den letzten Jahren großen Anklang in der Wissenschaft gefunden. Gerade in nicht-deterministischen Umgebungen stoßen \gls{fo} und \gls{pgm} Wissensbasen an ihre Grenzen: \gls{fo} mit seiner Datenbank ähnlichen Repräsentation ist unpraktisch und unzumutbar mit zufälligen Ereignissen umzugehen, während bei \glspl{pgm} die Anzahl an Zufallsvariablen fest ist, die Menge der Variablen zu Beginn jedoch meistens nicht bekannt ist. \cite{nyga17} \par 
-Ein \gls{mln} besteht aus einer Menge von Formeln in \gls{fo} (\gls{kb}) und einer Gewichtung für jede Formel. Die möglichen Welten beschreiben alle möglichen Belegungen der Variablen innerhalb einer \gls{kb}. Eine Formel beschreibt einen \textit{Beschränkung oder constraint} auf die eine Teilmenge der Welten. Normalerweise gelten Welten, die eine Formel verletzten, als unmöglich. \glspl{mln} schwächen die constraints nun ab. Welten sind nicht unmöglich sondern weniger wahrscheinlich, wenn die eine Formel verletzen. Die Gewichtung gibt an, wie stark ein constraint ist. Ein höheres Gewicht besagt, dass der Unterschied der Wahrscheinlichkeit zwischen einer Welt, die die Formel erfüllt, und einer Welt, die sie nicht erfüllt, größer ist. Ein \gls{mln} kann nun ein \textit{Markov Netzwerk} aufspannen und somit als Vorlage für die Konstruktion solcher gesehen werden. \cite{mln} \par
+Ein \gls{mln} besteht aus einer Menge von Formeln in \gls{fo} (\gls{kb}) und einer reell-zahligen Gewichtung für jede Formel. Die möglichen Welten beschreiben alle möglichen Belegungen der Variablen innerhalb einer \gls{kb}. Eine Formel beschreibt einen \textit{Beschränkung oder constraint} auf die eine Teilmenge der Welten. Normalerweise gelten Welten, die eine Formel verletzten, als unmöglich. \glspl{mln} schwächen die constraints nun ab. Welten sind nicht unmöglich sondern weniger wahrscheinlich, wenn die eine Formel verletzen. Die Gewichtung gibt an, wie stark ein constraint ist. Ein höheres Gewicht besagt, dass der Unterschied der Wahrscheinlichkeit zwischen einer Welt, die die Formel erfüllt, und einer Welt, die sie nicht erfüllt, größer ist; wie wichtig die Formel als ist. Ein \gls{mln} kann nun ein \textit{Markov Netzwerk} als \gls{kb} aufspannen, mit dem zum Beispiel ein Roboter über die wahrgenommenen Objekte auf einem Tisch inferieren kann. \cite{mln} \par
 Nyga et al. (\cite{pr2looking}) stellen vor, warum \glspl{mln} für die Repräsentation von Wissen und das Reasoning in einem Perzeptionsframework von Vorteil sind: 
 \begin{itemize}
 	\item \glspl{mln} sind in der Lage die Beziehung zwischen Objekten abzubilden, da sie gleichzeitig eine beliebige aber endliche Menge von Objekten berücksichtigen können.
@@ -89,8 +89,25 @@ Nyga et al. (\cite{pr2looking}) stellen vor, warum \glspl{mln} für die Repräse
 \end{itemize}   
 Für eine ausführlichere Vorstellung von \glspl{pgm}, \gls{fo}, \glspl{mln} und Markov Netzwerken verweise ich den Leser auf \cite{nyga17, mln, jain}. \par 
 
-\textbf{Besispiel:}
-
+\textbf{Besispiel} Es folgt ein Beispiel für ein simples \gls{mln} übernommen von dem Beispiel\footnote{\url{http://www.pracmln.org/mlntutorial.html}} das zu dem Programm \pracmln gegeben ist mit kleinen Abwandlungen basierend auf einem Besipiel aus \cite{nyga17}. Inhalt des Beispiels ist es, die Korrelation zwischen Rauchen und Krebs zu modellieren und den Einfluss auf das soziale Umfeld. \par
+Zuerst werden die Prädikate definiert. Sie definieren, dass eine Person raucht oder Krebs haben kann und zwei Personen Freunde sein können:
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+Raucht(person)
+Krebs(person)
+Freunde(person,person)
+\end{lstlisting}
+Es folgen Regeln in \gls{fo}, die beschreiben, dass Krebs aus dem Rauchen folgt, eine Freundesbeziehung immer von beiden ausgeht und dass Freunde entweder beide oder keiner raucht. 
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+Raucht(p) => Krebs(p)
+Freunde(p1,p2) <=> Freunde(p2,p1)
+Freunde(person,person) => (Raucht(p1) <=> Raucht(p2))
+\end{lstlisting}
+An diese Regeln können nun die Gewichtungen geschrieben werden, die die 'Korrektheit' der Formel beschreibt. Zum Beispiel haben Raucher typischerweise Krebs. Unter Freunden rauchen meistens beide oder keiner:
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+1.2 Raucht(p) => Krebs(p)
+0.7 Freunde(person,person) => (Raucht(p1) <=> Raucht(p2))
+\end{lstlisting}  
+Für eine beliebige Person kann nun eine Anfrage zu einem beliebigen Aspekt gestellt werden. Zum Beispiel kann die Wahrscheinlichkeit dafür erfragt werden, dass Anna Krebs hat, unter der Bedingung, dass sie mit dem Raucher Bob befreundet ist, \lstinline[breaklines=true]{ P(Krebs(Anna)  | Freunde(Anna, Bob)  ^ Raucht(Bob))}, oder dass Celia mit Bob befreundet ist, unter der Bedingung, dass sie nicht raucht, \lstinline[breaklines=true]{P(Freunde(Celia, Bob)  | !Raucht(Celia))}.
 
 
 \subsection{pracmln}

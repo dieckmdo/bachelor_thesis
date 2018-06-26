@@ -90,25 +90,25 @@ Im Rahmen dieser Arbeit soll \robosherlock mit einem \gls{mln} über die Objekth
 \end{itemize}   
 Für eine ausführlichere Vorstellung von \glspl{pgm}, \gls{fo}, \glspl{mln} und Markov Netzwerken verweise ich den Leser auf \cite{nyga17, mln, jain}. \par 
 
-\textbf{Besispiel} Es folgt ein Beispiel für ein simples \gls{mln} übernommen von dem Beispiel\footnote{\url{http://www.pracmln.org/mlntutorial.html}} das zu dem Programm \pracmln gegeben ist mit kleinen Abwandlungen basierend auf einem Besipiel aus \cite{nyga17}. Inhalt des Beispiels ist es, die Korrelation zwischen Rauchen und Krebs zu modellieren und den Einfluss auf das soziale Umfeld. \par
+\textbf{Besispiel}\label{mlnexample} Es folgt ein Beispiel für ein simples \gls{mln} übernommen von dem Beispiel\footnote{\url{http://www.pracmln.org/mlntutorial.html}} das zu dem Programm \pracmln gegeben ist mit kleinen Abwandlungen basierend auf einem Besipiel aus \cite{nyga17}. Inhalt des Beispiels ist es, die Korrelation zwischen Rauchen und Krebs zu modellieren und den Einfluss auf das soziale Umfeld. \par
 Zuerst werden die Prädikate definiert. Sie definieren, dass eine Person raucht oder Krebs haben kann und zwei Personen Freunde sein können:
 \begin{lstlisting}[backgroundcolor=\color{backcolour}]
 Raucht(person)
 Krebs(person)
-Freunde(person, person)
+Freunde(person,person)
 \end{lstlisting}
 Es folgen Regeln in \gls{fo}, die beschreiben, dass Krebs aus dem Rauchen folgt, eine Freundesbeziehung immer von beiden ausgeht und dass unter Freunden entweder beide oder keiner raucht. 
 \begin{lstlisting}[backgroundcolor=\color{backcolour}]
 Raucht(p) => Krebs(p)
-Freunde(p1, p2) <=> Freunde(p2, p1)
-Freunde(p1, p2) => (Raucht(p1) <=> Raucht(p2))
+Freunde(p1,p2) <=> Freunde(p2,p1)
+Freunde(p1,p2) => (Raucht(p1) <=> Raucht(p2))
 \end{lstlisting}
 An diese Regeln können nun die Gewichtungen geschrieben werden, die die 'Korrektheit' der Formel beschreibt. Zum Beispiel haben Raucher typischerweise Krebs. Unter Freunden rauchen meistens beide oder keiner:
 \begin{lstlisting}[backgroundcolor=\color{backcolour}]
 1.2 Raucht(p) => Krebs(p)
-0.7 Freunde(p1, p2) => (Raucht(p1) <=> Raucht(p2))
+0.7 Freunde(p1,p2) => (Raucht(p1) <=> Raucht(p2))
 \end{lstlisting}  
-Für eine beliebige Menge von Person kann nun eine Anfrage zu einem beliebigen Aspekt innerhalb des Modells  gestellt werden. Zum Beispiel kann die Wahrscheinlichkeit dafür erfragt werden, dass Anna Krebs hat, unter der Bedingung, dass sie mit dem Raucher Bob befreundet ist, \lstinline[breaklines=true]{ P(Krebs(Anna)  | Freunde(Anna, Bob)  ^ Raucht(Bob))}, oder dass Celia mit Bob befreundet ist, unter der Bedingung, dass sie nicht raucht, \lstinline[breaklines=true]{P(Freunde(Celia, Bob)  | !Raucht(Celia))}.
+Für eine beliebige Menge von Person kann nun eine Anfrage zu einem beliebigen Aspekt innerhalb des Modells  gestellt werden. Zum Beispiel kann die Wahrscheinlichkeit dafür erfragt werden, dass Anna Krebs hat, unter der Bedingung, dass sie mit dem Raucher Bob befreundet ist, \lstinline[breaklines=true]{ P(Krebs(Anna)  | Freunde(Anna,Bob)  ^ Raucht(Bob))}, oder dass Celia mit Bob befreundet ist, unter der Bedingung, dass sie nicht raucht, \lstinline[breaklines=true]{P(Freunde(Celia,Bob)  | !Raucht(Celia))}.
 
 
 \subsection{\fuzzymln}
@@ -120,3 +120,40 @@ Eine mögliche Welt besteht nun aus einem Vektor, der jedem Atom einen reellen W
 
 \subsection{pracmln}
 \label{subsec:pracmln}
+Um ein \gls{mln} mit Trainingsdaten zu trainieren und darüber zu schlussfolgern, wird die Toolbox \pracmln\footnote{\url{http://www.pracmln.org/}} benutzt, das vom \gls{iai} der Universität Bremen entwickelt wird. \pracmln ist in Python geschrieben und bietet als ein Python Modul die Möglichkeit die Funktionen in eigenen Python-Skripten zu verwenden. \par 
+Im folgenden wird das vorherige Beispiel (Seite \pageref{mlnexample}) ausgeweitet, indem es mit Trainingsdaten trainiert wird und Anfragen an das \gls{mln} gestellt werden. Das Beispiel hält sich dabei weiterhin an das Beispiel, das zu \pracmln gegeben ist.  \newline
+In einem ersten Schritt müssen die Gewichtungen erlernt werden. Dazu werden Trainingsdaten in benötigt. 
+\todo{Traningsdaten einfügen}
+Im Learning-Tool von \pracmln kann zusammen mit dem vorher spezifizierten \gls{mln} und einer auswählbaren Lernmethode nun ein \gls{mln} antrainiert werden, was auch die Gewichtungen errechnet.     
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+1.126769 Raucht(p) => Krebs(p)
+1.577776 Freunde(p1,p2) => (Raucht(p1) <=> Raucht(p2))
+\end{lstlisting}  
+Es ist zu sehen, dass es mit den gegeben Daten typisch ist, das Raucher auch Krebs haben, noch typischer jedoch das unter Freunden geraucht oder nicht geraucht wird.\newline
+Um nun Wissen aus der \gls{kb} zu inferieren, wird das Query-Tool benutzt. Hier wird eine Evidenz angegeben, also eine Bedingung für unsere Anfragen: Anna hat Krebs, Bob nicht und Freunde sind sie auch nicht. 
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+Krebs(Anna)
+!Krebs(Bob)
+!Freunde(Anna,Bob)
+\end{lstlisting} 
+Nun können Anfragen gestellt werden, die das \gls{mln} unter Einbezug der Evidenz zu beantworten versucht. Dies Anfragen drehen sich um das Rauchverhalten von Anna und Bob: \lstinline[breaklines=true]{Raucht(Anna)}, \lstinline[breaklines=true]{Raucht(Bob)}, \lstinline[breaklines=true]{Raucht(Anna)  ^ Raucht(Bob)}, \lstinline[breaklines=true]{Raucht(Anna)  v Raucht(Bob)}. \newline
+Es kann mit exakter Inferenz folgendes berechnet werden: 
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+0.436830  Raucht(Anna)
+0.152667  Raucht(Anna) ^ Raucht(Bob)
+0.528921  Raucht(Anna) v Raucht(Bob)
+0.244758  Raucht(Bob)
+\end{lstlisting} 
+Es ist zu sehen, dass Anna mit größerer Wahrscheinlichkeit raucht als Bob. \newline
+Anstatt exakter Inferenz kann auch ein approximiertes Verfahren benutzt werden, was im Falle des Beispiels auch eine gute Annäherung bietet, bei einer kleinen Evidenz jedoch nicht nötig ist. Denn die Anzahl aller möglichen Welten beträgt lediglich $2^8 = 256$, was in im Gegensatz zu Anwendungsfällen noch gering ist. Das Query-Tool kann auch die möglichen Welten ausgeben. Im folgenden sind die ersten drei, also die wahrscheinlichsten Welten, abgebildet. Eine Welt in der Anna und Bob Rauchen, Krebs haben und Freunde sind ist mit $0,81\%$ am wahrscheinlichsten:
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+1   0.81%   Freunde(Anna,Anna)  Freunde(Anna,Bob)  Freunde(Bob,Anna)  Freunde(Bob,Bob)
+            Raucht(Anna)  Raucht(Bob)  Krebs(Ann)   Krebs(Bob)
+            5.242963e+03 <- 8.56 <- 1.1 1.1 1.6 1.6 1.6 1.6
+2   0.26%   Freunde(Anna,Anna)  Freunde(Anna,Bob)  Freunde(Bob,Anna)  Freunde(Bob,Bob)
+            Raucht(Anna)  Raucht(Bob)  Krebs(Anna)   !Krebs(Bob)
+            1.699132e+03 <- 7.44 <- 1.1 1.6 1.6 1.6 1.6
+3   0.26%   Freunde(Anna,Anna)  Freunde(Anna,Bob)  Freunde(Bob,Anna)  Freunde(Bob,Bob)
+            Raucht(Anna)  Raucht(Bob) !Krebs(Anna)   Krebs(Bob)
+            1.699132e+03 <- 7.44 <- 1.1 1.6 1.6 1.6 1.6
+\end{lstlisting}  

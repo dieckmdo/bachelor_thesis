@@ -10,33 +10,12 @@ Umgebungen, die von Menschen bewohnt werden, sind jedoch starken nichtdeterminis
 Allerdings kann der Roboter aus den rohen Sensor- und Kameradaten keine Annahme darüber machen, wo sich überhaupt Objekte befinden. Es müssen also spezielle Perzeptionsalgorithmen zum Einsatz kommen, die die Daten verarbeiten und interpretieren. So liegen dem Roboter Objekthypothesen über den potenziellen Standort von Objekten vor, sowie Informationen über die einzelnen Objekthypothesen. Mit all diesem Wissen über die Objekte kann der Roboter jedoch nichts anfangen, wenn er nicht eine Möglichkeit besitzt aus den Informationen abzuleiten, um was für Objekte es sich genau handelt. Dazu werden in einer \gls{kb} die Informationen zusammengeführt und verknüpft, sodass der Roboter aus bestimmten Informationen über eine Objekthypothese schlussfolgern kann, um was für ein Objekt es sich handelt.    \par    
 Das Schlussfolgern ist also eine Zentrale Sache für das Bestehen des Roboters in der veränderlichen Haushaltsumgebung. Das trainieren solcher \glspl{kb} ist jedoch zeit- und ressourcenintensiv, denn das Trainieren erfordert es nicht nur, Beispiele einer wahrnehmbaren Umgebung zu erstellen und den Roboter daraus die Objektinformationen ziehen zu lassen, sondern für optimale Ergebnisse, wird auch eine große Menge von Trainingsdaten benötigt. Das Trainieren  einer guten \gls{kb} ist damit zwar erstrebenswert aber höchst unattraktiv. \par      
 Abhilfe könnten hier nun moderne \glspl{gameengine} schaffen. Diese bieten die Möglichkeit fotorealistische Umgebungen in Echtzeit zu rendern und sich in dieser virtuellen Realität auch zu bewegen. Es bietet sich also die Möglichkeit Trainingsdaten in der virtuellen Realität aufzunehmen und damit eine \gls{kb} zu trainieren. \par  
-Ziel dieser Arbeit ist es nun, zu testen, ob man mit Bildern aus einer Game Engine, eine \gls{kb} antrainieren kann und das folgende Schlussfolgern mit der \gls{kb} Ergebnisse liefert, die mit einer mit echten Bilden trainierten \gls{kb} vergleichbar sind. Das \gls{iai}\footnote{\url{http://ai.uni-bremen.de/}} der Universität Bremen hat die Küche, in der mit einem PR2-Roboter geforscht wird, möglichst realistisch in die Unreal Engine (siehe Kapitel \ref{sec:unrealengine} auf S.\pageref{sec:unrealengine}) übertragen. Hier können nun Szenen erzeugt und dann in ein Robotersystem eingespeist werden. Das vom IAI entwickelte \gls{framework} \robosherlock (siehe Kapitel \ref{sec:robosherlock} auf S.\pageref{sec:robosherlock}), wird dann Perzeptionsalgorithmen auf den Bildern laufen lassen und so Informationen über die gewünschten Objekte herausziehen. Die Informationen über die Objekte basieren auf der Theorie der Attribut-basierten Objekterkennung. Dabei werden Objekten Eigenschaften wie Farbe, Form und Größe zugewiesen, um sie voneinander zu unterscheiden. \todo{Referenz} Mit den Trainingsdaten wird dann eine \gls{kb} in Form eines \gls{mln}  trainiert, da diese mit ihren Eigenschaften (siehe Kapitel \ref{sec:mln} auf S.\pageref{sec:mln}) gut für die Wahrnehmung geeignet sind und über sie geschlussfolgert.  
-
-\todo{etwas über Sharing knowledge of Robots siehe 3DNet-Intro}
+Ziel dieser Arbeit ist es nun, zu testen, ob man mit Bildern aus einer Game Engine, eine \gls{kb} antrainieren kann und das folgende Schlussfolgern mit der \gls{kb} Ergebnisse liefert, die mit einer mit echten Bilden trainierten \gls{kb} vergleichbar sind. Das \gls{iai}\footnote{\url{http://ai.uni-bremen.de/}} der Universität Bremen hat die Küche, in der mit einem PR2-Roboter geforscht wird, möglichst realistisch in die Unreal Engine (siehe Kapitel \ref{sec:unrealengine} auf S.\pageref{sec:unrealengine}) übertragen. Hier können nun Szenen erzeugt und dann in ein Robotersystem eingespeist werden. Das vom IAI entwickelte \gls{framework} \robosherlock (siehe Kapitel \ref{sec:robosherlock} auf S.\pageref{sec:robosherlock}), wird dann Perzeptionsalgorithmen auf den Bildern laufen lassen und so Informationen über die gewünschten Objekte herausziehen. Die Informationen über die Objekte basieren auf der Theorie der Attribut-basierten Objekterkennung. Dabei werden Objekten Eigenschaften wie Farbe, Form und Größe zugewiesen, um sie voneinander zu unterscheiden (siehe Kapitel \ref{sec:aboi} auf S.\pageref{sec:aboi}). Mit den Trainingsdaten wird dann eine \gls{kb} in Form eines \gls{mln}  trainiert, da diese mit ihren Eigenschaften (siehe Kapitel \ref{sec:mln} auf S.\pageref{sec:mln}) gut für die Wahrnehmung geeignet sind und über sie geschlussfolgert.  
 
 \section{Gliederung der Arbeit}
 \label{sec:gliederung}
 
 \todo{WAS GEHT IN JEDEM KAPITEL SO AB?}
 
-
-Roboter sollen immer schiwerigere Aufgaben erfüllen.
-
-Um zu erfüllen -> Wahrnehmung der Umgebung zur Identifierung der nötigen Objekte.
-
-Außerdem effiziente KB, die auch in unbekannte Umgebeung arbeiten kann. \par
-
-In den vergangene Jahren gute Möglichkeiten zur Perzeption: ROBOSHERLOCK, um Objeckte verschiedener Eigenschaften zu verarbeiten.
-
-Damit der Roboter damit arbeiten kann: KB trainieren.
-Dieses Trainieren mit Daten oft lang und aufwendig.
-
-Fotorealismus in Echtzeit Manipulation geboomt.
-
-Statt echte Trainingsdaten nun "unechte" Daten aus Game Engine.
-
-MLN wird als KB benutzt, weil ...
-
-Untersuche ob die Perzeption an diesen Daten und das Reasoning über ein KB mit den Daten gute Ergebnisse liefert. Dann automatisierung von Testdaten ersteelung möglich. 
    
 

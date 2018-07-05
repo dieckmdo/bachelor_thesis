@@ -10,59 +10,14 @@
 % Warum ist diese Arbeit sinnvoll?
 % Was kann mit den Ergebnissen erreicht werden?
 
-Perzeption und Reasoning von Robotersystem über "unechte" Bilder.
+Von Menschen bewohnte Umgebungen, wie eine Küche, sind starken nichtdeterministischen Veränderungen unterworfen. Den einen morgen werden Cornflakes gegessen, den nächsten ein Knuspermüsli. Eine Packung Eistee wird nach dem benutzen nicht wieder zurück an den selben Ort gestellt. Ein autonomer Roboter der in einer solchen Haushaltsumgebung operieren soll, muss mit der Fähigkeit ausgestattet sein, die Szenerie, die sich ihm offenbart zu interpretieren. Genauer gesagt, muss er Objekte in einer solchen Szene identifizieren können, um die ihm gestellte Aufgabe zu bewältigen. Soll er die Müsli Packung wieder wegräumen, muss er erst einmal herausfinden, wo sie sich jetzt auf dem Tisch befindet, und auch erkennen, um welche Packung es sich handelt, um sie wieder an ihren richtigen Platz zu stellen.  Dabei greift der Roboter auf eine Form einer \gls{kb} zurück, um die Objekte auf Grundlage seiner Wahrnehmungssysteme zu identifizieren. Die beiden Müsli Packungen sind beide Box-artig, jedoch unterscheidet sich die Cornflakes Packung in ihrer gelben Farbe von der grünen Knuspermüsli Packung. Mit dem Wissen aus der \gls{kb}, kann der Roboter nun schlussfolgern, dass die noch dort stehende Packung eine Cornflakes Packung ist. ein Das Trainieren solcher \glspl{kb} ist jedoch aufwendig, da eine große Menge an Trainingsdaten für gute Resultate zur Verfügung stehen muss beziehungsweise erstellt werden müssen. Also zum Beispiel Szenen in denen verschiedene Müsli Packungen an verschiedene Orten gepaart mit verschiedenen Schüsseln und Milchsorten stehen. So können die Unterschiede besser herausgearbeitet und die einzelnen Objekte und ihre Zusammenhänge besser erlernt werden. Das Erstellen künstlicher Trainingsdaten könnte diesen Prozess vereinfachen. Für optimale Ergebnisse sollten die künstlichen Trainingsdaten eine möglichst große Ähnlichkeit mit der echten Umgebung aufweisen, damit er nicht zu Verwirrung und Fehlern bei der Klassifizierung kommt. Eine künstliche Cornflakes Packung sollte also die gleichen Eingenschaften, also zum Beispiel eine gelbe Textur und eine box-artige Form, aufweisen, wie die echte Packung. Virtuelle Realität ist in der Lage fotorealistische Szenen zu schaffen und könnte damit ein gutes Mittel sein, künstliche Trainingsdaten zu erstellen.  
 
 \section{Perzeption}
+In der Robotik beschreibt die Perzeption die Wahrnehmung des Roboters. Damit sich ein Roboter in einer Umgebung überhaupt zurechtzufinden kann, ist sie unerlässlich. Am häufigsten werden \gls{rgb}-Kamerabilder als Eingabe benutzt, um darauf Perzeptionsalgorithmen laufen zu lassen, die Objekte in den wahrgenommen Szenen zu finden und zu erkennen versuchen. Im folgenden werden einige Systeme und Ansätze dazu vorgestellt.
 
-Wichitg für Umgebung einordung und objekterkennung. 
+\subsection{Systeme zur Objekterkennung}
 
-Algorithmen, Systeme, Trends \par
-
-\subsection{Attribute Based Object Identification}
-
-\cite{descObjbyAtr} \newline
-Attribute von bekannten und unbekannten Objekten, um diese zu beschreiben, vergleichen und kategorisieren. Generalisierung von Kategorien einfacher mit Attributen. Attributklassifizierer nur mit features trainieren, die für das Attribut relevant sind (Farbe unwichitg für Form). Vermeidung von lernen des Korrelierenden Attributes. (wheel with Cars ->learn metallic. Wodden carriages??)\newline
-Beschreibe unbekannte Objekte und lerne schnell Dinge über sie. \newline 
-Semantische Attribute (Form, Material) nicht immer genug, also auch UnterscheidungsAttribute (Katzen und Hunde haben es, Pferde nicht).\newline
-Mehrere Objekte teilen sich Attribute. Deshalb Verwendung von vorhergesehenen Attributen als features = kompakter, weniger features insgesamt. Damit nicht nur Erkennung sondern auch Unbekanntes beschreibbar. Fehlen oder Vorhandensein atypischer Attribute aufzeigbar. Modellernen mit wenig Beispielen und neue Kategorien auch aus Text allein ohne Bilder. \newline
-Zeigt: \textit{selected feature} lernen (bei wheel, Bilder mit wheel und ohne, um lernen von metallic zu vermeiden) verbessert Klassifizierung (cross Category generalization). Mit allen feats scheint zu verwirren aka Traning set Korrelation bias. \newline
-image features zu Kategorie bei Unbekannten hilflos. Also Attribute benutzen. So nicht nur Name sondern Eigenschaften benennbar.
-
-\par
-
-\cite{atrBasedObjIden} \newline
-Identifizierung von Objekten basierend auf Aussehen und Namen Eigenschaften. \newline
-Idnetifiziere Objekt in in Szene mit segmentierten Objekten basierend auf einem Satz, der Objekt beschreibt. \newline
-110 Objekte in 12 Kategorien. \newline
-Zeigt, dass Kombination verschiedener Attributklassifizierer die einzelnen Outperformed. Allerdings bei vielen Objekten nicht so gut. Man sollte örtliche oder relative(dunkler, kleiner) Beschreibungen zulassen. Bei Test mit minimalem subset der Attribute (nur Attribute um Objekte auseinander zu halten) zeigt hohe Robustheit von ABOI.
-``We believe that the capability to learn from smaller sets
-of examples will be particularly important in the context of
-teaching robots about objects and attributes.'' \par
-
-
-\cite{pronobis1} \newline
-Zusammenführung von verschiedenen Informationsquellen mit verschiedenem Datentypen (Aussehen und Geometrie von Orten, Objekt informationen, Topologische Struktur, mensch Input). Kern: kompakte Repräsentation von komplexem, dynamischen, räumlichen Wissen. \newline
-Kompakt: robuster mit Dynamik. \newline
-Infer zusaätzliches Wissen aus Wissen + Sehen. \newline
-KB in 4 Layers, categorical Layer hat Modelle von Objekten, Landmarks, room shapes. \newline
-conceptual layer: Common-sense conceptual knowledge + Taxonomy von räumlichen Konzepten. Hier Info, dass kÜche enthält Milch und durch inferenz: sehe Milch also bin wahrscheinlich in Küche. Darstellung in realtionalen Beziehungen(kitchen has-object milk) und Instance-Wissen (obj1 is-a milk, place1 has-object obj1).\newline
-Properties of Space: Ort bekommt Attribute, um ihn zu beschreiben.(objects, size, shape) \newline
-Conceptual Map (KB): chain graph. Erlaubt reasoning über unbekannte Räume
-
-
-
-
-\todo{PR2 Loóking at Things}
-
-\subsection{Frameworks und andere Algorithmen?!?}
-
-\cite{multimodalTemplate} \newline
-Objekterkennung mit Template matching (Abgleich mit Vorlage, besser als featurePoint für gering texturierte Objs). Verbesserung von simplem TempMatch (Probleme mit viel Hintergrund Stördaten) durch multi-modalities(multi-Modalitäten) in Templates. Also zusätzliche Informationen mit Farbbild und Tiefenbild.\newline
-Template matching kann schnell online gelernt werden, anders als andere Verfahren. \newline 
-Farbbild Gradienten: robuster als Greyscale und bei untexturiert einzige Hinweise in Bildern. \newline
-Tiefenbild: 3D Oberflächen Normale. \newline
-Sehr Robust, hohe Erkkennrate: features/cues/Hinweise ergänzen sich gegenseitig.  \newline
-Speed: template learning schnell: einfach multimodal features ectrahieren und teamplate anlegen. Schnell, da LINE-MOD nur abhängig von Nummer der features und nicht Größe der temapltes. \par
+In \cite{multimodalTemplate} werden Objekte durch \textit{Template-Matching} identifiziert. Template-Matching beschreibt dabei den Abgleich des Wahrgenommen Objektes mit gespeicherten Vorlagen und darin gespeicherten Hinweisen. Im Gegensatz zum simplen Template-Matching werden im LINE-MOD Algorithmus aus \cite{multimodalTemplate} mehrere Modalitäten/Informationen aus verschiedenen Quellen in den Vorlagen gespeichert. Aus Farbbildern kann der Frabgradient als Hinweis und aus dem Tiefenbild können die Normalen der Oberfläche gewonnen werden. Im Gegensatz zu traditionellen Lernverfahren für \glspl{kb} ist das extrahieren der Hinweise und das anlegen einer Vorlage schnell gemacht. Durch die Hinweise aus verschiedenen Quellen wird auch eine hohe Robustheit und Erkennungsrate erreicht, da sie sich gegenseitig ergänzen und so Hintergrundstördaten weniger ins Gewicht fallen. \par
 
 
 \cite{moped} \newline
@@ -112,16 +67,52 @@ Gleichheit mit Funktion: wichitger, was fürs Training wichtig als größte Glei
 12 real seed Bilder reichen, um genug syn Bilder zu erzeugen, um einen classifier zu outperformen der mit $>=12*8$ realen Bildern gemacht. \newline
 Gute Ergebnisse. Outperformence von classifier nur mit Real Bildern traniert. 
 
+\subsection{Attribut-basierte Objekt Erkennung}
+\label{sec:aboi}
 
-\section{Reasoning}
+\cite{descObjbyAtr} \newline
+Attribute von bekannten und unbekannten Objekten, um diese zu beschreiben, vergleichen und kategorisieren. Generalisierung von Kategorien einfacher mit Attributen. Attributklassifizierer nur mit features trainieren, die für das Attribut relevant sind (Farbe unwichitg für Form). Vermeidung von lernen des Korrelierenden Attributes. (wheel with Cars ->learn metallic. Wodden carriages??)\newline
+Beschreibe unbekannte Objekte und lerne schnell Dinge über sie. \newline 
+Semantische Attribute (Form, Material) nicht immer genug, also auch UnterscheidungsAttribute (Katzen und Hunde haben es, Pferde nicht).\newline
+Mehrere Objekte teilen sich Attribute. Deshalb Verwendung von vorhergesehenen Attributen als features = kompakter, weniger features insgesamt. Damit nicht nur Erkennung sondern auch Unbekanntes beschreibbar. Fehlen oder Vorhandensein atypischer Attribute aufzeigbar. Modellernen mit wenig Beispielen und neue Kategorien auch aus Text allein ohne Bilder. \newline
+Zeigt: \textit{selected feature} lernen (bei wheel, Bilder mit wheel und ohne, um lernen von metallic zu vermeiden) verbessert Klassifizierung (cross Category generalization). Mit allen feats scheint zu verwirren aka Traning set Korrelation bias. \newline
+image features zu Kategorie bei Unbekannten hilflos. Also Attribute benutzen. So nicht nur Name sondern Eigenschaften benennbar.
+
+\par
+
+\cite{atrBasedObjIden} \newline
+Identifizierung von Objekten basierend auf Aussehen und Namen Eigenschaften. \newline
+Idnetifiziere Objekt in in Szene mit segmentierten Objekten basierend auf einem Satz, der Objekt beschreibt. \newline
+110 Objekte in 12 Kategorien. \newline
+Zeigt, dass Kombination verschiedener Attributklassifizierer die einzelnen Outperformed. Allerdings bei vielen Objekten nicht so gut. Man sollte örtliche oder relative(dunkler, kleiner) Beschreibungen zulassen. Bei Test mit minimalem subset der Attribute (nur Attribute um Objekte auseinander zu halten) zeigt hohe Robustheit von ABOI.
+``We believe that the capability to learn from smaller sets
+of examples will be particularly important in the context of
+teaching robots about objects and attributes.'' \par
+
+
+\cite{pronobis1} \newline
+Zusammenführung von verschiedenen Informationsquellen mit verschiedenem Datentypen (Aussehen und Geometrie von Orten, Objekt informationen, Topologische Struktur, mensch Input). Kern: kompakte Repräsentation von komplexem, dynamischen, räumlichen Wissen. \newline
+Kompakt: robuster mit Dynamik. \newline
+Infer zusaätzliches Wissen aus Wissen + Sehen. \newline
+KB in 4 Layers, categorical Layer hat Modelle von Objekten, Landmarks, room shapes. \newline
+conceptual layer: Common-sense conceptual knowledge + Taxonomy von räumlichen Konzepten. Hier Info, dass kÜche enthält Milch und durch inferenz: sehe Milch also bin wahrscheinlich in Küche. Darstellung in realtionalen Beziehungen(kitchen has-object milk) und Instance-Wissen (obj1 is-a milk, place1 has-object obj1).\newline
+Properties of Space: Ort bekommt Attribute, um ihn zu beschreiben.(objects, size, shape) \newline
+Conceptual Map (KB): chain graph. Erlaubt reasoning über unbekannte Räume
+
+
+
+
+\todo{PR2 Loóking at Things}
+
+
+
+\section{Virtuelle Realität}
 
 Wchitg für was soll cih tun? Was ist das? Kenne ich das schon.
 
 Paar Algorithmen, Grundlagen, Trends (PRM) 
 
-\section{Fotorealismus}
-
-Vllt?
+\section{MLN oder sowas}
 
 \section{Ziel der Arbeit}
 \label{sec:goal}

@@ -35,28 +35,20 @@ Im Gegensatz zu \cite{3DCNNObjRec} werden in \cite{synthImg} absichtlich nicht g
 
 Auch in \citep{modelsWWW} werden 3D-\gls{cad}-Modelle verwendet, um einen Roboter Büromöbel identifizieren zu lassen. Anders als bei den vorherigen Methoden werden allerdings keine kleinen Merkmale betrachtet, sondern die Klassifizierung auf Basis von Objektteilen. Dies sind bei einem Stuhl zum Beispiel Lehne, Beine und Sitzfläche. Dies bietet Vorteile gerade bei starker Okklusion und wenn verschiedene Ansichten vorliegen. Die Modelle werden aus dem World Wide Web bezogen, da Hersteller und Hobbykünstler gute Modelle zur Verfügung stellen. Für ein Möbelstück wird nur ein Modell benötigt, da damit verschiedene Ansichten vom Roboter erstellt werden können, mit denen er dann trainiert wird. Repräsentiert werden die Modelle intern von einem Vokabular der einzelnen Teilstücke sowie einer räumlichen Anordnung innerhalb spezifischer Modelle. Die Klassifizierung findet dann über einen Abgleich der wahrgenommen Teile mit einem Voting, um was für ein Teil es sich handeln könnte, statt, bevor geschaut wird, zu welchem \gls{cad}-Modell die Anordnung der Teile am ehesten passen könnte. So ist der Roboter auch in der Lage unbekannte Möbel als Stuhl oder Tisch zu identifizieren, wenn die charakteristische Anordnungen von Teilstücken übereinstimmt.   
 
-\subsection{Attribut-basierte Objekt Erkennung}
+\subsection{Attribut-basierte Objekterkennung}
 \label{sec:aboi}
 
-\cite{descObjbyAtr} \newline
-Attribute von bekannten und unbekannten Objekten, um diese zu beschreiben, vergleichen und kategorisieren. Generalisierung von Kategorien einfacher mit Attributen. Attributklassifizierer nur mit features trainieren, die für das Attribut relevant sind (Farbe unwichitg für Form). Vermeidung von lernen des Korrelierenden Attributes. (wheel with Cars ->learn metallic. Wodden carriages??)\newline
-Beschreibe unbekannte Objekte und lerne schnell Dinge über sie. \newline 
-Semantische Attribute (Form, Material) nicht immer genug, also auch UnterscheidungsAttribute (Katzen und Hunde haben es, Pferde nicht).\newline
-Mehrere Objekte teilen sich Attribute. Deshalb Verwendung von vorhergesehenen Attributen als features = kompakter, weniger features insgesamt. Damit nicht nur Erkennung sondern auch Unbekanntes beschreibbar. Fehlen oder Vorhandensein atypischer Attribute aufzeigbar. Modellernen mit wenig Beispielen und neue Kategorien auch aus Text allein ohne Bilder. \newline
-Zeigt: \textit{selected feature} lernen (bei wheel, Bilder mit wheel und ohne, um lernen von metallic zu vermeiden) verbessert Klassifizierung (cross Category generalization). Mit allen feats scheint zu verwirren aka Traning set Korrelation bias. \newline
-image features zu Kategorie bei Unbekannten hilflos. Also Attribute benutzen. So nicht nur Name sondern Eigenschaften benennbar.
+Die Verwendung von Merkmalen in Bildern zur Identifikation von Objekten hat einen entschiedenen Nachteil: Merkmale von unbekannten Objekten können zwar wahrgenommen werden, die Merkmale können auf Grund eines fehlenden Modells oder Referenz in der \gls{kb} jedoch mit keinem Objekt verknüpft werden. Somit kann das unbekannte Objekt auch nicht erkannt werden. \newline
+Stattdessen können Attribute benutzt werden, um Objekte zu beschreiben. Diese Attribute können so etwas wie Form, Farbe oder Material sein. Damit können auch unbekannte Objekte beschrieben, und verglichen werden. Auch die Klassifizierung wird vereinfacht: Tassen sind kleine Zylinder mit einem Henkel. Gleichzeitig wird die Repräsentation kompakter und einfacher, da man sich auf Attribute beschränken kann, die für die Aufgabe relevant sind, anstatt alles zu analysieren. In einer Küchenumgebung wird zum Beispiel im Normalfall kein Wissen benötigt, ob Objekte Räder besitzen. Also wird auch kein Algorithmus benötigt, der versucht Räder in der Szene zu finden. Des weiteren bietet die Attribut-basierte Objekterkennung die Möglichkeit Objekte auf Grund des Fehlens oder Vorhandenseins bestimmter Attribute voneinander zu unterscheiden: Tassen und Messbecher haben einen Henkel, Teller nicht. Natürlich kann es auch immer Ausnahmen von der Regel geben, wie einen Messbecher ohne Henkel. \newline
+Im Grunde basiert die Attribut-basierte Objekterkennung auf der Art und Weise, wie der Mensch Objekte beschreibt, erkennt und unterscheidet. Bei einem kleinen Zylinder mit Henkel, stellt man sich eine Tasse vor. Und wenn man eine bestimmte Tasse zum ersten Mal sieht, weiß man doch sofort, dass es sich um eine Tasse handelt und wie mit ihr umzugehen ist. Da sich Objekte effektiv mit Attributen beschreiben lassen, können neue Modelle auch aus Beschreibungen, also natürlicher Sprache, gelernt werden. \newline
+Beim Trainieren von Klassifizierern für ein Attribut ist jedoch Vorsicht geboten: wird ein Klassifizierer für das Erkennen von Henkeln nur mir Tassen gefüttert, so kann es passieren, dass er stattdessen Zylinder lernt und nicht Henkel. Das ist im Nachhinein schwierig nachzuweisen, denn die Tassen werden trotzdem richtig klassifiziert, kugelähnliche Teekannen allerdings nicht. Um das zu vermeiden sollten beim Training Bilder benutzt werden, die sowohl Henkel haben, als auch nicht. So wird es vermieden, das korrelierende Attribute zu lernen und die Klassifizierung durch \textit{Cross-Kategorie Generalisierung} verbessert. \cite{descObjbyAtr} \par
 
-\par
-
-\cite{atrBasedObjIden} \newline
-Identifizierung von Objekten basierend auf Aussehen und Namen Eigenschaften. \newline
-Idnetifiziere Objekt in in Szene mit segmentierten Objekten basierend auf einem Satz, der Objekt beschreibt. \newline
-110 Objekte in 12 Kategorien. \newline
-Zeigt, dass Kombination verschiedener Attributklassifizierer die einzelnen Outperformed. Allerdings bei vielen Objekten nicht so gut. Man sollte örtliche oder relative(dunkler, kleiner) Beschreibungen zulassen. Bei Test mit minimalem subset der Attribute (nur Attribute um Objekte auseinander zu halten) zeigt hohe Robustheit von ABOI.
-``We believe that the capability to learn from smaller sets
+In \cite{atrBasedObjIden} wird Attribut-basierte Objekterkennung benutzt, um Objekte in einer Szene basierend auf einem Satz zu identifizieren. Die Experimente zeigen, dass eine Kombination verschiedener Attributklassifizierer, bessere Ergebnisse liefert, als die jeweils Einzelnen. Allerdings gibt es bei vielen Objekten Probleme sie richtig einzuordnen, da sie sich zu ähnlich sehen. Dies könnte jedoch durch das Benutzen von zusätzlichen örtlichen oder relativen Beschreibungen, wie \glqq dunkler als\grqq \space oder \glqq kleiner als\grqq, verbessern. Und der Test, nur eine minimale Menge der Attribute, die benötigt werden um die Objekte gerade so auseinanderhalten zu können, zeigt eine hohe Robustheit der Attribut-basierten Objekterkennung. Die Autoren kommen damit zu folgender Aussage, die für die Perzeption von Robotern und das Trainieren von \glspl{kb} von Bedeutung ist: 
+\begin{quote}
+\glqq We believe that the capability to learn from smaller sets
 of examples will be particularly important in the context of
-teaching robots about objects and attributes.'' \par
-
+teaching robots about objects and attributes.\grqq \hfill -- \cite{atrBasedObjIden}
+\end{quote}
 
 \cite{pronobis1} \newline
 Zusammenführung von verschiedenen Informationsquellen mit verschiedenem Datentypen (Aussehen und Geometrie von Orten, Objekt informationen, Topologische Struktur, mensch Input). Kern: kompakte Repräsentation von komplexem, dynamischen, räumlichen Wissen. \newline

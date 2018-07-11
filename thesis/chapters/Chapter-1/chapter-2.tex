@@ -61,9 +61,7 @@ In einem Experiment sollte der Roboter sich nun in einer Büroumgebung zurechtfi
 \todo{Oder in KB/Reasoning?}  \par
 
 
-\todo{PR2 Loóking at Things}
-
-
+Eine Erweiterung des \robosherlock-\glspl{framework} (siehe Kapitel \ref{sec:robosherlock} auf S.\pageref{sec:robosherlock}) zur Erkennnung von Objekten und das Schlussfolgern über die wahrgenommene Szene wird in \cite{pr2looking} vorgestellt. Dabei wird Attribut-basierte Objekterkennung benutzt, um die wahrgenommen Eigenschaften der Objekte zu beschreiben. In einem ersten Schritt werden Objekthypothesen in der Szene aufgestellt, zu denen spezialisierten Experten Informationen extrahieren. Diese umfassen die Attribute: Farbe, Größe, Form, Text und Logo. Mit diesem Wissen wird eine gemeinsame Wahrscheinlichkeitsverteilung in Form eines \gls{mln} trainiert. Aus einer wahrgenommenen Szene kann nun Wissen geschlussfolgert werden, indem die Szene als Evidenz zu einer Anfrage benutzt wird. In den Experimenten wurden 21 Objektkategorien in 50 Szenen mit jeweils 5-10 Objekten pro Szene erstellt und damit das Vorgehen getestet. Zusätzlich wurden die Szenen in 4 Küchenszenarien, Frühstück, Mittagessen, Blick in den Kühlschrank und einen Schrank, eingeteilt. Jede Szene wurde manuell mit dem Wissen, in welchem Szenario man sich befindet angereichert, um so Aufgaben-spezifisches Wissen zu modellieren. Die Grundlegende Anfrage bezog sich auf die Kategorie der Objekte, es wurde also aus der wahrgenommen Szene mit dem \gls{mln} inferiert, um welche Objekte es sich wohl handelt. Das Verfahren erreicht eine hohe Erkennungsrate, was vor allem auf das Zusammenspiel der einzelnen Experten als Ensemble, sie ergänzen sich gegenseitig, und die Eigenschaften von \glspl{mln}, über alle Objekte in der Szene gleichzeitig schlussfolgern und das gemeinsame Auftreten von Objekten innerhalb einer Szene modellieren zu können, zurückgeführt wird.
 
 \section{Virtuelle Realität}
 

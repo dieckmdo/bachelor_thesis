@@ -86,39 +86,36 @@ Simulationen :
 \begin{itemize}
 	\item erstellung vieler Trainigsdaten
 	\item learning ohne Mensch, da GT vorhanden
-	\item Closedloop (or ''exploratory'') learning, where specific, critical training data are generated in response to the learning progress, can be performed if needed.
+	\item closed loop bzw. exploratory learning, where specific, critical training data are generated in response to the learning progress, can be performed if needed.
 \end{itemize}
 
 \cite{heisele} \newline
-In the following, we briefly discuss the pros and cons of 3D models for view-based object
-recognition:
-+ Large numbers of training and test images can be generated fully automatically.
-+ Full control over image generation parameters, including internal and external camera
-parameters, illumination, composition of the scene, and animation of the scene.
-+ Ground truth for the location, scale, and orientation of each object. In video sequences,
-the frame rate, the camera motion, and the motion of objects are known.
-- Lack of 3D models and 3D scenes. The situation might improve with widespread
-use of low-cost 3D scanners and the availability of models designed for commercial
-purposes (e.g., computer games, movies, Google earth 3D) and by a fast growing
-community of hobbyist modelers.
-- Lack of realism of synthetic data. For recognition systems that operate at low pixel
-resolutions, the quality of synthetic image data is usually sufficient. Even at high image
-resolutions, free rendering software is capable of producing photorealistic
-results. However, modeling and rendering of photorealistic scenes can be time consuming
-processes.
-- Large, accurately annotated data sets might not be necessary; humans are capable of
-learning to recognize new objects from a small number of images. In order to build
-computer vision systems with this capability, we have to better understand how humans
-use prior knowledge, we have to be able to implement complex visual processing
-steps (such as segmentation and shape from shading), and we have to understand
-the top-down learning mechanisms in the visual cortex.
+In the following, we briefly discuss the pros and cons of 3D models for view-based object recognition: \newline
++ Large numbers of training and test images can be generated fully automatically.\newline
++ Full control over image generation parameters, including internal and external camera parameters, illumination, composition of the scene, and animation of the scene.\newline
++ Ground truth for the location, scale, and orientation of each object. In video sequences, the frame rate, the camera motion, and the motion of objects are known.\newline
+- Lack of 3D models and 3D scenes. The situation might improve with widespread use of low-cost 3D scanners and the availability of models designed for commercial purposes (e.g., computer games, movies, Google earth 3D) and by a fast growing community of hobbyist modelers.\newline
+- Lack of realism of synthetic data. For recognition systems that operate at low pixel resolutions, the quality of synthetic image data is usually sufficient. Even at high, image resolutions, free rendering software is capable of producing photorealistic results. However, modeling and rendering of photorealistic scenes can be time consuming processes.\newline
+- Large, accurately annotated data sets might not be necessary; humans are capable of learning to recognize new objects from a small number of images. In order to build computer vision systems with this capability, we have to better understand how humans use prior knowledge, we have to be able to implement complex visual processing steps (such as segmentation and shape from shading), and we have to understand the top-down learning mechanisms in the visual cortex.  \par
 
 
-\cite{imitationLearning} \newline
+\cite{imitationLearning1} \newline
 weg von pereption, aber mit VR(virtual environment) und Roboters. \newline
 Roboter sollten sich wie Menschen bewegen, damit einfacher mit ihnen zu leben. Das ist schwierig zu lernen. Selbst einfache Aufgaben schwierig. Um Aufgaben zu bewältigen, Wissen wie? muss durch Acquisiton und Lerenn beigebracht werden. Menschen sind Experten bei solchen Augaben. Also sie machen vor, tracked + analyzed, darausModell für Roboter. Bracuht auch viele Daten- langweilig und Zeitintensiv für Menschen. \newline
 Stattdessen in VR benutzen. User benutzt simulierte Umgebung, daruas Modelle bauen. VR Vorteile: fully observable, no real-worl constraints, keine saftey issues. Spiele können Motivation erhöhen, umso Anzahl an Demonstrationen zu erhöhen womit mehr Motion Daten zur Vefügung. \newline
-Games um Leute zu motivieren high quality Daten zu geben und einfache Aufgaben zu bewältigen. Aquisition mit Game. 3d free-hand contro Tower defense 
+Games um Leute zu motivieren high quality Daten zu geben und einfache Aufgaben zu bewältigen. Aquisition mit Game. 3d free-hand contro Tower defense \par
+
+\cite{imitationLearning2} \todo{fuse with above}\newline
+imitationLearning mit Game with Purpose. \newline
+pouring pancake mix 1. pour without spilling 2. the right amount \newline
+Mehr Lerndaten bekommen, ohne große Anstrengung. Physikalische Effekte und Events (Kontakte) wahrnehmbar und semantisch interpretierbar. Roboter kan aktiv lernen, indem er sich Situationen ausdenkt und in die GameDB gibt. \par
+
+\cite{kaneva} \newline
+Um Bild features effektiv vergleichen zu können, braucht man Bilder aus verschiedenen Blickpounten und Lichtverhältnissen. Benutzen dazu photorealistische Virtuelle Welt. Damit Evaluation und Design von image features. \newline
+2 3d - Datensaätze dafür generiert. \newline
+Um zu zeigen, dass photor virtuelle Welt auch geeignet ist: Vergleich von Feature Deskritoren Performance auf realen Bildern und unechten. Deskriptoren nahezu gleiche Peformance. \newline
+Mit virtueller Welt möglich (wegen Kontrolle), Einfluss einzelner Aspekte der Umgebung auf Deskritoren zu studieren. \par 
+ 
 
 \section{MLN oder sowas}
 

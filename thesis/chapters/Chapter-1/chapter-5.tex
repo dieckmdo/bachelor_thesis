@@ -5,19 +5,44 @@
 \label{chap:implementation}
 %	\input{\CHAPTERONE /motivation}
 
+In diesem Kapitel wird beschrieben, wie die einzelnen Arbeitsschritte umgesetzt wurden. Zuerst wird aufgezeigt, wie die Bildern in der \unreal erstellt wurden. Zur Vereinfachung werden diese  im Folgenden \textit{Unreal Bilder} genannt. Danach wird die verwendete \gls{ae} erläutert, die die Bilder annotiert. \todo{was kommt dann?}
 
-\section{Taking pictures}
+\section{Erstellen der Unreal Bilder}
 \label{sec:takingpics}
-Wie Bilder aus Unreal aufgenommen? und in DB gespeichert.
+Um Unreal Bilder zum Trainieren eines \gls{mln} zur Verfügung zu haben, müssen diese in der \unreal erstellt werden. Dazu wurde die in Kapitel \todo{...} genannte Küchenumgebung benutzt. Hier wurden Objekte des täglichen Gebrauchs in der Küche manuell drapiert und mittels des \textit{URoboVision}-Plugins Bilder davon gemacht und an \robosherlock gesendet. Eine solche Anordnung von Objekten in der Küche wird \textit{Szene} genannt. Von jeder Szene wurden Bilder aus mehreren festgelegten Blickwinkeln mittels der \textit{SpawnBox} erstellt. \par 
+
+\textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \todo{RCameraActor??}. Die verwendeten Parameter sind \todo{hier einfügren}. \par 
+
+\textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{SpawnBox} besitzt eine \textit{BoxVolume} aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, damit sie im späteren Bild noch zu sehen sind und nicht außerhalb den Blickfeldes der Kamera liegen. Der Mittelpunkt der Box dient als Rotationspunkt, um den eine referenzierte Kamera basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer \todo{bestimmten Zeit} in einem einstellbaren Abstand $x$-mal um einen einen einstellbaren Winkel von ihrem aktuellen Standort um den Mittelpunkt rotiert. Der Startpunkt der Kamera wird über den Mittelpunkt der Box ermittelt und befindet sich \textit{vor} der Box, also in \todo{x richtung 0}, sodass die Kamera nur Bilder abhängig von den Parametern der \textit{SpawnBox} macht, und nicht irgendwo anders im Raum. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Die Kamera kann auch auf zwei unterschiedlichen Höhen Operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. Um die Bedienung mit der Box als Markierung zu erleichtern, wurde es außerdem möglich gemacht, die Kamera nicht vor der Box starten zu lassen, sondern diesen Ort als Mittelpunkt der Rotation anzusehen. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ erwünscht, wären die Standorte der Kamera bei der normalen Einstellung \todo{vor und jeweils $30^\circ$ weiter links  (abhängig von richtung siehe oben?!?)} von der Box. Bei der anderen Einstellung würde die Kamera $30^\circ$ rechts vom normalen Startpunkt beginnen, dann auf den eigentlichen Startpunkt kommen und dann $30^\circ$ nach links schwenken. So wird es einfacher Blickwinkel zu generieren, die dem Fahren und Umsehen eines Roboters ähnlicher sind. \newline
+\todo{Yes/No? Behalte als refernz für andere erstmal}Die einzelnen Parameter und ihre Funktion sowie die gewählten Werte werden in \ref{tab:spawnboxParams} kurz zusammengefasst.
+\begin{table}
+\label{tab:spawnboxParams}
+\begin{tabular}{lll}
+RotationSteps & Wie häufig die Kameraposition verändert werden soll. & 12 \\
+Winkel & Der Winkel, um den die Kameraposition verändert werden soll. & 4 \\
+foo &  & \\
+bar &  & \\
+\end{tabular}
+\caption{Parameter der \textit{RSpawnbox}}
+\end{table}
+
+\todo{den Algorithmus der SpawnBox}
+\begin{algorithm}[H]
+\begin{algorithmic}
+\FOR{$i=0$ to $10$}
+\STATE carry out some processing
+\ENDFOR
+\end{algorithmic}
+\caption{Blickwinkelberechnung der RSpawnBox}
+\end{algorithm}
+
+ \par
+
+Um die Unreal Bilder zu erstellen, wurde die Parameter so eingestellt, dass die Kamera auf einer Höhe von ... und ... um die Szene rotiert. Es werden dabei 5 Bilder gemacht, 3 aus Höhe1 zwei aus Höhe2. etc.    
 
 \section{Analysis Engine}
 \label{sec:analysisengine}
 Beschreibung wie die Pipeline aussieht.
-
-
-Antrainuerung des MLN.
-
-Code mit dem Queries umgesetzt?
 
 
 \begin{algorithm}[H]

@@ -63,7 +63,7 @@ Beispiele für Annotatoren sind der \textit{ColorClusterHistogrammAnnottator}, d
 \subsection{Objektklassifizierer}
 \label{sec:classifiers}
 Für die Perzeptionspipeline, die im nächsten Kapitel vorgestellt wird \todo{Referenz}, werden Klassifizierer für Form, Klasse und Instanz der Objekte benutzt. Implementiert wurden diese im Rahmen einer Masterarbeit von Rakibul Islam als \robosherlock Annotatorern \cite{rakib}. Der Autor dieser Arbeit hat den Code von einer Abhängigkeit von \textit{OpenCV}\footnote{\url{https://opencv.org/}} 2 zu Version 3 migriert. Zu finden sind die Klassifizierer im \textsc{RoboSherlock}-Package \textit{rs\_addons}\footnote{\url{https://github.com/bbferka/rs\_addons}}. \par
-Mit dem \textit{feature\_extractor} werden in einem ersten Schritt mithilfe eines \textit{\gls{vfh}} oder \textit{\gls{cnn}} Merkmale aus den Bildern mit partiellen Sichten\todo{?} der Objekte extrahiert. Dann kann mit den gewonnenen Daten über den \textit{classifier\_trainer} ein Klassifizierer antrainiert werden. Es stehen drei verschiedene Implementationen für sie zur Verfügung: \textit{\gls{rf}}, \textit{\gls{svm}} oder \textit{\gls{knn}}.
+Mit dem \textit{feature\_extractor} werden in einem ersten Schritt mithilfe eines \textit{\gls{vfh}} oder \textit{\gls{cnn}}, Merkmale aus Bildern der Objekte extrahiert. Dann kann mit den gewonnenen Daten über den \textit{classifier\_trainer} ein Klassifizierer antrainiert werden. Es stehen drei verschiedene Implementationen für sie zur Verfügung: \textit{\gls{rf}}, \textit{\gls{svm}} oder \textit{\gls{knn}}.
 
 \section{\mongodb}
 \label{sec:mongodb}

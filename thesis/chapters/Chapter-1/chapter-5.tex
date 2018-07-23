@@ -38,12 +38,55 @@ bar &  & \\
 
  \par
 
-Um die Unreal Bilder zu erstellen, wurde die Parameter so eingestellt, dass die Kamera auf einer Höhe von ... und ... um die Szene rotiert. Es werden dabei 5 Bilder gemacht, 3 aus Höhe1 zwei aus Höhe2. etc.    
+Um die Unreal Bilder zu erstellen, wurde die Parameter so eingestellt, dass die Kamera auf einer Höhe von ... und ... um die Szene rotiert. Es werden dabei 5 Bilder gemacht, 3 aus Höhe1 zwei aus Höhe2. etc.    Abspeicherung in MongoDB.
 
 \section{Analysis Engine}
 \label{sec:analysisengine}
-Beschreibung wie die Pipeline aussieht.
+Die Unreal Bilder können  von einer Perzeptionspipeline in \robosherlock annotiert werden und so die Objektattribute als logische Prädikate zum Training eines \gls{mln} erhalten werden. Dazu werden die Unreal Bilder aus der Datenbank herausgelesen und als Eingabe benutzt. Auf diesen werden zuerst eine Reihe von \textit{hyptheses generators} zur Segmentierung laufen lassen mit denen die Objekthypothesen erstellt werden. Dabei werden jedoch auch Objekthypothesen zu Formen und Teilen des Bildes erstellt, die keine Objekte sind, wie die Front eines Schrankes, oder keine für die Arbeit relevanten Objekte, wie die Herdplatte. Der \textit{UnrealGTAnnotator} filtert diese \textit{Cluster} nun heraus und annotiert zu den übrig gebliebenen die \gls{gt}. Die gebliebenen Hypothesen werden von den Annotatoren auf Eigenschaften analysiert und die Ergebnisse als Annotationen in der \gls{cas} gespeichert. In einem letzten Schritt werden die Annotationen von dem \textit{MLNInferencer} als logische Prädikate in einer Textdatei ausgeben. \par 
 
+Im Folgenden wird der \textit{UnrealGTAnnotator} und seine Implementierung erläutert. Danach werden die Annotatoren der Perzeptionspipeline vorgestellt. Tabelle \ref{tab:annotators} bietet eine kurze Übersicht über die Annotatoren, die resultierenden logischen Prädikate und die möglichen Werte.
+
+\subsection{UnrealGTAnnotator}
+
+
+\subsection{Annotatoren}
+
+Im Folgenden werden die Annotatoren vorgestellt. Sie analysieren die Objekthypothesen auf Eingenschaften. \todo{Warum shape zweimal?} Sie sind in einer Perzeptionspipeline zusammengefasst und kommen auch in der Reihenfolge zum Einsatz, in der sie hier vorgestellt werden. Tabelle \ref{tab:annotators} bietet eine kurze Übersicht.
+
+\begin{table}
+\begin{tabularx}{\textwidth}{lXX}
+\textbf{Annotator}				& \textbf{MLN-Prädikat}	& \textbf{Werte}	\\ \hline 
+Cluster3DGeometryAnnotator		& size(cluster, size)	&		\\ \hline 
+PrimitiveShapeAnnotator			& shape(cluster, shape)	&		\\ \hline 
+ClusterColorHistogramCalculator  & color(cluster, color)	& yellow, red, blue, green, white, black \\ \hline 
+GogglesAnnotator				& logo(cluster, logo) \newline text(cluster, text) \newline texture(cluster, t) \newline \todo{???mehr}	& 	variabel	\\ \hline 
+CaffeAnnotator					& --					& --	\\ \hline 
+PCLFeatureExtractor				& --					& --	\\ \hline 
+RfAnnotator						& \todo{?}				&		\\ \hline 
+SVMAnnotator					&\todo{?}				&		\\ \hline 
+\end{tabularx}
+\caption{Ein Kurzüberblick über die Annotatoren und die korrespondieren logischen Prädikate für das \gls{mln}.}
+\label{tab:annotators}
+\end{table}
+
+\subsubsection{Cluster3DGeometryAnnotator}
+
+\subsubsection{PrimitiveShapeAnnotator} 
+   
+\subsubsection{ClusterColorHistogramCalculator}
+
+\subsubsection{GogglesAnnotator}
+
+\subsubsection{CaffeAnnotator}
+
+\subsubsection{PCLFeatureExtractor}
+
+\subsubsection{RfAnnotator}
+
+\subsubsection{SVMAnnotator}
+
+\subsubsection{MLNInferencer}
+Der \textit{MLNInferencer} liest die Annotationen aus der \gls{cas} aus gibt sie als logische Prädikate in einer Textdatei aus. Diese Dateien werden Datenbank genannt und bilden die Trainingsdaten für ein \gls{mln}. Der \textit{MLNInferencer} kann die Prädikate sowohl in \gls{fo} ausgeben, als auch in \textit{Fuzzy-Logik}. Dabei werden für jedes Prädikat die Konfidenzen der Annotatoren mit ausgegeben.
 
 \begin{algorithm}[H]
 \begin{lstlisting}

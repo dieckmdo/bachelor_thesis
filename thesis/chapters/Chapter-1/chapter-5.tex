@@ -13,16 +13,25 @@ Um Unreal Bilder zum Trainieren eines \gls{mln} zur Verfügung zu haben, müssen
 
 \textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \todo{RCameraActor??}. Die verwendeten Parameter sind \todo{hier einfügren}. Damit wird an \robosherlock ein Farb- und Tiefenbild, sowie ein \textit{ObjectImage} und eine \textit{ObjectMap} gesendet. Auf dem ObjectImage ist jedes Objekt innerhalb der Szene in einer anderen Farbe eingefärbt. Die ObjectMap weist jeder im ObjectImage verwendeten Farbe den Namen des Objektes zu. So kann jedes sichtbare Objekt eindeutig identifiziert werden.   \par 
 
-\textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{SpawnBox} besitzt eine \textit{BoxVolume} aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, damit sie im späteren Bild noch zu sehen sind und nicht außerhalb den Blickfeldes der Kamera liegen. Der Mittelpunkt der Box dient als Rotationspunkt, um den eine referenzierte Kamera basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer \todo{bestimmten Zeit} in einem einstellbaren Abstand $x$-mal um einen einen einstellbaren Winkel von ihrem aktuellen Standort um den Mittelpunkt rotiert. Der Startpunkt der Kamera wird über den Mittelpunkt der Box ermittelt und befindet sich \textit{vor} der Box, also in \todo{x richtung 0}, sodass die Kamera nur Bilder abhängig von den Parametern der \textit{SpawnBox} macht, und nicht irgendwo anders im Raum. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Die Kamera kann auch auf zwei unterschiedlichen Höhen Operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. Um die Bedienung mit der Box als Markierung zu erleichtern, wurde es außerdem möglich gemacht, die Kamera nicht vor der Box starten zu lassen, sondern diesen Ort als Mittelpunkt der Rotation anzusehen. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ erwünscht, wären die Standorte der Kamera bei der normalen Einstellung \todo{vor und jeweils $30^\circ$ weiter links  (abhängig von richtung siehe oben?!?)} von der Box. Bei der anderen Einstellung würde die Kamera $30^\circ$ rechts vom normalen Startpunkt beginnen, dann auf den eigentlichen Startpunkt kommen und dann $30^\circ$ nach links schwenken. So wird es einfacher Blickwinkel zu generieren, die dem Fahren und Umsehen eines Roboters ähnlicher sind. \newline
+\textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{SpawnBox} besitzt eine \textit{BoxVolume} aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, damit sie im späteren Bild noch zu sehen sind und nicht außerhalb den Blickfeldes der Kamera liegen. Der Mittelpunkt der Box dient als Rotationspunkt, um den eine referenzierte Kamera basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer \todo{bestimmten Zeit} in einem einstellbaren Abstand $x$-mal um einen einen einstellbaren Winkel von ihrem aktuellen Standort um den Mittelpunkt rotiert. Der Startpunkt der Kamera wird über den Mittelpunkt der Box ermittelt und befindet sich \textit{vor} der Box, also in \todo{x richtung und y=0}, sodass die Kamera nur Bilder abhängig von den Parametern der \textit{SpawnBox} macht, und nicht irgendwo anders im Raum. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Die Kamera kann auch auf zwei unterschiedlichen Höhen Operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. \todo{Das folgende ist nicht optional sondern default. Das "normale" ist nicht mehr vorhanden.}Um die Bedienung mit der Box als Markierung zu erleichtern, wurde es außerdem möglich gemacht, die Kamera nicht vor der Box starten zu lassen, sondern diesen Ort als Mittelpunkt der Rotation anzusehen. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ erwünscht, wären die Standorte der Kamera bei der normalen Einstellung \todo{vor und jeweils $30^\circ$ weiter links  (abhängig von richtung siehe oben?!?)} von der Box. Bei der anderen Einstellung würde die Kamera $30^\circ$ rechts vom normalen Startpunkt beginnen, dann auf den eigentlichen Startpunkt kommen und dann $30^\circ$ nach links schwenken. So wird es einfacher Blickwinkel zu generieren, die dem Fahren und Umsehen eines Roboters ähnlicher sind. \todo{Cam blickt immer auf Mittelpunkt!!!} \newline
 Die einzelnen Parameter und ihre Funktion werden in Tabelle \ref{tab:spawnboxParams} vorgestellt.
 
 \begin{table}
-\begin{tabular}{lll}
-RotationSteps & Wie häufig die Kameraposition verändert werden soll. & 12 \\
-Winkel & Der Winkel, um den die Kameraposition verändert werden soll. & 4 \\
-foo &  & \\
-bar &  & \\
-\end{tabular}
+\begin{tabularx}{\textwidth}{XXXX}
+\textbf{Datentyp} & \textbf{Parameter}  & \textbf{Beschreibung} & \textbf{Wert} \\ \hline
+UBoxComponent     & SpawnVolume         & Eine Box, die hilft die Objekte zu platzieren. Der Mittelpunkt ist der Rotationspunkt der Kamera. & -- \\ 
+ARGBDCamera       & ScanCamera          & Die Kamera aus dem URoboVision Plugin & Wird manuell gesetzt. & -- \\
+int               & CameraRadius        & Der Radius des Kreises auf dem die Kamera sich um den Mittelpunkt des SpawnVolume bewegt in UnrealEinheiten. & 70 \\
+int               & CameraHeight        & Die Höhe der Kamera. Der Wert wird auf die Höhe des Mittelpunktes der SpawnVolume addiert in UnrealEinheiten.  & 35 \\
+float             & Angle               & Der Winkel, um den die Kamera pro Rotationsschritt rotiert wird in Grad. & 45 \\
+float             & UpdateTime          & Die Zeit die vergeht bis die Kameraposition aktualisiert wird in Sekunden. & 3 \\
+int               & NoOfViewpoints      & Die Anzahl der Blickwinkel, also Rotationsschritte. & 3 \\
+float             & HeightAngle         & Soll eine zweite Höhe benutzt werden, beschreibt dies den Winkel für diese zweite Höhe. & 45 \\
+int               & HeightOffset        & Der Unterschied der zweiten Höhe zur Ersten. & 35 \\
+int               & NoOfHeightViewpoints & Die Anzahl der Rotationsschritte für die zweite Höhe. & 2 \\
+bool              & bUseHeigthViewpoints & Ob die zweite Höhe verwendet werden soll. & true \\
+bool              & bUseMirror          & Wenn wahr, wird der eigentliche Startpunkt der Kamera als Spiegelpunkt für die Rotation benutzt.  & \\  
+\end{tabularx}
 \caption{Parameter der \textit{RSpawnbox}}
 \label{tab:spawnboxParams}
 \end{table}
@@ -35,6 +44,63 @@ bar &  & \\
 \ENDFOR
 \end{algorithmic}
 \caption{Blickwinkelberechnung der RSpawnBox}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\begin{lstlisting}
+void ASpawnBox::UpdateCamera()
+{
+	if (ScanCamera)
+	{
+    if( ProcessedViewpoints == 0)
+    {
+      GetWorld()->GetTimerManager().ClearTimer(UpdateTimerHandle);
+      bProcessHeightViewpoints = false;
+      return;
+    }
+
+
+    float i;
+    if (ProcessedViewpoints == NoOfViewpoints + NoOfHeightViewpoints)
+    {
+      i = NoOfViewpoints / 2;
+      AngleAxis -= (HeightAngle * ((NoOfViewpoints % 2 != 0) ? i : (0.5 * i)));
+    }
+    else if (ProcessedViewpoints == NoOfHeightViewpoints)
+    {
+      AngleAxis = 0.0f;
+
+      i = NoOfHeightViewpoints / 2;
+      AngleAxis -= (HeightAngle * ((NoOfHeightViewpoints % 2 != 0) ? i : (0.5 * i)));
+      bProcessHeightViewpoints = true;
+    }
+    else
+    {
+      // normal step
+      // compute new location on a circle around the SpawnVolume
+      AngleAxis += bProcessHeightViewpoints ? HeightAngle : Angle;
+      if( AngleAxis >= 360.0f) { AngleAxis = 0; }
+    }
+
+    --ProcessedViewpoints;
+    FVector NewLocation = SpawnVolume->GetComponentLocation();
+
+    FVector RotateValue = FVector(CameraRadius, 0, 0).RotateAngleAxis(AngleAxis, FVector::UpVector);
+
+
+    NewLocation.X += RotateValue.X;
+    NewLocation.Y += RotateValue.Y;
+    NewLocation.Z += bProcessHeightViewpoints ? (CameraHeight + HeightOffset) : CameraHeight;
+
+    // the camera looks to the midpoint of the SpawnVolume
+    FRotator Rot = UKismetMathLibrary::FindLookAtRotation(NewLocation, SpawnVolume->GetComponentLocation());
+
+    ScanCamera->SetActorLocationAndRotation(NewLocation, Rot);
+	}
+}
+\end{lstlisting}
+ \caption{SpawnBox}
 \end{algorithm}
 
  \par
@@ -62,6 +128,127 @@ Der \texttt{UnrealGTAnnotator} filtert alle falschen Objekthypothesen heraus und
 \end{algorithm}
 
 
+\begin{algorithm}[H]
+\begin{lstlisting}
+ TyErrorId processWithLock(CAS &tcas, ResultSpecification const &res_spec)
+  {
+    MEASURE_TIME;
+    outInfo("process begins");
+    rs::SceneCas cas(tcas);
+    rs::Scene scene = cas.getScene();
+
+    cas.get(VIEW_COLOR_IMAGE_HD, color);
+    cas.get(VIEW_OBJECT_IMAGE_HD, objects);
+    cas.get(VIEW_OBJECT_MAP, objectMap);
+
+    disp = color.clone();
+
+    std::vector<rs::Identifiable> cleanedClusters;
+
+    std::vector<rs::Cluster> clusters;
+    scene.identifiables.filter(clusters);
+
+    outInfo("Found " << clusters.size() << " clusters");
+
+    for(auto cluster : clusters)
+    {
+      cv::Rect roi;
+      rs::conversion::from(cluster.rois.get().roi_hires.get(), roi);
+
+      cv::Mat imageRoi = cv::Mat(objects, roi);
+
+      // cv::Vec3b not a possible key, so using the name of the object associated with the color.
+      std::map<std::string, int> colorCount;
+
+      for(int r = 0; r < imageRoi.rows; ++r)
+      {
+        const cv::Vec3b *imageIt = imageRoi.ptr<cv::Vec3b>(r);
+
+        for(int c = 0; c < imageRoi.cols; ++c, ++imageIt)
+        {
+          std::map<std::string, cv::Vec3b>::iterator objMapIt;
+
+          // find entry in objectMap matching color
+          for(objMapIt = objectMap.begin(); objMapIt != objectMap.end(); ++objMapIt)
+          {
+            if(objMapIt->second == *imageIt)
+            {
+              // add new object occurence to colorCount or increase value
+              std::pair<std::map<std::string, int>::iterator, bool> countIt = colorCount.insert(std::pair<std::string, int>(objMapIt->first, 1));
+              if(countIt.second == false)
+              {
+                ++countIt.first->second;
+              }
+            }
+          }
+        }
+      }
+
+      // for small objects, that do not have the most pixels in their roi (cutlery) search for a suitable object in a depth of 3.
+      for(int i = 0; i < 3; ++i)
+      {
+        std::string foundObj = "";
+        if(colorCount.empty())
+        {
+          break;
+        }
+
+        std::string mostColor = getObjectWithMostOccurences(colorCount);
+        for(auto object : posObjects)
+        {
+          if(!mostColor.empty() && mostColor.find(object) != std::string::npos)
+          {
+            foundObj = object;
+            break;
+          }
+          else
+          {
+            colorCount.erase(mostColor);
+          }
+        }
+
+        if(foundObj != "" && !foundObj.empty())
+        {
+          rs::GroundTruth gt = rs::create<rs::GroundTruth>(tcas);
+          rs::Classification classification = rs::create<rs::Classification>(tcas);
+          classification.classification_type.set("ground_truth");
+          classification.classname.set(foundObj);
+          classification.classifier.set("UnrealEngine");
+          classification.source.set("UnrealGTAnnotator");
+          gt.classificationGT.set(classification);
+          cluster.annotations.append(gt);
+
+          cleanedClusters.push_back(cluster);
+
+          drawResults(roi, foundObj);
+          break;
+        }
+      }
+    }
+
+    outInfo("Reduced to " << cleanedClusters.size() << " clusters");
+    scene.identifiables.set(cleanedClusters);
+    return UIMA_ERR_NONE;
+  }
+
+  // find the most occuring color
+  std::string getObjectWithMostOccurences(std::map<std::string, int> map)
+  {
+    std::map<std::string, int>::iterator mostColor = map.begin();
+    for(std::map<std::string, int>::iterator it = map.begin(); it != map.end(); ++it)
+    {
+      if(it->second > mostColor->second)
+      {
+        mostColor = it;
+      }
+    }
+    return mostColor->first;
+  }
+\end{lstlisting}
+ \caption{UnrealGTAnno}
+\end{algorithm}
+
+
 \subsection{Annotatoren}
 
 Im Folgenden werden die Annotatoren vorgestellt. Sie analysieren die Cluster der Objekthypothesen auf Eingenschaften. \todo{Warum shape zweimal?} Sie sind in einer Perzeptionspipeline zusammengefasst und kommen auch in der Reihenfolge zum Einsatz, in der sie hier vorgestellt werden. Tabelle \ref{tab:annotators} bietet eine kurze Übersicht.
@@ -69,13 +256,13 @@ Im Folgenden werden die Annotatoren vorgestellt. Sie analysieren die Cluster der
 \begin{table}
 \begin{tabularx}{\textwidth}{lXX}
 \textbf{Annotator}				& \textbf{MLN-Prädikat}	& \textbf{Werte}	\\ \hline 
-Cluster3DGeometryAnnotator		& size(cluster, size)	& big, small	\\ \hline 
-PrimitiveShapeAnnotator			& shape(cluster, shape)	& round, box	\\ \hline 
-ClusterColorHistogramCalculator  & color(cluster, color)	& yellow, red, blue, green, white, black, \todo{?} \\ \hline 
-GogglesAnnotator				& logo(cluster, logo) \newline text(cluster, text) \newline texture(cluster, t) \newline \todo{???mehr}	& 	variabel	\\ \hline 
+Cluster3DGeometryAnnotator		& size(cluster, size)	& small, medium, large	\\ \hline 
+PrimitiveShapeAnnotator			& shape(cluster, shape)	& box, round, flat 	\\ \hline 
+ClusterColorHistogramCalculator  & color(cluster, color)	& red, yellow, green, cyan, blue, magenta, white, black, grey \\ \hline 
+GogglesAnnotator				& goggles\_Product(cluster, logo) \newline googles\_Text(cluster, text) 	& 	variabel	\\ \hline 
 CaffeAnnotator					& --					& --	\\ \hline 
 PCLFeatureExtractor				& --					& --	\\ \hline 
-RfAnnotator						& shape(cluster, shape)	&		\\ \hline 
+RfAnnotator						& shape(cluster, shape)	&	box, cylindrical, disk, flat, sphere, other	\\ \hline 
 SVMAnnotator					& instance(cluster, i)	&		\\ \hline 
 \end{tabularx}
 \caption[Kurzübersicht der Annotatoren]{Eine Kurzübersicht über die Annotatoren und die korrespondieren logischen Prädikate für das \gls{mln}.}
@@ -92,13 +279,13 @@ Der \texttt{PrimitiveShapeAnnotator} berechnet die primitive geometrische Form d
 Der \texttt{ClusterColorHistogramCalculator} berechnet für jeden Cluster die Farbverteilung. Daraus bildet er ein Farbhistogramm, das der \gls{cas} hinzugefügt wird. Die unterschiedenen Farben sind: \todo{Farben}. Die am häufigsten auftretende Farbe wird später als logisches Prädikat in der Form $color(cluster,  color)$ ausgegeben. Je nach Häufigkeitsverteilung kann ein Cluster auch zwei Farben haben, die in dem Fall auch beide ausgegeben werden. 
 
 \subsubsection{GogglesAnnotator}
-Der \texttt{GooglesAnnotator} benutzt den Webservice \textsc{Google Googles}. Dazu werden die Bilder des Clusters an den Server des Webservices gesendet, der nun Webseiten mit ähnlichen Bildern sucht und zurückgibt. Aus den Ergebnissen werden Logo, Text und Textur Annotationen erstellt. Die Werte dafür sind abhängig von den Ergebnissen. Da es häufig vorkommt, dass keine Ergebnisse vorliegen, werden in solchen Fällen auch keine Annotationen zur \gls{cas} hinzugefügt. Die logischen Prädikate sind $logo(cluster, logo)$, $text(cluster, text)$ und $texture(cluster, t)$. 
+Der \texttt{GooglesAnnotator} benutzt den Webservice \textsc{Google Googles}. Dazu werden die Bilder des Clusters an den Server des Webservices gesendet, der nun Webseiten mit ähnlichen Bildern sucht und zurückgibt. Aus den Ergebnissen werden Logo, Text und Textur Annotationen erstellt. Die Werte dafür sind abhängig von den Ergebnissen. Da es häufig vorkommt, dass keine Ergebnisse vorliegen, werden in solchen Fällen auch keine Annotationen zur \gls{cas} hinzugefügt. Die logischen Prädikate sind $goggles\_Product(cluster, logo)$, $googles\_Text(cluster, text)$ und $googles\_texture(cluster, t)$. 
 
 \subsubsection{CaffeAnnotator}
-Für den \texttt{CaffeAnnotator} wird das Deep-Learning Framework \textsc{Caffe}\footnote{\url{http://caffe.berkeleyvision.org/}} benötigt. Der Annotator fügt keine eigenen Annotationen zur \gls{cas} hinzu, stattdessen extrahiert er Informationen aus den Bildern, die für die Klassifikation benötigt werden.  
+Für den \texttt{CaffeAnnotator} wird das Deep-Learning Framework \textsc{Caffe}\footnote{\url{http://caffe.berkeleyvision.org/}} benötigt. Der Annotator extrahiert Merkmale aus den Bildern und speichert diese als Annotation in der \gls{cas}. Sie werden später für die Klassifikation benötigt.  
 
 \subsubsection{PCLFeatureExtractor}
-Wie der \texttt{CaffeAnnotator} fügt der \texttt{PCLFeatureExtractor} keine Annotationen zur \gls{cas} hinzu, sondern extrahiert \gls{pcl} Merkmale aus den Bildern. Diese werden für den Formklassifizierer benötigt.
+Wie der \texttt{CaffeAnnotator} fügt der \texttt{PCLFeatureExtractor} Merkmale als Annotationen zur \gls{cas} hinzu. Er extrahiert \gls{vfh}-Merkmale mittels der \gls{pcl} aus den Bildern. Diese werden für den Formklassifizierer benötigt.
 
 \subsubsection{RfAnnotator}
 \todo{check} Der \texttt{RFAnnotator} klassifiziert die Form der Objekte. Der verwendete \gls{rf} wurde für die Masterarbeit von Rakibul Islam \cite{rakib} mit einem Objektset der Washington University trainiert. Der Klassifizierer unterscheidet dabei folgende Formen: \todo{Formen}. Die logischen Prädikate sind von der Form  $shape(cluster, shape)$. Mehr Informationen zu Klassifizierern sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.

@@ -11,242 +11,226 @@ In diesem Kapitel wird beschrieben, wie die einzelnen Arbeitsschritte umgesetzt 
 \label{sec:takingpics}
 Um Unreal Bilder zum Trainieren eines \gls{mln} zur Verfügung zu haben, müssen diese in der \unreal erstellt werden. Dazu wurde die in Kapitel \todo{...} genannte Küchenumgebung benutzt. Hier wurden Objekte des täglichen Gebrauchs in der Küche manuell drapiert und mittels des \textit{URoboVision}-Plugins Bilder davon gemacht und an \robosherlock gesendet. Eine solche Anordnung von Objekten in der Küche wird \textit{Szene} genannt. Von jeder Szene wurden Bilder aus mehreren festgelegten Blickwinkeln mittels der \textit{SpawnBox} erstellt. \par 
 
-\textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \todo{RCameraActor??}. Die verwendeten Parameter sind \todo{hier einfügren}. Damit wird an \robosherlock ein Farb- und Tiefenbild, sowie ein \textit{ObjectImage} und eine \textit{ObjectMap} gesendet. Auf dem ObjectImage ist jedes Objekt innerhalb der Szene in einer anderen Farbe eingefärbt. Die ObjectMap weist jeder im ObjectImage verwendeten Farbe den Namen des Objektes zu. So kann jedes sichtbare Objekt eindeutig identifiziert werden.   \par 
+\textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \textit{ARGBDCameraActor}. Die verwendeten Parameter sind \todo{hier einfügren}. Damit wird an \robosherlock ein Farb- und Tiefenbild, sowie ein \textit{ObjectImage} und eine \textit{ObjectMap} gesendet. Auf dem ObjectImage ist jedes Objekt innerhalb der Szene in einer anderen Farbe eingefärbt. Die ObjectMap weist jeder im ObjectImage verwendeten Farbe den Namen des Objektes zu. So kann jedes sichtbare Objekt eindeutig identifiziert werden.   \par 
 
-\textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{SpawnBox} besitzt eine \textit{BoxVolume} aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, damit sie im späteren Bild noch zu sehen sind und nicht außerhalb den Blickfeldes der Kamera liegen. Der Mittelpunkt der Box dient als Rotationspunkt, um den eine referenzierte Kamera basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer \todo{bestimmten Zeit} in einem einstellbaren Abstand $x$-mal um einen einen einstellbaren Winkel von ihrem aktuellen Standort um den Mittelpunkt rotiert. Der Startpunkt der Kamera wird über den Mittelpunkt der Box ermittelt und befindet sich \textit{vor} der Box, also in \todo{x richtung und y=0}, sodass die Kamera nur Bilder abhängig von den Parametern der \textit{SpawnBox} macht, und nicht irgendwo anders im Raum. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Die Kamera kann auch auf zwei unterschiedlichen Höhen Operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. \todo{Das folgende ist nicht optional sondern default. Das "normale" ist nicht mehr vorhanden.}Um die Bedienung mit der Box als Markierung zu erleichtern, wurde es außerdem möglich gemacht, die Kamera nicht vor der Box starten zu lassen, sondern diesen Ort als Mittelpunkt der Rotation anzusehen. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ erwünscht, wären die Standorte der Kamera bei der normalen Einstellung \todo{vor und jeweils $30^\circ$ weiter links  (abhängig von richtung siehe oben?!?)} von der Box. Bei der anderen Einstellung würde die Kamera $30^\circ$ rechts vom normalen Startpunkt beginnen, dann auf den eigentlichen Startpunkt kommen und dann $30^\circ$ nach links schwenken. So wird es einfacher Blickwinkel zu generieren, die dem Fahren und Umsehen eines Roboters ähnlicher sind. \todo{Cam blickt immer auf Mittelpunkt!!!} \newline
-Die einzelnen Parameter und ihre Funktion werden in Tabelle \ref{tab:spawnboxParams} vorgestellt.
+\textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{SpawnBox} besitzt eine \textit{UBoxComponent}, genannt \textit{SpawnVolume}, aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, damit sie im späteren Bild noch zu sehen sind und nicht außerhalb den Blickfeldes der Kamera liegen. Der Mittelpunkt der Box dient als Rotationspunkt, um den eine referenzierte Kamera basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer bestimmten Zeit in einem einstellbaren Radius $i$-mal um den Mittelpunkt rotiert. Dabei wird die Kamerarotation an der x-Achse der SpawnVolume gespiegelt. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ erwünscht, beginnt die Kamera $30^\circ$ links von der x-Achse. Die zweite Position befindet sich dann auf der x-Achse und die dritte Position ist $30^\circ$ rechts von der x-Achse. Der Startpunkt der Kamera auf dem Kreis um die SpawnVolume wird also in Abhängigkeit der Rotationsschritte und des Winkels berechnet. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Nach jeder Standortaktualisierung wird die Kamera noch so ausgerichtet, dass sie auf den Mittelpunkt der SpawnVolume schaut. Die Kamera kann auch auf zwei unterschiedlichen Höhen Operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. \par
+Die einzelnen Parameter und ihre Funktion werden in Tabelle \ref{tab:spawnboxParams} vorgestellt. Der Algorithmus ist in Pseudocode in in Algorithmus \ref{alg:SpawnBox} beschrieben.
 
 \begin{table}
-\begin{tabularx}{\textwidth}{XXXX}
-\textbf{Datentyp} & \textbf{Parameter}  & \textbf{Beschreibung} & \textbf{Wert} \\ \hline
-UBoxComponent     & SpawnVolume         & Eine Box, die hilft die Objekte zu platzieren. Der Mittelpunkt ist der Rotationspunkt der Kamera. & -- \\ 
-ARGBDCamera       & ScanCamera          & Die Kamera aus dem URoboVision Plugin & Wird manuell gesetzt. & -- \\
-int               & CameraRadius        & Der Radius des Kreises auf dem die Kamera sich um den Mittelpunkt des SpawnVolume bewegt in UnrealEinheiten. & 70 \\
-int               & CameraHeight        & Die Höhe der Kamera. Der Wert wird auf die Höhe des Mittelpunktes der SpawnVolume addiert in UnrealEinheiten.  & 35 \\
-float             & Angle               & Der Winkel, um den die Kamera pro Rotationsschritt rotiert wird in Grad. & 45 \\
-float             & UpdateTime          & Die Zeit die vergeht bis die Kameraposition aktualisiert wird in Sekunden. & 3 \\
-int               & NoOfViewpoints      & Die Anzahl der Blickwinkel, also Rotationsschritte. & 3 \\
-float             & HeightAngle         & Soll eine zweite Höhe benutzt werden, beschreibt dies den Winkel für diese zweite Höhe. & 45 \\
-int               & HeightOffset        & Der Unterschied der zweiten Höhe zur Ersten. & 35 \\
-int               & NoOfHeightViewpoints & Die Anzahl der Rotationsschritte für die zweite Höhe. & 2 \\
-bool              & bUseHeigthViewpoints & Ob die zweite Höhe verwendet werden soll. & true \\
-bool              & bUseMirror          & Wenn wahr, wird der eigentliche Startpunkt der Kamera als Spiegelpunkt für die Rotation benutzt.  & \\  
+\begin{tabularx}{\textwidth}{lX}
+\textbf{Parameter}  & \textbf{Beschreibung} \\ \hline
+SpawnVolume         & Eine Box, die hilft die Objekte zu platzieren. Der Mittelpunkt ist der Rotationspunkt der Kamera.\\  \hline
+ScanCamera          & Die Kamera aus dem URoboVision Plugin. \\ \hline
+CameraRadius        & Der Radius des Kreises auf dem die Kamera sich um den Mittelpunkt des SpawnVolume bewegt in UnrealEinheiten.\\ \hline
+CameraHeight        & Die Höhe der Kamera. Der Wert wird auf die Höhe des Mittelpunktes der SpawnVolume addiert in UnrealEinheiten.\\ \hline
+Angle               & Der Winkel, um den die Kamera pro Rotationsschritt rotiert wird in Grad.\\ \hline
+UpdateTime          & Die Zeit die vergeht bis die Kameraposition aktualisiert wird in Sekunden.\\ \hline
+NoOfViewpoints      & Die Anzahl der Blickwinkel, also Rotationsschritte.\\ \hline
+HeightAngle         & Soll eine zweite Höhe benutzt werden, beschreibt dies den Winkel für diese zweite Höhe.\\ \hline
+HeightOffset        & Der Unterschied der zweiten Höhe zur Ersten.\\ \hline 
+NoOfHeightViewpoints & Die Anzahl der Rotationsschritte für die zweite Höhe.\\  \hline
+bUseHeigthViewpoints & Ob die zweite Höhe verwendet werden soll. \\  \hline
 \end{tabularx}
 \caption{Parameter der \textit{RSpawnbox}}
 \label{tab:spawnboxParams}
 \end{table}
+%
+%\begin{algorithm}[H]
+%\begin{algorithmic}
+%\STATE{$Rotationswinkel = 0$}
+%\STATE{$ProcessedPoints =$ addiere Rotationsschritte beider Höhen}
+%\STATE{}
+%\IF{$ProcessedPoints == 0$}
+%\STATE{return;}
+%\ENDIF
+%\STATE{$i = 0$}
+%\IF{ist erste Position?}
+%\STATE{$i =$ Rotationswinkel für erste Position auf erster Höhe}
+%\ELSIF{VPs für erste Höhe abgearbeitet?}
+%\STATE{$i =$ Rotationswinkel für erste Position auf zweiter Höhe}
+%\ELSE
+%\STATE{$i =$ Rotationswinkel für nächste Position}
+%\ENDIF
+%\STATE{$--ProcessedPoints$}
+%\STATE{Rotiere Kamerastandpunkt mit i}
+%\STATE{Berichtige die Höhe}
+%\STATE{Rotiere Kamera, sodass sie auf Mittelpunkt schaut}
+%\end{algorithmic}
+%\caption{Blickwinkelberechnung der RSpawnBox}
+%\label{alg:SpawnBox}
+%\end{algorithm}
 
-\todo{den Algorithmus der SpawnBox}
-\begin{algorithm}[H]
-\begin{algorithmic}
-\FOR{$i=0$ to $10$}
-\STATE carry out some processing
-\ENDFOR
-\end{algorithmic}
-\caption{Blickwinkelberechnung der RSpawnBox}
-\end{algorithm}
-
-
-\begin{algorithm}[H]
-\begin{lstlisting}
-void ASpawnBox::UpdateCamera()
-{
-	if (ScanCamera)
-	{
-    if( ProcessedViewpoints == 0)
-    {
-      GetWorld()->GetTimerManager().ClearTimer(UpdateTimerHandle);
-      bProcessHeightViewpoints = false;
-      return;
-    }
-
-
-    float i;
-    if (ProcessedViewpoints == NoOfViewpoints + NoOfHeightViewpoints)
-    {
-      i = NoOfViewpoints / 2;
-      AngleAxis -= (HeightAngle * ((NoOfViewpoints % 2 != 0) ? i : (0.5 * i)));
-    }
-    else if (ProcessedViewpoints == NoOfHeightViewpoints)
-    {
-      AngleAxis = 0.0f;
-
-      i = NoOfHeightViewpoints / 2;
-      AngleAxis -= (HeightAngle * ((NoOfHeightViewpoints % 2 != 0) ? i : (0.5 * i)));
-      bProcessHeightViewpoints = true;
-    }
-    else
-    {
-      // normal step
-      // compute new location on a circle around the SpawnVolume
-      AngleAxis += bProcessHeightViewpoints ? HeightAngle : Angle;
-      if( AngleAxis >= 360.0f) { AngleAxis = 0; }
-    }
-
-    --ProcessedViewpoints;
-    FVector NewLocation = SpawnVolume->GetComponentLocation();
-
-    FVector RotateValue = FVector(CameraRadius, 0, 0).RotateAngleAxis(AngleAxis, FVector::UpVector);
-
-
-    NewLocation.X += RotateValue.X;
-    NewLocation.Y += RotateValue.Y;
-    NewLocation.Z += bProcessHeightViewpoints ? (CameraHeight + HeightOffset) : CameraHeight;
-
-    // the camera looks to the midpoint of the SpawnVolume
-    FRotator Rot = UKismetMathLibrary::FindLookAtRotation(NewLocation, SpawnVolume->GetComponentLocation());
-
-    ScanCamera->SetActorLocationAndRotation(NewLocation, Rot);
-	}
-}
-\end{lstlisting}
- \caption{SpawnBox}
-\end{algorithm}
-
- \par
-
-Um die Unreal Bilder zu erstellen, wurde die Parameter so eingestellt, dass die Kamera auf einer Höhe von ... und ... um die Szene rotiert. Es werden dabei 5 Bilder gemacht, 3 aus Höhe1 zwei aus Höhe2. etc.    Abspeicherung in MongoDB.
+Bei der Erstellung der Unreal Bilder, wurden die Parameter so eingestellt, dass die Kamera auf zwei verschiedenen Höhen Bilder aufnimmt und auf einem Kreis mit dem Radius von 70 Einheiten rotiert. Die Kameraposition wird dabei alle 3 Sekunden aktualisiert, um mit der RGBDKamera zusammen zu laufen. Die erste Höhe ist 35 Einheiten höher als der Mittelpunkt der SpawnVolume. Hier wurden drei Bilder in einem Winkel von $45^\circ$ aufgenommen. Die zweite Höhe ist 35 Einheiten höher als die vorherige. Hier wurden zwei Bilder im Winkel von $45^\circ$ aufgenommen. Die so entstehenden Bilder vermitteln den Eindruck, als würde ein Roboter auf die Szene drauf schauen. Die Bilder werden an \robosherlock geschickt und hier mittels der \texttt{StorageWriter}-\gls{ae} zur späteren Weiterverarbeitung in einer laufenden MongoDB-Instanz gespeichert.
 
 \section{Analysis Engine}
 \label{sec:analysisengine}
-Die Unreal Bilder können  von einer Perzeptionspipeline in \robosherlock annotiert werden und so die Objektattribute als logische Prädikate zum Training eines \gls{mln} erhalten werden. Dazu werden die Unreal Bilder aus der Datenbank herausgelesen und als Eingabe benutzt. Auf diesen werden zuerst eine Reihe von \textit{hyptheses generators} zur Segmentierung laufen lassen mit denen die Objekthypothesen erstellt werden. Dabei werden jedoch auch Objekthypothesen zu Formen und Teilen des Bildes erstellt, die keine Objekte sind, wie die Front eines Schrankes, oder keine für die Arbeit relevanten Objekte, wie die Herdplatte. Der \texttt{UnrealGTAnnotator} filtert diese \textit{Cluster} nun heraus und annotiert zu den übrig gebliebenen die \gls{gt}. Die gebliebenen Hypothesen werden von den Annotatoren auf Eigenschaften analysiert und die Ergebnisse als Annotationen in der \gls{cas} gespeichert. In einem letzten Schritt werden die Annotationen von dem \texttt{MLNInferencer} als logische Prädikate in einer Textdatei ausgeben. \par 
+Die Unreal Bilder können  von einer Perzeptionspipeline in \robosherlock annotiert werden und so die Objektattribute als logische Prädikate zum Training eines \gls{mln} erhalten werden. Dazu werden die Unreal Bilder aus der Datenbank herausgelesen und als Eingabe benutzt. Auf diesen werden zuerst eine Reihe von \textit{hypotheses generators} zur Segmentierung laufen lassen mit denen die Objekthypothesen erstellt werden. Dabei werden jedoch auch Objekthypothesen zu Formen und Teilen des Bildes erstellt, die keine Objekte sind, wie die Front eines Schrankes, oder keine für die Arbeit relevanten Objekte, wie die Herdplatte. Der \texttt{UnrealGTAnnotator} filtert diese \textit{Cluster} nun heraus und annotiert zu den übrig gebliebenen die \gls{gt}. Die gebliebenen Hypothesen werden von den Annotatoren auf Eigenschaften analysiert und die Ergebnisse als Annotationen in der \gls{cas} gespeichert. In einem letzten Schritt werden die Annotationen von dem \texttt{MLNInferencer} als logische Prädikate in einer Textdatei ausgeben. \par 
 
 Im Folgenden wird der \texttt{UnrealGTAnnotator} und seine Implementierung erläutert. Danach werden die Annotatoren der Perzeptionspipeline vorgestellt. Tabelle \ref{tab:annotators} bietet eine kurze Übersicht über die Annotatoren, die resultierenden logischen Prädikate und die möglichen Werte.
 
 \subsection{UnrealGTAnnotator}
 Der \texttt{UnrealGTAnnotator} filtert alle falschen Objekthypothesen heraus und annotiert für die übrig gebliebenen die \gls{gt}. Dazu wird das \textit{ObjectImage} der Unreal Bilder verwendet. Der Algorithmus wird im folgenden beschrieben und ist in Algorithmus \ref{alg:UnrealGTAnnotator} in Pseudocode dargestellt. Die einzelnen Teilbilder der Unreal Bilder sind deckungsgleich, das heißt die Koordinaten eines Pixels beschreiben in jedem Teilbild den gleichen Punkt. Für jeden Pixel eines Clusters wird nun seine Farbe im ObjectImage betrachtet und so die Anzahl der Pixel, die sich eine Farbe Teilen gezählt. Nun wird für die am meisten vorkommende Farbe in der ObjectMap nachgeschlagen, zu welchem Objekt die Farbe gehört. Der Name des Objektes wird mit einer anderen \todo{Map/Array} verglichen, die die Namen der verwendeten Objekte hält (siehe eine Liste der Namen \todo{hier}). Wird eine Übereinstimmung gefunden, wird für den Cluster eine \gls{gt}-Annotation zur \gls{cas} hinzugefügt. Die \gls{gt}, die als Annotation hinzugefügt wird, ist \todo{InstanzName oder Klasse. ...} Wird keine Übereinstimmung gefunden, wird der Cluster verworfen. Es kann allerdings vorkommen, dass eine Objekthypothese korrekt ist, das entsprechende Objekt in seinem ObjectImage jedoch nicht die meisten Pixel belegt. Dies ist vor allem bei Besteck, wie Gabeln und Messern zu beobachten. Um dem vorzubeugen, wird rekursiv auch die zweit und dritt häufigste Farbe auf eine Übereinstimmung geprüft. Eine Rekursion von drei, hat sich als ausreichend erwiesen, da das Besteck meistens auf einem Tisch liegt, der Cluster also nur aus zwei Farben besteht, und damit schon bei dem zweiten Rekursionsschritt gefunden wird. Auch wenn ein weiteres größeres Objekt mit im Cluster zu finden ist, wird das Besteck spätestens im dritten Rekursionsschritt gefunden. Ein vierter Durchlauf würde den Algorithmus nur unnötig verlangsamen, da später verworfene Cluster dann immer die gesamte Rekursion komplett durchlaufen würden. 
 
-\todo{den Algorithmus des UnrealGTAnnotator}
 \begin{algorithm}[H]
-\begin{algorithmic}
-\FORALL{clusters $c$ from the scene}
-\STATE carry out some processing
-\ENDFOR
-\end{algorithmic}
-\caption{UnrealGTAnnotator}
+\KwData{Cluster einer Szene: $clusters$, $objects$ = [alle Objektnamen]}
+\KwResult{$clusters$ besteht nur aus gewollten Objekthypothesen und deren GT}
+\BlankLine
+$neueCluster$ = []\;
+\ForAll{$c \in clusters$}{
+	\tcc{der Datentyp der Farbe eignet sich nicht als Schlüssel, deshalb wird der Objektname verwendet}
+	$farbZaehler$ = map<ObjektName, Anzahl>()\;
+	\ForAll{Pixels $p \in c$}{
+		$farbe$ = holeFarbe(p)\;
+		$name$ = $objectMap$.findeNameZuFarbe($farbe$)\;
+		\eIf{$farbZaehler$.enthält($name$)}{
+			$farbZaehler$.erhöheAnzahl($name$)\;
+		}{
+			$farbZaehler$.einfügen(Paar($name$, 1))\;
+		}
+	}
+	\For{int $i = 0; i < 3; ++i$}{
+		$gt$\;
+		$meisteFarbe$ = holeObjektnameMitMeistenPixeln($farbZaehler$)\;
+		\For{$object$ in $objects$}{
+			\eIf{$meisteFarbe$ == $object$}{
+				$gt = object$)\;
+				break\;
+			}{
+				$farbZaehler$.löscheEintrag($meisteFarbe$)\;
+			}
+		}
+		\If{$gt$ ist definiert}{
+			AnnotiereGT($gt$)\;
+			$neueCluster$.fügeHinzu($c$)\;
+			break\;
+		}
+	}	
+}
+$clusters$.setzte($neueCluster$)\;
+\caption[UnrealGTAnnotator]{Der Algorithmus des UnrealGTAnnotators filtert die ungewollten Cluster heraus und annotiert für alle anderen die GroundTruth.}
 \label{alg:UnrealGTAnnotator}
 \end{algorithm}
 
 
-\begin{algorithm}[H]
-\begin{lstlisting}
- TyErrorId processWithLock(CAS &tcas, ResultSpecification const &res_spec)
-  {
-    MEASURE_TIME;
-    outInfo("process begins");
-    rs::SceneCas cas(tcas);
-    rs::Scene scene = cas.getScene();
-
-    cas.get(VIEW_COLOR_IMAGE_HD, color);
-    cas.get(VIEW_OBJECT_IMAGE_HD, objects);
-    cas.get(VIEW_OBJECT_MAP, objectMap);
-
-    disp = color.clone();
-
-    std::vector<rs::Identifiable> cleanedClusters;
-
-    std::vector<rs::Cluster> clusters;
-    scene.identifiables.filter(clusters);
-
-    outInfo("Found " << clusters.size() << " clusters");
-
-    for(auto cluster : clusters)
-    {
-      cv::Rect roi;
-      rs::conversion::from(cluster.rois.get().roi_hires.get(), roi);
-
-      cv::Mat imageRoi = cv::Mat(objects, roi);
-
-      // cv::Vec3b not a possible key, so using the name of the object associated with the color.
-      std::map<std::string, int> colorCount;
-
-      for(int r = 0; r < imageRoi.rows; ++r)
-      {
-        const cv::Vec3b *imageIt = imageRoi.ptr<cv::Vec3b>(r);
-
-        for(int c = 0; c < imageRoi.cols; ++c, ++imageIt)
-        {
-          std::map<std::string, cv::Vec3b>::iterator objMapIt;
-
-          // find entry in objectMap matching color
-          for(objMapIt = objectMap.begin(); objMapIt != objectMap.end(); ++objMapIt)
-          {
-            if(objMapIt->second == *imageIt)
-            {
-              // add new object occurence to colorCount or increase value
-              std::pair<std::map<std::string, int>::iterator, bool> countIt = colorCount.insert(std::pair<std::string, int>(objMapIt->first, 1));
-              if(countIt.second == false)
-              {
-                ++countIt.first->second;
-              }
-            }
-          }
-        }
-      }
-
-      // for small objects, that do not have the most pixels in their roi (cutlery) search for a suitable object in a depth of 3.
-      for(int i = 0; i < 3; ++i)
-      {
-        std::string foundObj = "";
-        if(colorCount.empty())
-        {
-          break;
-        }
-
-        std::string mostColor = getObjectWithMostOccurences(colorCount);
-        for(auto object : posObjects)
-        {
-          if(!mostColor.empty() && mostColor.find(object) != std::string::npos)
-          {
-            foundObj = object;
-            break;
-          }
-          else
-          {
-            colorCount.erase(mostColor);
-          }
-        }
-
-        if(foundObj != "" && !foundObj.empty())
-        {
-          rs::GroundTruth gt = rs::create<rs::GroundTruth>(tcas);
-          rs::Classification classification = rs::create<rs::Classification>(tcas);
-          classification.classification_type.set("ground_truth");
-          classification.classname.set(foundObj);
-          classification.classifier.set("UnrealEngine");
-          classification.source.set("UnrealGTAnnotator");
-          gt.classificationGT.set(classification);
-          cluster.annotations.append(gt);
-
-          cleanedClusters.push_back(cluster);
-
-          drawResults(roi, foundObj);
-          break;
-        }
-      }
-    }
-
-    outInfo("Reduced to " << cleanedClusters.size() << " clusters");
-    scene.identifiables.set(cleanedClusters);
-    return UIMA_ERR_NONE;
-  }
-
-  // find the most occuring color
-  std::string getObjectWithMostOccurences(std::map<std::string, int> map)
-  {
-    std::map<std::string, int>::iterator mostColor = map.begin();
-    for(std::map<std::string, int>::iterator it = map.begin(); it != map.end(); ++it)
-    {
-      if(it->second > mostColor->second)
-      {
-        mostColor = it;
-      }
-    }
-    return mostColor->first;
-  }
-\end{lstlisting}
- \caption{UnrealGTAnno}
-\end{algorithm}
+%\begin{algorithm}[H]
+%\begin{lstlisting}
+% TyErrorId processWithLock(CAS &tcas, ResultSpecification const &res_spec)
+%  {
+%    MEASURE_TIME;
+%    outInfo("process begins");
+%    rs::SceneCas cas(tcas);
+%    rs::Scene scene = cas.getScene();
+%
+%    cas.get(VIEW_COLOR_IMAGE_HD, color);
+%    cas.get(VIEW_OBJECT_IMAGE_HD, objects);
+%    cas.get(VIEW_OBJECT_MAP, objectMap);
+%
+%    disp = color.clone();
+%
+%    std::vector<rs::Identifiable> cleanedClusters;
+%
+%    std::vector<rs::Cluster> clusters;
+%    scene.identifiables.filter(clusters);
+%
+%    outInfo("Found " << clusters.size() << " clusters");
+%
+%    for(auto cluster : clusters)
+%    {
+%      cv::Rect roi;
+%      rs::conversion::from(cluster.rois.get().roi_hires.get(), roi);
+%
+%      cv::Mat imageRoi = cv::Mat(objects, roi);
+%
+%      // cv::Vec3b not a possible key, so using the name of the object associated with the color.
+%      std::map<std::string, int> colorCount;
+%
+%      for(int r = 0; r < imageRoi.rows; ++r)
+%      {
+%        const cv::Vec3b *imageIt = imageRoi.ptr<cv::Vec3b>(r);
+%
+%        for(int c = 0; c < imageRoi.cols; ++c, ++imageIt)
+%        {
+%          std::map<std::string, cv::Vec3b>::iterator objMapIt;
+%
+%          // find entry in objectMap matching color
+%          for(objMapIt = objectMap.begin(); objMapIt != objectMap.end(); ++objMapIt)
+%          {
+%            if(objMapIt->second == *imageIt)
+%            {
+%              // add new object occurence to colorCount or increase value
+%              std::pair<std::map<std::string, int>::iterator, bool> countIt = colorCount.insert(std::pair<std::string, int>(objMapIt->first, 1));
+%              if(countIt.second == false)
+%              {
+%                ++countIt.first->second;
+%              }
+%            }
+%          }
+%        }
+%      }
+%
+%      // for small objects, that do not have the most pixels in their roi (cutlery) search for a suitable object in a depth of 3.
+%      for(int i = 0; i < 3; ++i)
+%      {
+%        std::string foundObj = "";
+%        if(colorCount.empty())
+%        {
+%          break;
+%        }
+%
+%        std::string mostColor = getObjectWithMostOccurences(colorCount);
+%        for(auto object : posObjects)
+%        {
+%          if(!mostColor.empty() && mostColor.find(object) != std::string::npos)
+%          {
+%            foundObj = object;
+%            break;
+%          }
+%          else
+%          {
+%            colorCount.erase(mostColor);
+%          }
+%        }
+%
+%        if(foundObj != "" && !foundObj.empty())
+%        {
+%          rs::GroundTruth gt = rs::create<rs::GroundTruth>(tcas);
+%          rs::Classification classification = rs::create<rs::Classification>(tcas);
+%          classification.classification_type.set("ground_truth");
+%          classification.classname.set(foundObj);
+%          classification.classifier.set("UnrealEngine");
+%          classification.source.set("UnrealGTAnnotator");
+%          gt.classificationGT.set(classification);
+%          cluster.annotations.append(gt);
+%
+%          cleanedClusters.push_back(cluster);
+%
+%          drawResults(roi, foundObj);
+%          break;
+%        }
+%      }
+%    }
+%
+%    outInfo("Reduced to " << cleanedClusters.size() << " clusters");
+%    scene.identifiables.set(cleanedClusters);
+%    return UIMA_ERR_NONE;
+%  }
+%
+%  // find the most occuring color
+%  std::string getObjectWithMostOccurences(std::map<std::string, int> map)
+%  {
+%    std::map<std::string, int>::iterator mostColor = map.begin();
+%    for(std::map<std::string, int>::iterator it = map.begin(); it != map.end(); ++it)
+%    {
+%      if(it->second > mostColor->second)
+%      {
+%        mostColor = it;
+%      }
+%    }
+%    return mostColor->first;
+%  }
+%\end{lstlisting}
+% \caption{UnrealGTAnno}
+%\end{algorithm}
 
 
 \subsection{Annotatoren}
@@ -295,12 +279,3 @@ Wie der \texttt{CaffeAnnotator} fügt der \texttt{PCLFeatureExtractor} Merkmale 
 
 \subsubsection{MLNInferencer}
 Der \texttt{MLNInferencer} liest die Annotationen aus der \gls{cas} aus gibt sie als logische Prädikate in einer Textdatei aus. Diese Dateien werden Datenbank genannt und bilden die Trainingsdaten für ein \gls{mln}. Der \texttt{MLNInferencer} kann die Prädikate sowohl in \gls{fo} ausgeben, als auch in \textit{Fuzzy-Logik}. Dabei werden für jedes Prädikat die Konfidenzen der Annotatoren mit ausgegeben.
-
-\begin{algorithm}[H]
-\begin{lstlisting}
-if(isCodeIsFancy){
-// blah
-}
-\end{lstlisting}
- \caption{How to write algorithms}
-\end{algorithm}

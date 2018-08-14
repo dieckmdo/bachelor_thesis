@@ -14,7 +14,7 @@ Um Unreal Bilder zum Trainieren eines \gls{mln} zur Verfügung zu haben, müssen
 \textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \textit{ARGBDCameraActor}. Die verwendeten Parameter sind \todo{hier einfügren}. Damit wird an \robosherlock ein Farb- und Tiefenbild, sowie ein \textit{ObjectImage} und eine \textit{ObjectMap} gesendet. Auf dem ObjectImage ist jedes Objekt innerhalb der Szene in einer anderen Farbe eingefärbt. Die ObjectMap weist jeder im ObjectImage verwendeten Farbe den Namen des Objektes zu. So kann jedes sichtbare Objekt eindeutig identifiziert werden.   \par 
 
 \textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{SpawnBox} besitzt eine \textit{UBoxComponent}, genannt \textit{SpawnVolume}, aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, damit sie im späteren Bild noch zu sehen sind und nicht außerhalb den Blickfeldes der Kamera liegen. Der Mittelpunkt der Box dient als Rotationspunkt, um den eine referenzierte Kamera basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer bestimmten Zeit in einem einstellbaren Radius $i$-mal um den Mittelpunkt rotiert. Dabei wird die Kamerarotation an der x-Achse der SpawnVolume gespiegelt. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ erwünscht, beginnt die Kamera $30^\circ$ links von der x-Achse. Die zweite Position befindet sich dann auf der x-Achse und die dritte Position ist $30^\circ$ rechts von der x-Achse. Der Startpunkt der Kamera auf dem Kreis um die SpawnVolume wird also in Abhängigkeit der Rotationsschritte und des Winkels berechnet. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Nach jeder Standortaktualisierung wird die Kamera noch so ausgerichtet, dass sie auf den Mittelpunkt der SpawnVolume schaut. Die Kamera kann auch auf zwei unterschiedlichen Höhen Operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. \par
-Die einzelnen Parameter und ihre Funktion werden in Tabelle \ref{tab:spawnboxParams} vorgestellt. Der Algorithmus ist in Pseudocode in in Algorithmus \ref{alg:SpawnBox} beschrieben.
+Die einzelnen Parameter und ihre Funktion werden in Tabelle \ref{tab:spawnboxParams} vorgestellt. Der Algorithmus ist in Algorithmus \ref{alg:SpawnBox} beschrieben.
 
 \begin{table}
 \rowcolors{1}{}{lightgray}
@@ -35,31 +35,28 @@ bUseHeigthViewpoints & Ob die zweite Höhe verwendet werden soll. \\  \hline
 \caption{Parameter der \textit{RSpawnbox}}
 \label{tab:spawnboxParams}
 \end{table}
-%
-%\begin{algorithm}[H]
-%\begin{algorithmic}
-%\STATE{$Rotationswinkel = 0$}
-%\STATE{$ProcessedPoints =$ addiere Rotationsschritte beider Höhen}
-%\STATE{}
-%\IF{$ProcessedPoints == 0$}
-%\STATE{return;}
-%\ENDIF
-%\STATE{$i = 0$}
-%\IF{ist erste Position?}
-%\STATE{$i =$ Rotationswinkel für erste Position auf erster Höhe}
-%\ELSIF{VPs für erste Höhe abgearbeitet?}
-%\STATE{$i =$ Rotationswinkel für erste Position auf zweiter Höhe}
-%\ELSE
-%\STATE{$i =$ Rotationswinkel für nächste Position}
-%\ENDIF
-%\STATE{$--ProcessedPoints$}
-%\STATE{Rotiere Kamerastandpunkt mit i}
-%\STATE{Berichtige die Höhe}
-%\STATE{Rotiere Kamera, sodass sie auf Mittelpunkt schaut}
-%\end{algorithmic}
-%\caption{Blickwinkelberechnung der RSpawnBox}
-%\label{alg:SpawnBox}
-%\end{algorithm}
+
+\begin{algorithm}[H]
+\KwData{$Kamera$, $Mittelpunkt$ der SpawnBox}
+\BlankLine
+$processedPoints \gets$ $NoOfViewpoints$ + $NoOfHeightViewpoints$\;
+\If{$ProcessedPoints$ == 0}{
+	return\;
+}
+$i \gets$ 0\;
+\uIf{$processedPoints$ == $NoOfViewpoints$ + $NoOfHeightViewpoints$}{
+	$i \gets$ BerechneBW($CameraRadius$, $CameraHeight$)\;
+}\uElseIf{$processedPoints$ == $NoOfHeightViewpoints$}{
+	$i \gets$ BerechneBW($CameraRadius$, $CameraHeight$ + $HeightOffset$)\;
+}\Else{
+	$i \gets$ NächsterBW($Angle$)\; 
+}
+$--ProcessedPoints$\;
+$Kamera$.SetzePosition($i$)\;
+$Kamera$.Rotiere($Mittelpunkt$)\;
+\caption[SpawnBox]{Der Algorithmus der SpawnBox, der die neue Kameraposition berechnet.}
+\label{alg:SpawnBox}
+\end{algorithm}
 
 Bei der Erstellung der Unreal Bilder, wurden die Parameter so eingestellt, dass die Kamera auf zwei verschiedenen Höhen Bilder aufnimmt und auf einem Kreis mit dem Radius von 70 Einheiten rotiert. Die Kameraposition wird dabei alle 3 Sekunden aktualisiert, um mit der RGBDKamera zusammen zu laufen. Die erste Höhe ist 35 Einheiten höher als der Mittelpunkt der SpawnVolume. Hier wurden drei Bilder in einem Winkel von $45^\circ$ aufgenommen. Die zweite Höhe ist 35 Einheiten höher als die vorherige. Hier wurden zwei Bilder im Winkel von $45^\circ$ aufgenommen. Die so entstehenden Bilder vermitteln den Eindruck, als würde ein Roboter auf die Szene drauf schauen. Die Bilder werden an \robosherlock geschickt und hier mittels der \texttt{StorageWriter}-\gls{ae} zur späteren Weiterverarbeitung in einer MongoDB-Instanz gespeichert.
 

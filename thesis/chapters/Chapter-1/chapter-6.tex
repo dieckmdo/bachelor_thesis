@@ -5,56 +5,65 @@
 \label{chap:experiments}
 %	\input{\CHAPTERONE /motivation}
 
+Im folgenden Kapitel werden die Experimente beschrieben, die im Rahmen dieser Arbeit durchgeführt wurden, um die Objekterkennung in fotorealistischen Bildern zu evaluieren. \todo{ausweiten?} 
+
+\section{Unreal-Bilder}
+\label{onlyUnrealImages}
+In einem ersten Experiment werden nur Unreal-Bilder zum trainieren und testen des \gls{mln} benutzt. Die logischen Prädikate wurden dazu mit der in Kapitel \ref{sec:analysisengine} vorgestellten \gls{ae} aus den Unreal-Bildern extrahiert. \todo{scene Prädikat beschreiben} Das Folgende \gls{mln} beschreibt die Zusammenhänge der einzelnen Informationen der Annotatoren und der Objektklassen: \todo{mln einfügen}
+
+Um dieses Modell zu evaluieren wird 10-fache Kreuzvalidierung durchgeführt. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells.    
+  
+Leider sind LinuxCup und YellowPlate nicht mehr zur Hand. Plate mit weißer Platte ersetzt. Cup fehlt.
 
 \begin{table}
 \rowcolors{1}{}{lightgray}
-\begin{tabularx}{\textwidth}{llcccc}
-\textbf{Instanz}  				& \textbf{Klasse}	& \textbf{breakfast}	& \textbf{fridge}	& \textbf{cooking}	& \textbf{Anzahl} \\ \hline
-AlbiHimbeerJuice				& Juice				& +			& +			& +			& 14	\\
-BlueCeramicIkeaMug				& DrinkingMug		& +			& 			&			& 8	\\
-BlueMetalPlateWhiteSpeckles		& DinnerPlate		& 			& 			&	+		& 9	\\
-BluePlasticBowl					& Bowl				& +			& 			&			& 9	\\
-BluePlasticFork					& Fork				& 			& 			&	+		& 8	\\
-BluePlasticKnife				& Knife				& 			& 			&	+		& 8	\\
-BluePlasticSpoon				& Spoon				& +			& 			&			& 8	\\
-CupEcoOrange					& Cup				& +			& 			&	+		& 12	\\
-EdekaRedBowl					& Bowl				& +			& 			&			& 8	\\
-ElBrygCoffee					& Coffee			& +			& 			&			& 8	\\
-JaMilch							& Milk				& +			& +			&			& 13	\\
-JodSalz							& TableSalt			& 			& 			&	+		& 9	\\
-KelloggsCornFlakes				& BreakfastCereal	& +			& 			&			& 8	\\
-KelloggsToppasMini				& BreakfastCereal	& +			& 			&			& 8	\\
-KnusperSchokoKeks				& BreakfastCereal	& +			& 			&			& 8	\\
-KoellnMuesliKnusperHonigNuss	& BreakfastCereal	& +			& 			&			& 8	\\
-LargeGreySpoon					& Spoon				& 			& 			&	+		& 9	\\
-LinuxCup						& DrinkingMugin		& +			& 			&			& 8	\\
-LionCerealBox					& BreakfastCereal	& +			& 			&			& 8	\\
-MarkenSalz						& TableSalt			& 			& 			&	+		& 9	\\
-MeerSalz						& TableSalt			& 			& 			&	+		& 9	\\
-MondaminPancakeMix				& PancakeMix		& 			& 			&	+		& 9	\\
-NesquikCereal					& BreakfastCereal	& +			& 			&			& 8	\\
-PfannerGruneIcetea				& Tea-Iced			& 			& +			&	+		& 13	\\
-PfannerPfirsichIcetea			& Tea-Iced			& 			& +			&	+		& 14	\\
-RedMetalBowlWhiteSpeckles		& Bowl				& +			& 			&			& 9	\\
-RedMetalCupWhiteSpeckles		& Cup				& +			& 			&			& 8	\\
-RedMetalPlateWhiteSpeckles		& DinnerPlate		& 			& 			&	+		& 9	\\
-RedPlasticFork					& Fork				& 			& 			&	+		& 8	\\
-RedPlasticKnife					& Knife				& 			& 			&	+		& 8	\\
-RedPlasticSpoon					& Spoon				& +			& 			&			& 9	\\
-ReineButterMilch				& Buttermilk		& +			& +			&			& 13	\\
-SeverinPancakeMaker				& PancakeMaker		& 			& 			&	+		& 10	\\
-SiggBottle						& DrinkingBottle	& 			& 			&	+		& 9	\\
-SlottedSpatula					& Spatula			& 			& 			&	+		& 9	\\
-SojaMilch						& Milk				& +			& +			&			& 13	\\
-SpitzenReis						& Rice				& 			& 			&	+		& 9	\\
-TomatoAlGustoBasilikum			& TomatoSauce		& 			& 			&	+		& 8	\\
-TomatoSauceOroDiParma			& TomatoSauce		& 			& 			&	+		& 9	\\
-VollMilch						& Milk				& +			& +			&			& 13	\\
-WeideMilchSmall					& Milk				& +			& +			&			& 13	\\
-WhiteCeramicIkeaBowl			& Bowl				& +			& 			&			& 8	\\
-YellowCeramicPlate				& DinnerPlate 	    & 			& 			&	+		& 9	\\ \hline
-\textbf{Insgesamt: 43}				& \textbf{20}		& \textbf{23} & \textbf{8} & \textbf{22} & 	\\
+\begin{tabularx}{\textwidth}{llccccc}
+\textbf{Instanz}  				& \textbf{Klasse}	& \textbf{breakfast}	& \textbf{fridge}	& \textbf{cooking}	& \textbf{Unreal} & \textbf{Real} \\ \hline
+AlbiHimbeerJuice				& Juice				& +			& +			& +			& 14	& 18	\\
+BlueCeramicIkeaMug				& DrinkingMug		& +			& 			&			& 8		& 9\\
+BlueMetalPlateWhiteSpeckles		& DinnerPlate		& 			& 			&	+		& 9		& 10\\
+BluePlasticBowl					& Bowl				& +			& 			&			& 9		& 9\\
+BluePlasticFork					& Fork				& 			& 			&	+		& 8		& 9\\
+BluePlasticKnife				& Knife				& 			& 			&	+		& 8		& 9\\
+BluePlasticSpoon				& Spoon				& +			& 			&			& 8		& 11\\
+CupEcoOrange					& Cup				& +			& 			&	+		& 12	& 15\\
+EdekaRedBowl					& Bowl				& +			& 			&			& 8		& 9\\
+ElBrygCoffee					& Coffee			& +			& 			&			& 8		& 9\\
+JaMilch							& Milk				& +			& +			&			& 13	& 14\\
+JodSalz							& TableSalt			& 			& 			&	+		& 9		& 9\\
+KelloggsCornFlakes				& BreakfastCereal	& +			& 			&			& 8		& 9\\
+KelloggsToppasMini				& BreakfastCereal	& +			& 			&			& 8		& 9\\
+KnusperSchokoKeks				& BreakfastCereal	& +			& 			&			& 8		& 8\\
+KoellnMuesliKnusperHonigNuss	& BreakfastCereal	& +			& 			&			& 8		& 8	\\
+LargeGreySpoon					& Spoon				& 			& 			&	+		& 9		& 8	\\
+LinuxCup						& DrinkingMugin		& +			& 			&			& 8		& 0\\
+LionCerealBox					& BreakfastCereal	& +			& 			&			& 8		& 9	\\
+MarkenSalz						& TableSalt			& 			& 			&	+		& 9		& 8	\\
+MeerSalz						& TableSalt			& 			& 			&	+		& 9		& 8	\\
+MondaminPancakeMix				& PancakeMix		& 			& 			&	+		& 9		& 8	\\
+NesquikCereal					& BreakfastCereal	& +			& 			&			& 8		& 9	\\
+PfannerGruneIcetea				& Tea-Iced			& 			& +			&	+		& 13	& 14\\
+PfannerPfirsichIcetea			& Tea-Iced			& 			& +			&	+		& 14	& 13\\
+RedMetalBowlWhiteSpeckles		& Bowl				& +			& 			&			& 9		& 8\\
+RedMetalCupWhiteSpeckles		& Cup				& +			& 			&			& 8		& 10\\
+RedMetalPlateWhiteSpeckles		& DinnerPlate		& 			& 			&	+		& 9		& 9\\
+RedPlasticFork					& Fork				& 			& 			&	+		& 8		& 9\\
+RedPlasticKnife					& Knife				& 			& 			&	+		& 8		& 9\\
+RedPlasticSpoon					& Spoon				& +			& 			&			& 9		& 10\\
+ReineButterMilch				& Buttermilk		& +			& +			&			& 13	& 14\\
+SeverinPancakeMaker				& PancakeMaker		& 			& 			&	+		& 10	& 10\\
+SiggBottle						& DrinkingBottle	& 			& 			&	+		& 9		& 9\\
+SlottedSpatula					& Spatula			& 			& 			&	+		& 9		& 8\\
+SojaMilch						& Milk				& +			& +			&			& 13	& 14\\
+SpitzenReis						& Rice				& 			& 			&	+		& 9		& 9\\
+TomatoAlGustoBasilikum			& TomatoSauce		& 			& 			&	+		& 8		& 8\\
+TomatoSauceOroDiParma			& TomatoSauce		& 			& 			&	+		& 9		& 8\\
+VollMilch						& Milk				& +			& +			&			& 13	& 14\\
+WeideMilchSmall					& Milk				& +			& +			&			& 13	& 14\\
+WhiteCeramicIkeaBowl			& Bowl				& +			& 			&			& 8		& 9\\
+YellowCeramicPlate				& DinnerPlate 	    & 			& 			&	+		& 9		& 6\\ \hline
+\textbf{Insgesamt: 43}				& \textbf{20}		& \textbf{23} & \textbf{8} & \textbf{22} & & \\
 \end{tabularx}
-\caption[Objekte]{Die Tabelle enthält alle Objekte und welchen generelleren Klassen sie zugeordnet sind, sowie die Zuordnung zu den Szenarien und wie häufig sie insgesamt in den Szenen vorkommen.}
-\label{tab:unrealObjects}
+\caption[Objekte und ihre Verteilung in den Szenen]{Die Tabelle enthält alle Objekte und welchen generelleren Klassen sie zugeordnet sind, sowie die Zuordnung zu den Szenarien und wie häufig sie insgesamt in den Szenen vorkommen.}
+\label{tab:objects}
 \end{table}

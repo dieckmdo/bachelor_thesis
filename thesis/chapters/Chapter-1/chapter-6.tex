@@ -9,8 +9,22 @@ Im folgenden Kapitel werden die Experimente beschrieben, die im Rahmen dieser Ar
 
 \section{Unreal-Bilder}
 \label{onlyUnrealImages}
-In einem ersten Experiment werden nur Unreal-Bilder zum trainieren und testen des \gls{mln} benutzt. Die logischen Prädikate wurden dazu mit der in Kapitel \ref{sec:analysisengine} vorgestellten \gls{ae} aus den Unreal-Bildern extrahiert. \todo{scene Prädikat beschreiben} Das Folgende \gls{mln} beschreibt die Zusammenhänge der einzelnen Informationen der Annotatoren und der Objektklassen: \todo{mln einfügen}
-
+In einem ersten Experiment werden nur Unreal-Bilder zum trainieren und testen des \gls{mln} benutzt. Die logischen Prädikate wurden dazu mit der in Kapitel \ref{sec:analysisengine} vorgestellten \gls{ae} aus den Unreal-Bildern extrahiert. Diese werden wie in Tabelle \ref{tab:annotators} auf S.\pageref{tab:annotators} beschrieben für das Modell deklariert. Zusätzlich gibt es noch das $scene$-Prädikat und eine Einschränkung für das $object$-Prädikat:
+\begin{itemize}
+\item das $scene(scene)$ Prädikat ordnet die Szene in einen räumlichen Kontext ein. Die Domäne für das Prädikat ist $dom(scene) = \{breakfast, cooking, fridge\}$
+\item das Prädikat $object$ wird folgendermaßen definiert: $object(cluster, object!)$. Der \glqq!\grqq  Operator besagt, dass dieses Prädikat als funktionelle Einschränkung behandelt werden soll. Das bedeutet, dass immer exakt ein Atom wahr sein muss; alle anderen sind falsch.\footnote{\url{http://pracmln.org/mln_syntax.html}} Im Falle des obigen Prädikats bedeutet das, dass jedem Cluster genau eine Objektklasse zugeordnet sein muss. Dies macht im Rahmen des Modells Sinn, da ein Objekt nicht mehreren Klassen zugleich angehören kann und wurde auch von Nyga et al.\cite{pr2looking} in ihrer \gls{mln}-Deklaration angenommen.
+\end{itemize}
+Das Folgende \gls{mln} beschreibt die Zusammenhänge der einzelnen Informationen der Annotatoren und der Objektklassen:
+\begin{align*}
+& w_{1} \ shape(?c, +?sha) \wedge color(?c, +?col) \wedge size(?c, +?size) \wedge instance(?c, +?inst) \wedge object(?c, +?obj) \\
+& w_{2} \ goggles_Logo(?c, +?comp) \wedge object(?c, +?obj)\\
+& w_{3} \ goggles_Text(?c, +?text) \wedge object(?c, +?obj)\\
+& w_{4} \ goggles_Product(?c, +?prod) \wedge object(?c, +?obj)\\
+& w_{5} \ scene(+?s) \wedge object(?c, +?obj)\\
+& w_{6} \ object(?c1, +?t1) \wedge object(?c2, +?t2) \wedge ?c1 =/= ?c2
+\end{align*}
+\todo{+ operator, ?operator?} 
+ 
 Um dieses Modell zu evaluieren wird 10-fache Kreuzvalidierung durchgeführt. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells.    
   
 Leider sind LinuxCup und YellowPlate nicht mehr zur Hand. Plate mit weißer Platte ersetzt. Cup fehlt.

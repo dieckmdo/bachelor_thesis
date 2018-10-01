@@ -110,7 +110,7 @@ Im Folgenden werden die Annotatoren vorgestellt. Sie analysieren die Cluster der
 \begin{table}
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{lXX}
-\textbf{Annotator}				& \textbf{MLN-Prädikat}	& \textbf{Werte}	\\ \hline 
+\textbf{Annotator}				& \textbf{MLN-Prädikat}	& \textbf{Atome}	\\ \hline 
 Cluster3DGeometryAnnotator		& size(cluster, size)	& small, medium, large	\\ 
 PrimitiveShapeAnnotator			& shape(cluster, shape)	& box, round, flat 	\\ 
 ClusterColorHistogramCalculator  & color(cluster, color)	& red, yellow, green, cyan, blue, magenta, white, black, gray \\ 
@@ -118,7 +118,8 @@ GogglesAnnotator				& goggles\_Logo(cluster, logo) \newline googles\_Text(cluste
 CaffeAnnotator					& --					& --	\\
 PCLFeatureExtractor				& --					& --	\\ 
 RfAnnotator						& shape(cluster, shape)	&	box, cylindrical, disk, flat, sphere, other	\\
-SVMAnnotator					& instance(cluster, i)	& Instanzname (siehe Tab.\ref{tab:objects}, S.\pageref{tab:objects}) 	\\ \hline 
+SVMAnnotator					& instance(cluster, i)	& Instanzname (siehe Tab.\ref{tab:objects}, S.\pageref{tab:objects}) \\
+UnrealGTAnnotator				& object(cluster, object)	& Klassenname (siehe Tab.\ref{tab:objects}, S.\pageref{tab:objects})	\\ \hline 
 \end{tabularx}
 \caption[Kurzübersicht der Annotatoren]{Eine Kurzübersicht über die Annotatoren und die korrespondieren logischen Prädikate für das \gls{mln}.}
 \label{tab:annotators}

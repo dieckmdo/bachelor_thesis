@@ -9,25 +9,24 @@ Im folgenden Kapitel werden die Experimente beschrieben, die im Rahmen dieser Ar
 
 \section{Unreal-Bilder}
 \label{onlyUnrealImages}
-In einem ersten Experiment werden nur Unreal-Bilder zum trainieren und testen des \gls{mln} benutzt. Die logischen Prädikate wurden dazu mit der in Kapitel \ref{sec:analysisengine} vorgestellten \gls{ae} aus den Unreal-Bildern extrahiert. Diese werden wie in Tabelle \ref{tab:annotators} auf S.\pageref{tab:annotators} beschrieben für das Modell deklariert. Zusätzlich gibt es noch das $scene$-Prädikat und eine Einschränkung für das $object$-Prädikat:
+In einem ersten Experiment werden nur Unreal-Bilder zum trainieren und testen des \gls{mln} benutzt. \todo{Anzahl Bilder und auf Verteilung hinwiesen} Die logischen Prädikate wurden dazu mit der in Kapitel \ref{sec:analysisengine} vorgestellten \gls{ae} aus den Unreal-Bildern extrahiert. Diese werden wie in Tabelle \ref{tab:annotators} auf S.\pageref{tab:annotators} beschrieben für das Modell deklariert. Zusätzlich gibt es noch das $scene$-Prädikat und eine Einschränkung für das $object$-Prädikat:
 \begin{itemize}
 \item das $scene(scene)$ Prädikat ordnet die Szene in einen räumlichen Kontext ein. Die Domäne für das Prädikat ist $dom(scene) = \{breakfast, cooking, fridge\}$
-\item das Prädikat $object$ wird folgendermaßen definiert: $object(cluster, object!)$. Der \glqq!\grqq  Operator besagt, dass dieses Prädikat als funktionelle Einschränkung behandelt werden soll. Das bedeutet, dass immer exakt ein Atom wahr sein muss; alle anderen sind falsch.\footnote{\url{http://pracmln.org/mln_syntax.html}} Im Falle des obigen Prädikats bedeutet das, dass jedem Cluster genau eine Objektklasse zugeordnet sein muss. Dies macht im Rahmen des Modells Sinn, da ein Objekt nicht mehreren Klassen zugleich angehören kann und wurde auch von Nyga et al.\cite{pr2looking} in ihrer \gls{mln}-Deklaration angenommen.
+\item das Prädikat $object$ wird folgendermaßen definiert: $object(cluster, object!)$. Der \glqq!\grqq \ Operator besagt, dass dieses Prädikat als funktionelle Einschränkung behandelt werden soll. Das bedeutet, dass immer exakt ein Atom wahr sein muss; alle anderen sind falsch.\footnote{\url{http://pracmln.org/mln_syntax.html}} Im Falle des obigen Prädikats bedeutet das, dass jedem Cluster genau eine Objektklasse zugeordnet sein muss. Dies macht im Rahmen des Modells Sinn, da ein Objekt nicht mehreren Klassen zugleich angehören kann und wurde auch von Nyga et al.\cite{pr2looking} in ihrer \gls{mln}-Deklaration angenommen.
 \end{itemize}
 Das Folgende \gls{mln} beschreibt die Zusammenhänge der einzelnen Informationen der Annotatoren und der Objektklassen:
 \begin{align*}
 & w_{1} \ shape(?c, +?sha) \wedge color(?c, +?col) \wedge size(?c, +?size) \wedge instance(?c, +?inst) \wedge object(?c, +?obj) \\
-& w_{2} \ goggles_Logo(?c, +?comp) \wedge object(?c, +?obj)\\
-& w_{3} \ goggles_Text(?c, +?text) \wedge object(?c, +?obj)\\
-& w_{4} \ goggles_Product(?c, +?prod) \wedge object(?c, +?obj)\\
+& w_{2} \ goggles\_Logo(?c, +?comp) \wedge object(?c, +?obj)\\
+& w_{3} \ goggles\_Text(?c, +?text) \wedge object(?c, +?obj)\\
+& w_{4} \ goggles\_Product(?c, +?prod) \wedge object(?c, +?obj)\\
 & w_{5} \ scene(+?s) \wedge object(?c, +?obj)\\
 & w_{6} \ object(?c1, +?t1) \wedge object(?c2, +?t2) \wedge ?c1 =/= ?c2
 \end{align*}
-\todo{+ operator, ?operator?} 
+\textit{Hinweise zur Syntax von \pracmln:} Jeder Variable muss ein \glqq ?\grqq \ vorangestellt werden. Das \glqq +\grqq \ bedeutet, dass für jedes Element der Domäne dieser Variable eine Formel erstellt wird. \footnote{\url{http://pracmln.org/mln_syntax.html}}  \par
  
-Um dieses Modell zu evaluieren wird 10-fache Kreuzvalidierung durchgeführt. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells.    
-  
-Leider sind LinuxCup und YellowPlate nicht mehr zur Hand. Plate mit weißer Platte ersetzt. Cup fehlt.
+Ein \gls{mln} wurde mit \textit{Discriminative Pseudo-likelihood Learning with Custom Grounding}   trainiert. Es wurde die \textit{Discrimitive} Variante des Lernalgorithmus gewählt, da es ein genaueres Modell und geringeren Rechenaufwand bietet. Als Voraussetzung müssen bestimmte Prädikate bei den Anfragen entweder nur in den Anfragen oder der Evidenz vorkommen. Da in diesem Fall die Objektklasse erkannt werden soll, ist das $object$-Prädikat die einzige Anfrage and das trainierte \gls{mln}. In der Evidenz kommt es natürlich nicht vor, da die Objektklasse sonst schon bekannt wäre und nicht aus den anderen Eigenschaften darauf geschlossen werden muss. Die \textit{Custom Grounding} Variante bietet eine schnellere Rechenzeit, wenn die Formel größtenteils aus Konjunktionen bestehen. Eine Regularisierung findet durch den Gaussian-Prior mit einem Mittelwert $\mu = 0$ und einer Standardabweichung $\sigma = 10$ statt. \par   
+Um dieses Modell zu evaluieren wird 10-fache Kreuzvalidierung durchgeführt. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells.
 
 \begin{table}
 \rowcolors{1}{}{lightgray}
@@ -81,3 +80,8 @@ YellowCeramicPlate				& DinnerPlate 	    & 			& 			&	+		& 9		& 6\\ \hline
 \caption[Objekte und ihre Verteilung in den Szenen]{Die Tabelle enthält alle Objekte und welchen generelleren Klassen sie zugeordnet sind, sowie die Zuordnung zu den Szenarien und wie häufig sie insgesamt in den Szenen vorkommen.}
 \label{tab:objects}
 \end{table}
+
+
+\section{Echte Bilder}
+  
+Leider sind LinuxCup und YellowPlate nicht mehr zur Hand. Plate mit weißer Platte ersetzt. Cup fehlt.

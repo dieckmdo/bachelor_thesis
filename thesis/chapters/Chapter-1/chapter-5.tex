@@ -138,6 +138,7 @@ Der \texttt{ClusterColorHistogramCalculator} berechnet für jeden Cluster die Fa
 Der \texttt{GooglesAnnotator} benutzt den Webservice \textsc{Google Googles}. Dazu werden die Bilder des Clusters an den Server des Webservices gesendet, der nun Webseiten mit ähnlichen Bildern sucht und zurückgibt. Aus den Ergebnissen werden Logo, Text und Textur Annotationen erstellt. Die Werte dafür sind abhängig von den Ergebnissen. Da es häufig vorkommt, dass keine Ergebnisse vorliegen, werden in solchen Fällen auch keine Annotationen zur \gls{cas} hinzugefügt. Die logischen Prädikate sind $goggles\_Logo(cluster, logo)$, $googles\_Text(cluster, text)$ und $googles\_Product(cluster, product)$. 
 
 \subsubsection{CaffeAnnotator}
+\label{sec:caffeAnno}
 Für den \texttt{CaffeAnnotator} wird das Deep-Learning Framework \textsc{Caffe}\footnote{\url{http://caffe.berkeleyvision.org/}} benötigt. Der Annotator extrahiert Merkmale aus den Bildern und speichert diese als Annotation in der \gls{cas}. Sie werden später für die Klassifikation benötigt.  
 
 \subsubsection{PCLFeatureExtractor}
@@ -150,4 +151,5 @@ Der \texttt{RFAnnotator} klassifiziert die Form der Objekte. Der verwendete \gls
 Der \texttt{SVMAnnotator} klassifiziert die Instanz der Objekte. Dazu wurde eine \gls{svm} mit echten Bildern (zu finden im Repository odu\_iai\footnote{\url{https://github.com/bbferka/odu\_iai}}) der in den Experimenten vorkommenden Objekten trainiert. Die Instanz entspricht dabei dem Namen der Objekte und kann in Tabelle \ref{tab:objects} auf S.\pageref{tab:objects} nachgeschlagen werden. Die logischen Prädikate sind von der Form  $instance(cluster, i)$. Mehr Informationen zu Klassifizierern sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
 
 \subsubsection{MLNInferencer}
+\label{sec:mlnInferencer}
 Der \texttt{MLNInferencer} liest die Annotationen aus der \gls{cas} aus gibt sie als logische Prädikate in einer Textdatei aus. Diese Dateien werden Datenbank genannt und bilden die Trainingsdaten für ein \gls{mln}. Der \texttt{MLNInferencer} kann die Prädikate sowohl in \gls{fo} ausgeben, als auch in \textit{Fuzzy-Logik}. Dabei werden für jedes Prädikat die Konfidenzen der Annotatoren mit ausgegeben.

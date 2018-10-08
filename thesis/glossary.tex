@@ -25,6 +25,35 @@
   name = {Ground Truth},
   description={\todo{}}
 }
+\newglossaryentry{accuracy}
+{
+  name = {Treffergenauigkeit},
+  description={Die Treffergenauigkeit gibt an, wie viele Objekte insgesamt korrekt klassifiziert wurden. Sie entspricht \begin{displaymath}
+P(korrekt\ klassifziert) = \frac{korrekt\ klassfiziert}{alle\ Fälle} 
+\end{displaymath}}
+}
+\newglossaryentry{precision}
+{
+  name = {Relevanz},
+  description={Die Relevanz oder Genauigkeit beschreibt den Anteil der korrekten Klassifikationen aus den positiven Vorhersagen. Intuitiv ist das die Fähigkeit eine negative Klassifikation nicht als positiv vorherzusagen. Sie entspricht der geschätzten bedingten Wahrscheinlichkeit \begin{displaymath}
+P(korrekt\ klassifziert \mid positive\ Vorhersage) = \frac{richtig\ positiv}{richtig\ positiv + falsch\ positiv}
+\end{displaymath}}
+}
+\newglossaryentry{recall}
+{
+  name = {Trefferquote},
+  description={Die Trefferquote oder Sensitivität beschreibt den Anteil der positiv korrekten Klassifikation aus den korrekten Klassifikationen. Sie entspricht der geschätzten bedingten Wahrscheinlichkeit \begin{displaymath}
+P(positive\ Vorhersage \mid korrekt\ klassifziert) = \frac{richtig\ positiv}{richtig\ positiv + falsch\ negativ}
+\end{displaymath}}
+}
+\newglossaryentry{f1score}
+{
+  name = {$F_1$-Maß},
+  description={Das $F_1$-Maß ist das gewichtete Mittel aus \gls{precision} und \gls{recall}. Die Gewichtung beider Werte ist gleich. Berechnet wird das $F_1$-Maß durch
+\begin{displaymath}
+F_1 = 2 \times (Relevanz \cdot Trefferquote) : (Relevanz + Trefferquote)
+\end{displaymath}}
+}
 \newacronym{engine}{Engine}{als Kurzform von Unreal Engine verwendet}
 \newacronym{ros}{\textsc{ROS}}{\textsc{Robot Operating System}}
 \newacronym{vfh}{VFH}{Viewpoint Feature Histogram}

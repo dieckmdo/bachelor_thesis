@@ -7,8 +7,22 @@
 
 Im folgenden Kapitel werden die Experimente beschrieben, die im Rahmen dieser Arbeit durchgeführt wurden, um die Objekterkennung in fotorealistischen Bildern zu evaluieren. \todo{ausweiten?} 
 
+
+\section{Klassifizierung über Merkmale}
+\label{sec:classificationExperiment}
+Die zuvor erstellten Unreal-Bilder werden in einem ersten Experiment über Merkmale klassifiziert. Dazu wird ein Annotator aus dem \robosherlock-Paket \textit{rs\_addons} als Klassifizierer mit echten Bildern der verwendeten Objekte trainiert. Mehr zu dem Paket und den Klassifizieren ist in \ref{sec:classifiers} auf Seite \pageref{sec:classifiers} zu finden. \par
+Als Klassifizierer wird der RFAnnotator benutzt, der auf einer \textit{Random-Forest} Implementierung basiert. Die zu unterscheidenden 20 Klassen sind in der Tabelle \ref{tab:objects} zu finden. Diese Bilder der echten Objekte wurden den Klassen zugeordnet, bevor der Klassifizierer damit trainiert wurde. Da es sich um einen Annotator für \robosherlock handelt, wurde eine \gls{ae} mit einigen \textit{hyotheses generators}, dem CaffeAnnotator zum Extrahieren der Merkmale (siehe Kap. \ref{sec:caffeAnno}, S.\pageref{sec:caffeAnno}), dem UnrealGTAnnotator zum herausziehen der \gls{gt} aus den Unreal-Bildern und dem Klassifizierer erstellt. Um die Ergebnisse später verarbeiten zu können werden sie mit dem MLNInference (siehe Kap. \ref{sec:mlnInferencer}, S. \pageref{sec:mlnInferencer}) als logische Prädikate ausgegeben. \par 
+Die so erhaltene Klassifizierung für jedes Objekt wird mit der \gls{gt} verglichen, um so die Erkennungsrate des Klassifizierers zu ermitteln. Die Konfusionsmatrix ist in Figur \ref{fig:classi_Ex_confMatrix} abgebildet. Die \gls{accuracy} liegt bei 0,5978. \gls{precision} ist 0,5978 \gls{recall} ist 0,5978 \gls{f1score} ist 0,5978
+
+\begin{figure}
+\includegraphics[scale=.5]{img/chapter6/classifierRFconf_matrix.png}
+\caption[Konfusionsmatrix des RFAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den RFAnnotator.}
+\label{fig:classi_Ex_confMatrix}
+\end{figure}
+
+
 \section{Unreal-Bilder}
-\label{onlyUnrealImages}
+\label{sec:onlyUnrealImages}
 In einem ersten Experiment werden nur Unreal-Bilder zum trainieren und testen des \gls{mln} benutzt. \todo{Anzahl Bilder und auf Verteilung hinwiesen} Die logischen Prädikate wurden dazu mit der in Kapitel \ref{sec:analysisengine} vorgestellten \gls{ae} aus den Unreal-Bildern extrahiert. Diese werden wie in Tabelle \ref{tab:annotators} auf S.\pageref{tab:annotators} beschrieben für das Modell deklariert. Zusätzlich gibt es noch das $scene$-Prädikat und eine Einschränkung für das $object$-Prädikat:
 \begin{itemize}
 \item das $scene(scene)$ Prädikat ordnet die Szene in einen räumlichen Kontext ein. Die Domäne für das Prädikat ist $dom(scene) = \{breakfast, cooking, fridge\}$
@@ -77,7 +91,7 @@ WhiteCeramicIkeaBowl			& Bowl				& +			& 			&			& 8		& 9\\
 YellowCeramicPlate				& DinnerPlate 	    & 			& 			&	+		& 9		& 6\\ \hline
 \textbf{Insgesamt: 43}				& \textbf{20}		& \textbf{23} & \textbf{8} & \textbf{22} & & \\
 \end{tabularx}
-\caption[Objekte und ihre Verteilung in den Szenen]{Die Tabelle enthält alle Objekte und welchen generelleren Klassen sie zugeordnet sind, sowie die Zuordnung zu den Szenarien und wie häufig sie insgesamt in den Szenen vorkommen.}
+\caption[Objekte und ihre Verteilung in den Szenen]{Die Tabelle enthält alle Objekte und welchen Klassen sie zugeordnet sind, sowie die Zuordnung zu den Szenarien und wie häufig sie insgesamt in den Szenen vorkommen.}
 \label{tab:objects}
 \end{table}
 

@@ -1,0 +1,3402 @@
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Knife)
+1 object(c1,Fork)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Knife)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,PancakeMix)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Knife)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Fork)
+
+1 instance(c3,Milk)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,Milk)
+1 object(c4,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Fork)
+1 object(c1,Knife)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+
+1 instance(c3,Milk)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,Milk)
+1 object(c4,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,Milk)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,PancakeMix)
+1 object(c4,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+
+1 instance(c4,Milk)
+1 object(c4,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,Milk)
+1 object(c4,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Fork)
+
+1 instance(c3,Juice)
+1 object(c3,Juice)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,Juice)
+1 object(c3,Juice)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,Juice)
+1 object(c3,Juice)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+
+1 instance(c3,Juice)
+1 object(c3,Juice)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,Juice)
+1 object(c3,Juice)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Knife)
+1 object(c1,Fork)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,Milk)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,DinnerPlate)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+
+1 instance(c3,Tea-Iced)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,Milk)
+1 object(c4,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,DinnerPlate)
+1 object(c2,DinnerPlate)
+
+1 instance(c3,Knife)
+1 object(c3,Knife)
+
+1 instance(c4,TableSalt)
+1 object(c4,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Spoon)
+1 object(c1,Fork)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Spoon)
+1 object(c1,Fork)
+
+1 instance(c2,Tea-Iced)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,DinnerPlate)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,TableSalt)
+1 object(c4,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Spoon)
+1 object(c2,Fork)
+
+1 instance(c3,Milk)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,TableSalt)
+1 object(c4,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,TableSalt)
+1 object(c4,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,TableSalt)
+1 object(c4,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Spoon)
+1 object(c2,Fork)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,TableSalt)
+1 object(c4,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,TableSalt)
+1 object(c4,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Spoon)
+1 object(c2,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Spoon)
+1 object(c2,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Fork)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TableSalt)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,TableSalt)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Spoon)
+1 object(c2,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TableSalt)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Rice)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,TableSalt)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Rice)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Rice)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,TableSalt)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TableSalt)
+
+1 instance(c1,TableSalt)
+1 object(c1,Rice)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TableSalt)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Rice)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Spoon)
+1 object(c1,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DinnerPlate)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Bowl)
+1 object(c1,PancakeMaker)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,Milk)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Knife)
+1 object(c1,PancakeMaker)
+
+1 instance(c2,Spoon)
+1 object(c2,PancakeMaker)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+
+1 instance(c4,DrinkingMug)
+1 object(c4,PancakeMaker)
+
+1 instance(c5,Milk)
+1 object(c5,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,Milk)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,Milk)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,Milk)
+1 object(c3,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,DrinkingBottle)
+1 object(c1,DrinkingBottle)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Rice)
+1 object(c2,Rice)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,TableSalt)
+1 object(c3,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TableSalt)
+1 object(c2,Rice)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,Milk)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Knife)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,PancakeMix)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Milk)
+1 object(c1,DrinkingBottle)
+
+1 instance(c2,Milk)
+1 object(c2,TableSalt)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,DinnerPlate)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TableSalt)
+
+1 instance(c3,Milk)
+1 object(c3,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Milk)
+1 object(c1,TableSalt)
+
+1 instance(c2,TableSalt)
+1 object(c2,TomatoSauce)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,TableSalt)
+1 object(c2,TomatoSauce)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Spoon)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,Milk)
+1 object(c1,Rice)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Rice)
+1 object(c0,Rice)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,Fork)
+1 object(c3,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,Milk)
+1 object(c1,Rice)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TableSalt)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,Rice)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Spoon)
+
+1 instance(c1,Milk)
+1 object(c1,Rice)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,Milk)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,Bowl)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,Fork)
+1 object(c3,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Rice)
+
+1 instance(c1,Milk)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,Rice)
+1 object(c1,Rice)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,TableSalt)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Knife)
+1 object(c1,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Knife)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Knife)
+
+1 instance(c1,Knife)
+1 object(c1,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,Knife)
+1 object(c3,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Knife)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+
+1 instance(c3,Fork)
+1 object(c3,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Spoon)
+1 object(c2,Fork)
+
+1 instance(c3,Knife)
+1 object(c3,Knife)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Knife)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,Knife)
+1 object(c3,Fork)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+
+1 instance(c3,Knife)
+1 object(c3,Knife)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TableSalt)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TableSalt)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,DinnerPlate)
+1 object(c1,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,DinnerPlate)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Milk)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,DinnerPlate)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Milk)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,Milk)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Milk)
+1 object(c1,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TableSalt)
+1 object(c1,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Milk)
+1 object(c1,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TableSalt)
+1 object(c1,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TableSalt)
+1 object(c1,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,DinnerPlate)
+1 object(c2,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Spoon)
+
+1 instance(c1,Milk)
+1 object(c1,Rice)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Spoon)
+
+1 instance(c1,Knife)
+1 object(c1,Spoon)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,Rice)
+1 object(c1,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spoon)
+
+1 instance(c1,Fork)
+1 object(c1,Spoon)
+
+1 instance(c2,TableSalt)
+1 object(c2,Rice)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Spoon)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Rice)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Milk)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Spoon)
+
+1 instance(c1,Knife)
+1 object(c1,Spoon)
+
+1 instance(c2,DinnerPlate)
+1 object(c2,DinnerPlate)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TomatoSauce)
+
+1 instance(c4,Milk)
+1 object(c4,Tea-Iced)
+
+1 instance(c5,TomatoSauce)
+1 object(c5,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Spoon)
+
+1 instance(c1,Knife)
+1 object(c1,Spoon)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TableSalt)
+
+1 instance(c4,TomatoSauce)
+1 object(c4,TomatoSauce)
+
+1 instance(c5,Bowl)
+1 object(c5,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,Spoon)
+
+1 instance(c1,Fork)
+1 object(c1,Spoon)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TomatoSauce)
+
+1 instance(c4,TableSalt)
+1 object(c4,TableSalt)
+
+1 instance(c5,Bowl)
+1 object(c5,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Spoon)
+
+1 instance(c1,Fork)
+1 object(c1,Spoon)
+
+1 instance(c2,DinnerPlate)
+1 object(c2,DinnerPlate)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TableSalt)
+
+1 instance(c4,Milk)
+1 object(c4,Tea-Iced)
+
+1 instance(c5,TomatoSauce)
+1 object(c5,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,DinnerPlate)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TableSalt)
+1 object(c2,TomatoSauce)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Milk)
+1 object(c4,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,DrinkingBottle)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+
+1 instance(c4,TableSalt)
+1 object(c4,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,Cup)
+1 object(c1,Cup)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Cup)
+1 object(c2,Cup)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Cup)
+1 object(c2,Cup)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Cup)
+1 object(c1,Cup)
+
+1 instance(c2,TableSalt)
+1 object(c2,Tea-Iced)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Cup)
+1 object(c2,Cup)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Juice)
+1 object(c0,Juice)
+
+1 instance(c1,Milk)
+1 object(c1,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Juice)
+1 object(c0,Juice)
+
+1 instance(c1,Milk)
+1 object(c1,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DrinkingBottle)
+
+1 instance(c1,Juice)
+1 object(c1,Juice)
+---
+
+scene(fridge)
+
+1 instance(c0,Juice)
+1 object(c0,Juice)
+
+1 instance(c1,Milk)
+1 object(c1,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,DrinkingBottle)
+
+1 instance(c1,Juice)
+1 object(c1,Juice)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spoon)
+
+1 instance(c1,DrinkingMug)
+1 object(c1,PancakeMaker)
+
+1 instance(c2,PancakeMix)
+1 object(c2,PancakeMix)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spoon)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Bowl)
+1 object(c2,PancakeMaker)
+
+1 instance(c3,PancakeMix)
+1 object(c3,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spoon)
+
+1 instance(c1,DrinkingMug)
+1 object(c1,PancakeMaker)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+
+1 instance(c3,PancakeMix)
+1 object(c3,PancakeMix)
+
+1 instance(c4,DrinkingMug)
+1 object(c4,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spoon)
+
+1 instance(c1,Bowl)
+1 object(c1,PancakeMaker)
+
+1 instance(c2,Spoon)
+1 object(c2,Spoon)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+
+1 instance(c4,PancakeMix)
+1 object(c4,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spoon)
+
+1 instance(c1,Spoon)
+1 object(c1,Spoon)
+
+1 instance(c2,DrinkingMug)
+1 object(c2,PancakeMaker)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+
+1 instance(c4,PancakeMix)
+1 object(c4,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Knife)
+1 object(c1,PancakeMaker)
+
+1 instance(c2,Bowl)
+1 object(c2,PancakeMaker)
+
+1 instance(c3,Milk)
+1 object(c3,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Milk)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,PancakeMix)
+1 object(c2,PancakeMix)
+
+1 instance(c3,DrinkingMug)
+1 object(c3,PancakeMaker)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Knife)
+1 object(c1,PancakeMaker)
+
+1 instance(c2,Bowl)
+1 object(c2,PancakeMaker)
+
+1 instance(c3,PancakeMix)
+1 object(c3,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,Milk)
+1 object(c2,Tea-Iced)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,DrinkingMug)
+1 object(c3,PancakeMaker)
+
+1 instance(c4,PancakeMix)
+1 object(c4,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Fork)
+1 object(c2,Fork)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+
+1 instance(c4,PancakeMix)
+1 object(c4,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+
+1 instance(c3,Knife)
+1 object(c3,Fork)
+
+1 instance(c4,PancakeMix)
+1 object(c4,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,DrinkingMug)
+1 object(c3,PancakeMaker)
+
+1 instance(c4,PancakeMix)
+1 object(c4,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+
+1 instance(c3,Fork)
+1 object(c3,Fork)
+
+1 instance(c4,PancakeMix)
+1 object(c4,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,TableSalt)
+1 object(c1,Rice)
+
+1 instance(c2,PancakeMix)
+1 object(c2,PancakeMix)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Rice)
+
+1 instance(c1,Milk)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,PancakeMix)
+1 object(c2,PancakeMix)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,TomatoSauce)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+
+1 instance(c3,TableSalt)
+1 object(c3,Rice)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,Milk)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Spoon)
+1 object(c1,Spatula)
+
+1 instance(c2,PancakeMix)
+1 object(c2,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,DinnerPlate)
+1 object(c2,DinnerPlate)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Bowl)
+1 object(c2,PancakeMaker)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,DrinkingMug)
+1 object(c0,PancakeMaker)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,Milk)
+1 object(c1,Rice)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+
+1 instance(c4,TomatoSauce)
+1 object(c4,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,Milk)
+1 object(c1,DrinkingBottle)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+
+1 instance(c4,TomatoSauce)
+1 object(c4,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,Milk)
+1 object(c1,DrinkingBottle)
+
+1 instance(c2,Rice)
+1 object(c2,Rice)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TomatoSauce)
+
+1 instance(c4,Spoon)
+1 object(c4,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Rice)
+
+1 instance(c1,TableSalt)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+
+1 instance(c4,TomatoSauce)
+1 object(c4,TomatoSauce)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,Milk)
+1 object(c1,DrinkingBottle)
+
+1 instance(c2,Rice)
+1 object(c2,Rice)
+
+1 instance(c3,TomatoSauce)
+1 object(c3,TomatoSauce)
+
+1 instance(c4,Spoon)
+1 object(c4,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Spoon)
+1 object(c1,Spatula)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Spoon)
+1 object(c3,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,TableSalt)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TomatoSauce)
+1 object(c2,TomatoSauce)
+
+1 instance(c3,Knife)
+1 object(c3,Fork)
+
+1 instance(c4,Spoon)
+1 object(c4,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Knife)
+
+1 instance(c1,Fork)
+1 object(c1,Fork)
+
+1 instance(c2,Bowl)
+1 object(c2,DinnerPlate)
+
+1 instance(c3,TableSalt)
+1 object(c3,TomatoSauce)
+
+1 instance(c4,Spoon)
+1 object(c4,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Fork)
+1 object(c0,Fork)
+
+1 instance(c1,Knife)
+1 object(c1,Knife)
+
+1 instance(c2,TableSalt)
+1 object(c2,TomatoSauce)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Knife)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Fork)
+
+1 instance(c3,TableSalt)
+1 object(c3,TomatoSauce)
+
+1 instance(c4,Spoon)
+1 object(c4,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Fork)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,Knife)
+1 object(c2,Knife)
+
+1 instance(c3,TableSalt)
+1 object(c3,TomatoSauce)
+
+1 instance(c4,Spoon)
+1 object(c4,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Juice)
+1 object(c0,Juice)
+
+1 instance(c1,Cup)
+1 object(c1,Cup)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+
+1 instance(c4,Spoon)
+1 object(c4,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Juice)
+1 object(c1,Juice)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,Juice)
+1 object(c1,Juice)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,Cup)
+1 object(c0,Cup)
+
+1 instance(c1,Juice)
+1 object(c1,Juice)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,DinnerPlate)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,DrinkingMug)
+1 object(c1,Cup)
+
+1 instance(c2,Juice)
+1 object(c2,Juice)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,Spoon)
+1 object(c4,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,Spoon)
+1 object(c1,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,Spoon)
+1 object(c1,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spatula)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,Spoon)
+1 object(c1,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,Spoon)
+1 object(c1,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Milk)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,TableSalt)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TomatoSauce)
+
+1 instance(c1,Bowl)
+1 object(c1,DrinkingBottle)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Bowl)
+1 object(c3,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Milk)
+1 object(c3,DrinkingBottle)
+---
+
+scene(fridge)
+
+1 instance(c0,DinnerPlate)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TomatoSauce)
+
+1 instance(c2,Milk)
+1 object(c2,DrinkingBottle)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,TableSalt)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,DinnerPlate)
+1 object(c3,DinnerPlate)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,Milk)
+1 object(c1,Rice)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Cup)
+1 object(c3,Cup)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,Tea-Iced)
+
+1 instance(c1,TomatoSauce)
+1 object(c1,TableSalt)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,Cup)
+1 object(c3,Cup)
+
+1 instance(c4,Bowl)
+1 object(c4,DinnerPlate)
+---
+
+scene(fridge)
+
+1 instance(c0,TableSalt)
+1 object(c0,TableSalt)
+
+1 instance(c1,Bowl)
+1 object(c1,DinnerPlate)
+
+1 instance(c2,TableSalt)
+1 object(c2,Rice)
+
+1 instance(c3,TableSalt)
+1 object(c3,Tea-Iced)
+
+1 instance(c4,Cup)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,Bowl)
+1 object(c0,DinnerPlate)
+
+1 instance(c1,TableSalt)
+1 object(c1,Tea-Iced)
+
+1 instance(c2,Milk)
+1 object(c2,Rice)
+
+1 instance(c3,TableSalt)
+1 object(c3,TableSalt)
+
+1 instance(c4,DrinkingMug)
+1 object(c4,Cup)
+---
+
+scene(fridge)
+
+1 instance(c0,PancakeMix)
+1 object(c0,PancakeMix)
+
+1 instance(c1,Milk)
+1 object(c1,TableSalt)
+
+1 instance(c2,Spoon)
+1 object(c2,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spatula)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,Milk)
+1 object(c2,TableSalt)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spatula)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Spoon)
+1 object(c3,Spoon)
+---
+
+scene(fridge)
+
+1 instance(c0,Spoon)
+1 object(c0,Spatula)
+
+1 instance(c1,PancakeMix)
+1 object(c1,PancakeMix)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,Spoon)
+1 object(c3,Spatula)
+---
+
+scene(fridge)
+
+1 instance(c0,Knife)
+1 object(c0,Spatula)
+
+1 instance(c1,Spoon)
+1 object(c1,Spatula)
+
+1 instance(c2,TableSalt)
+1 object(c2,TableSalt)
+
+1 instance(c3,PancakeMix)
+1 object(c3,PancakeMix)
+---
+

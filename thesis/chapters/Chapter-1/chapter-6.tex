@@ -11,15 +11,45 @@ Im folgenden Kapitel werden die Experimente beschrieben, die im Rahmen dieser Ar
 \section{Klassifizierung über Merkmale}
 \label{sec:classificationExperiment}
 Die zuvor erstellten Unreal-Bilder werden in einem ersten Experiment über Merkmale klassifiziert. Dazu wird ein Annotator aus dem \robosherlock-Paket \textit{rs\_addons} als Klassifizierer mit echten Bildern der verwendeten Objekte trainiert. Mehr zu dem Paket und den Klassifizieren ist in \ref{sec:classifiers} auf Seite \pageref{sec:classifiers} zu finden. \par
-Als Klassifizierer wird der RFAnnotator benutzt, der auf einer \textit{Random-Forest} Implementierung basiert. Die zu unterscheidenden 20 Klassen sind in der Tabelle \ref{tab:objects} zu finden. Diese Bilder der echten Objekte wurden den Klassen zugeordnet, bevor der Klassifizierer damit trainiert wurde. Da es sich um einen Annotator für \robosherlock handelt, wurde eine \gls{ae} mit einigen \textit{hyotheses generators}, dem CaffeAnnotator zum Extrahieren der Merkmale (siehe Kap. \ref{sec:caffeAnno}, S.\pageref{sec:caffeAnno}), dem UnrealGTAnnotator zum herausziehen der \gls{gt} aus den Unreal-Bildern und dem Klassifizierer erstellt. Um die Ergebnisse später verarbeiten zu können werden sie mit dem MLNInference (siehe Kap. \ref{sec:mlnInferencer}, S. \pageref{sec:mlnInferencer}) als logische Prädikate ausgegeben. \par 
-Die so erhaltene Klassifizierung für jedes Objekt wird mit der \gls{gt} verglichen, um so die Erkennungsrate des Klassifizierers zu ermitteln. Die Konfusionsmatrix ist in Figur \ref{fig:classi_Ex_confMatrix} abgebildet. Die \gls{accuracy} liegt bei 0,5978. \gls{precision} ist 0,5978 \gls{recall} ist 0,5978 \gls{f1score} ist 0,5978
+
+Als Klassifizierer wird der RFAnnotator benutzt, der auf einer \textit{Random-Forest} Implementierung basiert. Die zu unterscheidenden 20 Klassen sind in der Tabelle \ref{tab:objects} zu finden. Diese Bilder der echten Objekte wurden den Klassen zugeordnet, bevor der Klassifizierer damit trainiert wurde. Da es sich um einen Annotator für \robosherlock handelt, wurde eine \gls{ae} mit einigen \textit{hyotheses generators}, dem CaffeAnnotator zum Extrahieren der Merkmale (siehe Kap. \ref{sec:caffeAnno}, S.\pageref{sec:caffeAnno}), dem UnrealGTAnnotator zum herausziehen der \gls{gt} aus den Unreal-Bildern und dem Klassifizierer erstellt. Um die Ergebnisse später verarbeiten zu können werden sie mit dem MLNInference (siehe Kap. \ref{sec:mlnInferencer}, S. \pageref{sec:mlnInferencer}) als logische Prädikate ausgegeben. \par
+ 
+Die so erhaltene Klassifizierung für jedes Objekt wird mit der \gls{gt} verglichen, um so die Erkennungsrate des Klassifizierers zu ermitteln. Die Konfusionsmatrix ist in Figur \ref{fig:classi_Ex_confMatrix} abgebildet. Was fällt auf: Buttermilch, Milch sehr gut erkannt, allerdings auch viele anderen als Milch erkannt (Tea, Rice) Buttermilk + coffe + CUp + pancakemix mit f1 über 80. Wahrscheinlich wegen eineutiger characteristika (Form und Farbe) Spatula super schlecht, gar nicht richtig! DinnerPlate gerne Bowl. Fork + Knife werden vertauscht. Spoon auch mit beiden, aber die anderen nicht mit Spoon. 
+
 
 \begin{figure}
-\includegraphics[scale=.5]{img/chapter6/classifierRFconf_matrix.png}
-\caption[Konfusionsmatrix des RFAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den RFAnnotator.}
+	\includegraphics[scale=.5]{img/chapter6/classifierRFconf_matrix.png}
+\caption[Ergebnisse der Klassifizierung durch den RFAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den RFAnnotator.}
 \label{fig:classi_Ex_confMatrix}
 \end{figure}
 
+\begin{table}
+\rowcolors{1}{}{lightgray}
+\begin{tabularx}{\textwidth}{Xllll}
+\textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
+Bowl & 0.98 & 0.61 & 0.81 & 0.69 \\  
+BreakfastCereal & 0.95 & 0.9 & 0.61 & 0.72 \\  
+Buttermilk & 1.0 & 1.0 & 0.98 & 0.99 \\  
+Coffee & 1.0 & 0.96 & 0.86 & 0.91 \\  
+Cup & 0.99 & 0.88 & 0.77 & 0.82 \\  
+DinnerPlate & 0.97 & 0.73 & 0.53 & 0.61 \\  
+DrinkingBottle & 0.98 & 1.0 & 0.31 & 0.47 \\  
+DrinkingMug & 1.0 & 0.49 & 0.89 & 0.63 \\  
+Fork & 0.99 & 0.47 & 0.68 & 0.55 \\  
+Juice & 0.98 & 1.0 & 0.46 & 0.63 \\  
+Knife & 0.98 & 0.31 & 0.43 & 0.36 \\  
+Milk & 0.99 & 0.51 & 0.92 & 0.66 \\  
+PancakeMaker & 0.98 & 0.88 & 0.13 & 0.22 \\  
+PancakeMix & 1.0 & 0.9 & 0.8 & 0.84 \\  
+Rice & 0.98 & 0.58 & 0.16 & 0.25 \\  
+Spatula & 0.98 & 0.0 & 0.0 & 0.0 \\  
+Spoon & 0.96 & 0.42 & 0.35 & 0.38 \\  
+TableSalt & 0.99 & 0.41 & 0.78 & 0.54 \\  
+Tea-Iced & 0.94 & 1.0 & 0.05 & 0.09 \\  
+TomatoSauce & 0.97 & 0.59 & 0.36 & 0.44 \\  
+\end{tabularx}
+\caption[Objekt spezifische Kenngrößen des RFAnnotators]{Kenngrößen für die einzelnen Objekte aus der Klassifizierung der Unreal-Bilder mit dem RFAnnotator.}
+\end{table}
 
 \section{Unreal-Bilder}
 \label{sec:onlyUnrealImages}

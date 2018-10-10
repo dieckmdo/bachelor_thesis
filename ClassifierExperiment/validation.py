@@ -92,17 +92,24 @@ fs.write('f1(None): ' + str(f1_score(groundTruthList, predictionList, average=No
 cm = confusion_matrix(groundTruthList, predictionList)
 
 allCases = len(groundTruthList)
+allCorrect = np.trace(cm)
+print allCorrect
+
 accuracys = []
 for i in range(0, len(cm)):
     li = cm[i]
     tp = li[i]
+    tn = allCorrect - tp
     rowAll = 0
     for k in range(0, len(li)):
         rowAll += li[k]
     
-    rowAll -= tp
-    tn = allCases - tp - rowAll
-    result = round((tp + tn) / float(allCases), 4)
+    fn = rowAll - tp
+    fp = 0
+    for k in range(0, len(cm)):
+        fp += cm[k][i]
+    fp -= tp
+    result = round((tp + tn) / float(tp + tn + fn + fp), 4)
     accuracys.append(result)
 
 #print accuracys

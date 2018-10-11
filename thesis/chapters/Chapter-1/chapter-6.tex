@@ -19,7 +19,7 @@ Die so erhaltene Klassifizierung für jedes Objekt wird mit der \gls{gt} verglic
 
 \begin{figure}
 	\includegraphics[scale=.5]{img/chapter6/classifierRFconf_matrix.png}
-\caption[Ergebnisse der Klassifizierung durch den RFAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den RFAnnotator.}
+\caption[Konfusionsmatrix der Klassifizierung durch den RFAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den RFAnnotator.}
 \label{fig:classi_Ex_confMatrix}
 \end{figure}
 
@@ -74,7 +74,44 @@ Das Folgende \gls{mln} beschreibt die Zusammenhänge der einzelnen Informationen
 \textit{Hinweise zur Syntax von \pracmln:} Jeder Variable muss ein \glqq ?\grqq \ vorangestellt werden. Das \glqq +\grqq \ bedeutet, dass für jedes Element der Domäne dieser Variable eine Formel erstellt wird. \footnote{\url{http://pracmln.org/mln_syntax.html}}  \par
  
 Ein \gls{mln} wurde mit \textit{Discriminative Pseudo-likelihood Learning with Custom Grounding}   trainiert. Es wurde die \textit{Discrimitive} Variante des Lernalgorithmus gewählt, da es ein genaueres Modell und geringeren Rechenaufwand bietet. Als Voraussetzung müssen bestimmte Prädikate bei den Anfragen entweder nur in den Anfragen oder der Evidenz vorkommen. Da in diesem Fall die Objektklasse erkannt werden soll, ist das $object$-Prädikat die einzige Anfrage and das trainierte \gls{mln}. In der Evidenz kommt es natürlich nicht vor, da die Objektklasse sonst schon bekannt wäre und nicht aus den anderen Eigenschaften darauf geschlossen werden muss. Die \textit{Custom Grounding} Variante bietet eine schnellere Rechenzeit, wenn die Formeln größtenteils aus Konjunktionen bestehen. Eine Regularisierung findet durch den Gaussian-Prior mit einem Mittelwert $\mu = 0$ und einer Standardabweichung $\sigma = 10$ statt. \par   
-Um dieses Modell zu evaluieren wird 10-fache Kreuzvalidierung durchgeführt. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells.
+Um dieses Modell zu evaluieren wird 10-fache Kreuzvalidierung \todo{was'n das?} durchgeführt. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells.
+
+\begin{figure}
+	\includegraphics[scale=.5]{img/chapter6/unrealEx1_cof_matrix.png}
+\caption[Konfusionsmatrix des gesamten Unreal-Bilder Datensatzes]{Die Konfusionsmatrix für die 10-fache Kreuzvalidierung der gesamten 570 Unreal-Bilder.}
+\label{fig:classi_Ex_confMatrix}
+\end{figure}
+
+\begin{table}
+\rowcolors{1}{}{lightgray}
+\begin{tabularx}{\textwidth}{Xllll}
+\textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
+Bowl & 0.99 & 0.95 & 0.97 & 0.96 \\  
+BreakfastCereal & 1.0 & 0.99 & 0.97 & 0.98 \\  
+Buttermilk & 1.0 & 1.0 & 1.0 & 1.0 \\  
+Coffee & 1.0 & 1.0 & 1.0 & 1.0 \\  
+Cup & 1.0 & 1.0 & 1.0 & 1.0 \\  
+DinnerPlate & 0.99 & 0.93 & 0.96 & 0.95 \\  
+DrinkingBottle & 1.0 & 0.93 & 0.93 & 0.93 \\  
+DrinkingMug & 1.0 & 0.99 & 0.93 & 0.95 \\  
+Fork & 0.99 & 0.89 & 0.88 & 0.88 \\  
+Juice & 1.0 & 1.0 & 0.98 & 0.99 \\  
+Knife & 0.99 & 0.84 & 0.83 & 0.84 \\  
+Milk & 0.99 & 0.97 & 0.97 & 0.97 \\  
+PancakeMaker & 1.0 & 0.86 & 1.0 & 0.92 \\  
+PancakeMix & 1.0 & 0.91 & 0.98 & 0.95 \\  
+Rice & 0.99 & 0.85 & 0.89 & 0.87 \\  
+Spatula & 0.99 & 0.89 & 0.89 & 0.89 \\  
+Spoon & 0.99 & 0.94 & 0.87 & 0.9 \\  
+TableSalt & 0.99 & 0.93 & 0.9 & 0.91 \\  
+Tea-Iced & 0.99 & 0.95 & 0.92 & 0.94 \\  
+TomatoSauce & 0.99 & 0.89 & 0.92 & 0.9 \\   
+\end{tabularx}
+\caption[Objekt spezifische Kenngrößen des gesamten Unreal-Bilder Datensatzes]{Kenngrößen für die einzelnen Objekte aus der 10-fachen Kreuzvalidierung der gesamten Unreal-Bilder.}
+\label{tab:classi_Ex_classMetrics}
+\end{table}
+
+
 
 \begin{table}
 \rowcolors{1}{}{lightgray}

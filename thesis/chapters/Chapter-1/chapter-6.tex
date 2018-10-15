@@ -15,12 +15,12 @@ Die zuvor erstellten Unreal-Bilder werden in einem ersten Experiment über Merkm
 
 Als Klassifizierer wird der RFAnnotator benutzt, der auf einer \textit{Random-Forest} Implementierung basiert. Die zu unterscheidenden 20 Klassen sind in der Tabelle \ref{tab:objects} zu finden. Diese Bilder der echten Objekte wurden den Klassen zugeordnet, bevor der Klassifizierer damit trainiert wurde. Da es sich um einen Annotator für \robosherlock handelt, wurde eine \gls{ae} mit einigen \textit{hyotheses generators}, dem CaffeAnnotator zum Extrahieren der Merkmale (siehe Kap. \ref{sec:caffeAnno}, S.\pageref{sec:caffeAnno}), dem UnrealGTAnnotator zum herausziehen der \gls{gt} aus den Unreal-Bildern und dem Klassifizierer erstellt. Um die Ergebnisse später verarbeiten zu können werden sie mit dem MLNInference (siehe Kap. \ref{sec:mlnInferencer}, S. \pageref{sec:mlnInferencer}) als logische Prädikate ausgegeben. \par
  
-Die so erhaltene Klassifizierung für jedes Objekt wird mit der \gls{gt} verglichen, um so die Erkennungsrate des Klassifizierers zu ermitteln. Die Ergebnisse sind in Figur \ref{fig:classi_Ex_confMatrix} und Tabelle \ref{tab:classi_Ex_classMetrics} abgebildet. Während nahezu alle Objekte eine \gls{accuracy} über 90\% aufweisen, zeigen \gls{precision}, \gls{recall} und gls{f1score}, dass der RFAnnoator große Schwierigkeiten hat, ähnliche Objekte auseinander zu halten. Besonders häufig werden Objekte fälschlicherweise als Milch(Milk) und Salz(TableSalt)  eingeordnet. Dies ist auf box-artige und Farbähnlichkeit vieler Objekte mit der Milch und dem Salz zurückzuführen, welche in insgesamt in größerer Zahl in den Daten vorkommen als andere Objektklassen. Des weiteren hat der Klassifizierer Schwierigkeiten das Geschirr auseinander zu halten, was auf die Größe dessen zurückzuführen ist. Besonders schlecht schneidet der Pfannenwender(Spatula) ab, der nicht einmal korrekt erkannt wurde. Mit einem \gls{f1score} über 0,8 schneiden die Objektklassen Buttermilch(Buttermilk), Kaffee(Coffee), Becher(Cup) und PancakeMix am besten ab. Diese Klassen unterscheiden sich in Form (Buttermilk, PancakeMix) und Farbe (Coffee, Cup) stark von den anderen Objekten.  
+Die so erhaltene Klassifizierung für jedes Objekt wird mit der \gls{gt} verglichen, um so die Erkennungsrate des Klassifizierers zu ermitteln. Die Ergebnisse sind in Figur \ref{fig:classiRF_Ex_confMatrix} und Tabelle \ref{tab:classiRF_Ex_classMetrics} abgebildet. Während nahezu alle Objekte eine \gls{accuracy} über 90\% aufweisen, zeigen \gls{precision}, \gls{recall} und gls{f1score}, dass der RFAnnoator große Schwierigkeiten hat, ähnliche Objekte auseinander zu halten. Besonders häufig werden Objekte fälschlicherweise als Milch(Milk) und Salz(TableSalt)  eingeordnet. Dies ist auf box-artige und Farbähnlichkeit vieler Objekte mit der Milch und dem Salz zurückzuführen, welche in insgesamt in größerer Zahl in den Daten vorkommen als andere Objektklassen. Des weiteren hat der Klassifizierer Schwierigkeiten das Geschirr auseinander zu halten, was auf die Größe dessen zurückzuführen ist. Besonders schlecht schneidet der Pfannenwender(Spatula) ab, der nicht einmal korrekt erkannt wurde. Mit einem \gls{f1score} über 0,8 schneiden die Objektklassen Buttermilch(Buttermilk), Kaffee(Coffee), Becher(Cup) und PancakeMix am besten ab. Diese Klassen unterscheiden sich in Form (Buttermilk, PancakeMix) und Farbe (Coffee, Cup) stark von den anderen Objekten.  
 
 \begin{figure}
-	\includegraphics[scale=.5]{img/chapter6/classifierRFconf_matrix.png}
+	\includegraphics[scale=.4]{img/chapter6/classifierRFconf_matrix.png}
 \caption[Konfusionsmatrix der Klassifizierung durch den RFAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den RFAnnotator.}
-\label{fig:classi_Ex_confMatrix}
+\label{fig:classiRF_Ex_confMatrix}
 \end{figure}
 
 \begin{table}
@@ -49,8 +49,45 @@ Tea-Iced & 0.9 & 1.0 & 0.05 & 0.09 \\
 TomatoSauce & 0.94 & 0.59 & 0.36 & 0.44 \\  
 \end{tabularx}
 \caption[Objekt spezifische Kenngrößen des RFAnnotators]{Kenngrößen für die einzelnen Objekte aus der Klassifizierung der Unreal-Bilder mit dem RFAnnotator.}
-\label{tab:classi_Ex_classMetrics}
+\label{tab:classiRF_Ex_classMetrics}
 \end{table}
+
+In einem zweiten Versuch wurde statt des RFAnnotators der SVMAnnotator verwendet, der auf einer \textit{Support Vector Machine} basiert. Die Ergebnisse sind in Figur  \ref{fig:classiSVM_Ex_confMatrix} zu sehen. Insgesamt sind die Ergebnisse etwas besser, da der SVMAnnotator mit 62\% eine etwas bessere \gls{accuracy} als der RFAnnotator mit 60\% aufweist. Jedoch werden vom SVMAnnotator neben dem Pfannenwender auch der PancakeMaker gar nicht richtig eingeordnet und auch die Flasche(DrinkingBottle) hat sehr schlechte Erkennungsraten. Der SVMAnnotator ist insgesamt bei einigen Klassen etwas zuverlässiger, hat jedoch auch einige große Fehlerquellen. 
+
+\begin{figure}
+	\includegraphics[scale=.4]{img/chapter6/classifierSVMconf_matrix.png}
+\caption[Konfusionsmatrix der Klassifizierung durch den SVMAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den SVMAnnotator.}
+\label{fig:classiSVM_Ex_confMatrix}
+\end{figure}
+
+%\begin{table}
+%\rowcolors{1}{}{lightgray}
+%\begin{tabularx}{\textwidth}{Xllll}
+%\textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
+%Bowl & 0.89 & 0.53 & 0.99 & 0.69 \\  
+%BreakfastCereal & 0.92 & 1.0 & 0.53 & 0.69 \\  
+%Buttermilk & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%Coffee & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%Cup & 0.99 & 1.0 & 0.86 & 0.93 \\  
+%DinnerPlate & 0.91 & 1.0 & 0.12 & 0.21 \\  
+%DrinkingBottle & 0.97 & 1.0 & 0.04 & 0.09 \\  
+%DrinkingMug & 0.94 & 0.5 & 0.68 & 0.57 \\  
+%Fork & 0.97 & 0.73 & 0.7 & 0.71 \\  
+%Juice & 0.99 & 1.0 & 0.86 & 0.93 \\  
+%Knife & 0.93 & 0.44 & 0.83 & 0.57 \\  
+%Milk & 0.88 & 0.6 & 0.98 & 0.74 \\  
+%PancakeMaker & 0.96 & 0.0 & 0.0 & 0.0 \\  
+%PancakeMix & 1.0 & 0.94 & 1.0 & 0.97 \\  
+%Rice & 0.97 & 0.77 & 0.22 & 0.34 \\  
+%Spatula & 0.96 & 0.0 & 0.0 & 0.0 \\  
+%Spoon & 0.9 & 0.42 & 0.4 & 0.41 \\  
+%TableSalt & 0.85 & 0.32 & 0.72 & 0.45 \\  
+%Tea-Iced & 0.91 & 0.83 & 0.04 & 0.07 \\  
+%TomatoSauce & 0.96 & 0.71 & 0.65 & 0.68 \\  
+%\end{tabularx}
+%\caption[Objekt spezifische Kenngrößen des SVMAnnotators]{Kenngrößen für die einzelnen Objekte aus der Klassifizierung der Unreal-Bilder mit dem SVMAnnotator.}
+%\label{tab:classiSVM_Ex_classMetrics}
+%\end{table}
 
 \section{Unreal-Bilder}
 \label{sec:onlyUnrealImages}
@@ -74,12 +111,15 @@ Das Folgende \gls{mln} beschreibt die Zusammenhänge der einzelnen Informationen
 \textit{Hinweise zur Syntax von \pracmln:} Jeder Variable muss ein \glqq ?\grqq \ vorangestellt werden. Das \glqq +\grqq \ bedeutet, dass für jedes Element der Domäne dieser Variable eine Formel erstellt wird. \footnote{\url{http://pracmln.org/mln_syntax.html}}  \par
  
 Ein \gls{mln} wurde mit \textit{Discriminative Pseudo-likelihood Learning with Custom Grounding}   trainiert. Es wurde die \textit{Discrimitive} Variante des Lernalgorithmus gewählt, da es ein genaueres Modell und geringeren Rechenaufwand bietet. Als Voraussetzung müssen bestimmte Prädikate bei den Anfragen entweder nur in den Anfragen oder der Evidenz vorkommen. Da in diesem Fall die Objektklasse erkannt werden soll, ist das $object$-Prädikat die einzige Anfrage and das trainierte \gls{mln}. In der Evidenz kommt es natürlich nicht vor, da die Objektklasse sonst schon bekannt wäre und nicht aus den anderen Eigenschaften darauf geschlossen werden muss. Die \textit{Custom Grounding} Variante bietet eine schnellere Rechenzeit, wenn die Formeln größtenteils aus Konjunktionen bestehen. Eine Regularisierung findet durch den Gaussian-Prior mit einem Mittelwert $\mu = 0$ und einer Standardabweichung $\sigma = 10$ statt. \par   
-Um dieses Modell zu evaluieren wird 10-fache Kreuzvalidierung \todo{was'n das?} durchgeführt. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells.
+
+Um dieses Modell zu evaluieren wird 10-fache Kreuzvalidierung durchgeführt. Dabei wird der gesamte Datensatz, also alle 570 Bilder, in 10 Teilmengen aufgeteilt. Jedes Bild bleibt für den gesamten Prozess in seiner Teilmenge. Nun werden 9 Teilmengen als Trainingsdaten für ein \gls{mln} benutzt, während die übrige 10. Teilmenge zum Testen zur Verfügung steht. Dieser Vorgang wird 10 mal durchgeführt, sodass jede Teilmenge genau einmal zum Testen verwendet wurde. Die Ergebnisse der einzelnen Durchgänge können nun gemittelt werden. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells. \par
+
+Die Ergebnisse der Kreuzvalidierung sind in Figur \ref{fig:unreal_1_confMatrix} und Tabelle \ref{tab:unreal_1_classMetrics} dargestellt. Insgesamt werden eine hohe \gls{accuracy} für alle Objektklassen als auch Werte über 90\% für \gls{precision}, \gls{recall} und \gls{f1score} erreicht. Einzig das Besteck und der Reis erreicht nicht ganz so Hohe Werte. Sie liegen jedoch noch immer über 83\%. Bei dem Besteck war dies erwartet, da Messer, Gabeln und Löffeln kleiner sind als viele andere Objekte und damit schwieriger auseinander zu halten. Im Gegensatz zu den Ergebnissen des Klassifizierers aus Kapitel \ref{sec:classificationExperiment} ist eine deutliche Verbesserung zu erkennen. Vor allem gibt es keine Objekte, die gar nicht erkannt werden. Die bessere Erkennungsrate war jedoch erwartet, da \glspl{mln} die Ergebnisse verschiedener Experten, also Annotatoren in \robosherlock, kombiniert und solche Ensembles, wie bereits zuvor dargelegt, zu besseren Ergebnissen kommen können. \todo{einzelne Annos könnten das unterstützen.}    
 
 \begin{figure}
 	\includegraphics[scale=.5]{img/chapter6/unrealEx1_cof_matrix.png}
 \caption[Konfusionsmatrix des gesamten Unreal-Bilder Datensatzes]{Die Konfusionsmatrix für die 10-fache Kreuzvalidierung der gesamten 570 Unreal-Bilder.}
-\label{fig:classi_Ex_confMatrix}
+\label{fig:unreal_1_confMatrix}
 \end{figure}
 
 \begin{table}
@@ -108,62 +148,7 @@ Tea-Iced & 0.99 & 0.95 & 0.92 & 0.94 \\
 TomatoSauce & 0.99 & 0.89 & 0.92 & 0.9 \\   
 \end{tabularx}
 \caption[Objekt spezifische Kenngrößen des gesamten Unreal-Bilder Datensatzes]{Kenngrößen für die einzelnen Objekte aus der 10-fachen Kreuzvalidierung der gesamten Unreal-Bilder.}
-\label{tab:classi_Ex_classMetrics}
-\end{table}
-
-
-
-\begin{table}
-\rowcolors{1}{}{lightgray}
-\begin{tabularx}{\textwidth}{llccccc}
-\textbf{Instanz}  				& \textbf{Klasse}	& \textbf{breakfast}	& \textbf{fridge}	& \textbf{cooking}	& \textbf{Unreal} & \textbf{Real} \\ \hline
-AlbiHimbeerJuice				& Juice				& +			& +			& +			& 14	& 18	\\
-BlueCeramicIkeaMug				& DrinkingMug		& +			& 			&			& 8		& 9\\
-BlueMetalPlateWhiteSpeckles		& DinnerPlate		& 			& 			&	+		& 9		& 10\\
-BluePlasticBowl					& Bowl				& +			& 			&			& 9		& 9\\
-BluePlasticFork					& Fork				& 			& 			&	+		& 8		& 9\\
-BluePlasticKnife				& Knife				& 			& 			&	+		& 8		& 9\\
-BluePlasticSpoon				& Spoon				& +			& 			&			& 8		& 11\\
-CupEcoOrange					& Cup				& +			& 			&	+		& 12	& 15\\
-EdekaRedBowl					& Bowl				& +			& 			&			& 8		& 9\\
-ElBrygCoffee					& Coffee			& +			& 			&			& 8		& 9\\
-JaMilch							& Milk				& +			& +			&			& 13	& 14\\
-JodSalz							& TableSalt			& 			& 			&	+		& 9		& 9\\
-KelloggsCornFlakes				& BreakfastCereal	& +			& 			&			& 8		& 9\\
-KelloggsToppasMini				& BreakfastCereal	& +			& 			&			& 8		& 9\\
-KnusperSchokoKeks				& BreakfastCereal	& +			& 			&			& 8		& 8\\
-KoellnMuesliKnusperHonigNuss	& BreakfastCereal	& +			& 			&			& 8		& 8	\\
-LargeGreySpoon					& Spoon				& 			& 			&	+		& 9		& 8	\\
-LinuxCup						& DrinkingMugin		& +			& 			&			& 8		& 0\\
-LionCerealBox					& BreakfastCereal	& +			& 			&			& 8		& 9	\\
-MarkenSalz						& TableSalt			& 			& 			&	+		& 9		& 8	\\
-MeerSalz						& TableSalt			& 			& 			&	+		& 9		& 8	\\
-MondaminPancakeMix				& PancakeMix		& 			& 			&	+		& 9		& 8	\\
-NesquikCereal					& BreakfastCereal	& +			& 			&			& 8		& 9	\\
-PfannerGruneIcetea				& Tea-Iced			& 			& +			&	+		& 13	& 14\\
-PfannerPfirsichIcetea			& Tea-Iced			& 			& +			&	+		& 14	& 13\\
-RedMetalBowlWhiteSpeckles		& Bowl				& +			& 			&			& 9		& 8\\
-RedMetalCupWhiteSpeckles		& Cup				& +			& 			&			& 8		& 10\\
-RedMetalPlateWhiteSpeckles		& DinnerPlate		& 			& 			&	+		& 9		& 9\\
-RedPlasticFork					& Fork				& 			& 			&	+		& 8		& 9\\
-RedPlasticKnife					& Knife				& 			& 			&	+		& 8		& 9\\
-RedPlasticSpoon					& Spoon				& +			& 			&			& 9		& 10\\
-ReineButterMilch				& Buttermilk		& +			& +			&			& 13	& 14\\
-SeverinPancakeMaker				& PancakeMaker		& 			& 			&	+		& 10	& 10\\
-SiggBottle						& DrinkingBottle	& 			& 			&	+		& 9		& 9\\
-SlottedSpatula					& Spatula			& 			& 			&	+		& 9		& 8\\
-SojaMilch						& Milk				& +			& +			&			& 13	& 14\\
-SpitzenReis						& Rice				& 			& 			&	+		& 9		& 9\\
-TomatoAlGustoBasilikum			& TomatoSauce		& 			& 			&	+		& 8		& 8\\
-TomatoSauceOroDiParma			& TomatoSauce		& 			& 			&	+		& 9		& 8\\
-VollMilch						& Milk				& +			& +			&			& 13	& 14\\
-WeideMilchSmall					& Milk				& +			& +			&			& 13	& 14\\
-WhiteCeramicIkeaBowl			& Bowl				& +			& 			&			& 8		& 9\\
-YellowCeramicPlate				& DinnerPlate 	    & 			& 			&	+		& 9		& 6\\ \hline
-\textbf{Insgesamt: 43}				& \textbf{20}		& \textbf{23} & \textbf{8} & \textbf{22} & & \\
-\end{tabularx}
-\caption[Objekte und ihre Verteilung in den Szenen]{Die Tabelle enthält alle Objekte und welchen Klassen sie zugeordnet sind, sowie die Zuordnung zu den Szenarien und wie häufig sie insgesamt in den Szenen vorkommen.}
-\label{tab:objects}
+\label{tab:unreal_1_classMetrics}
 \end{table}
 
 

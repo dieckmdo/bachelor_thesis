@@ -153,3 +153,58 @@ Der \texttt{SVMAnnotator} klassifiziert die Instanz der Objekte. Dazu wurde eine
 \subsubsection{MLNInferencer}
 \label{sec:mlnInferencer}
 Der \texttt{MLNInferencer} liest die Annotationen aus der \gls{cas} aus gibt sie als logische Prädikate in einer Textdatei aus. Diese Dateien werden Datenbank genannt und bilden die Trainingsdaten für ein \gls{mln}. Der \texttt{MLNInferencer} kann die Prädikate sowohl in \gls{fo} ausgeben, als auch in \textit{Fuzzy-Logik}. Dabei werden für jedes Prädikat die Konfidenzen der Annotatoren mit ausgegeben.
+
+
+
+\begin{table}
+\rowcolors{1}{}{lightgray}
+\begin{tabularx}{\textwidth}{llccccc}
+\textbf{Instanz}  				& \textbf{Klasse}	& \textbf{breakfast}	& \textbf{fridge}	& \textbf{cooking}	& \textbf{Unreal} & \textbf{Real} \\ \hline
+AlbiHimbeerJuice				& Juice				& +			& +			& +			& 14	& 18	\\
+BlueCeramicIkeaMug				& DrinkingMug		& +			& 			&			& 8		& 9\\
+BlueMetalPlateWhiteSpeckles		& DinnerPlate		& 			& 			&	+		& 9		& 10\\
+BluePlasticBowl					& Bowl				& +			& 			&			& 9		& 9\\
+BluePlasticFork					& Fork				& 			& 			&	+		& 8		& 9\\
+BluePlasticKnife				& Knife				& 			& 			&	+		& 8		& 9\\
+BluePlasticSpoon				& Spoon				& +			& 			&			& 8		& 11\\
+CupEcoOrange					& Cup				& +			& 			&	+		& 12	& 15\\
+EdekaRedBowl					& Bowl				& +			& 			&			& 8		& 9\\
+ElBrygCoffee					& Coffee			& +			& 			&			& 8		& 9\\
+JaMilch							& Milk				& +			& +			&			& 13	& 14\\
+JodSalz							& TableSalt			& 			& 			&	+		& 9		& 9\\
+KelloggsCornFlakes				& BreakfastCereal	& +			& 			&			& 8		& 9\\
+KelloggsToppasMini				& BreakfastCereal	& +			& 			&			& 8		& 9\\
+KnusperSchokoKeks				& BreakfastCereal	& +			& 			&			& 8		& 8\\
+KoellnMuesliKnusperHonigNuss	& BreakfastCereal	& +			& 			&			& 8		& 8	\\
+LargeGreySpoon					& Spoon				& 			& 			&	+		& 9		& 8	\\
+LinuxCup						& DrinkingMugin		& +			& 			&			& 8		& 0\\
+LionCerealBox					& BreakfastCereal	& +			& 			&			& 8		& 9	\\
+MarkenSalz						& TableSalt			& 			& 			&	+		& 9		& 8	\\
+MeerSalz						& TableSalt			& 			& 			&	+		& 9		& 8	\\
+MondaminPancakeMix				& PancakeMix		& 			& 			&	+		& 9		& 8	\\
+NesquikCereal					& BreakfastCereal	& +			& 			&			& 8		& 9	\\
+PfannerGruneIcetea				& Tea-Iced			& 			& +			&	+		& 13	& 14\\
+PfannerPfirsichIcetea			& Tea-Iced			& 			& +			&	+		& 14	& 13\\
+RedMetalBowlWhiteSpeckles		& Bowl				& +			& 			&			& 9		& 8\\
+RedMetalCupWhiteSpeckles		& Cup				& +			& 			&			& 8		& 10\\
+RedMetalPlateWhiteSpeckles		& DinnerPlate		& 			& 			&	+		& 9		& 9\\
+RedPlasticFork					& Fork				& 			& 			&	+		& 8		& 9\\
+RedPlasticKnife					& Knife				& 			& 			&	+		& 8		& 9\\
+RedPlasticSpoon					& Spoon				& +			& 			&			& 9		& 10\\
+ReineButterMilch				& Buttermilk		& +			& +			&			& 13	& 14\\
+SeverinPancakeMaker				& PancakeMaker		& 			& 			&	+		& 10	& 10\\
+SiggBottle						& DrinkingBottle	& 			& 			&	+		& 9		& 9\\
+SlottedSpatula					& Spatula			& 			& 			&	+		& 9		& 8\\
+SojaMilch						& Milk				& +			& +			&			& 13	& 14\\
+SpitzenReis						& Rice				& 			& 			&	+		& 9		& 9\\
+TomatoAlGustoBasilikum			& TomatoSauce		& 			& 			&	+		& 8		& 8\\
+TomatoSauceOroDiParma			& TomatoSauce		& 			& 			&	+		& 9		& 8\\
+VollMilch						& Milk				& +			& +			&			& 13	& 14\\
+WeideMilchSmall					& Milk				& +			& +			&			& 13	& 14\\
+WhiteCeramicIkeaBowl			& Bowl				& +			& 			&			& 8		& 9\\
+YellowCeramicPlate				& DinnerPlate 	    & 			& 			&	+		& 9		& 6\\ \hline
+\textbf{Insgesamt: 43}				& \textbf{20}		& \textbf{23} & \textbf{8} & \textbf{22} & & \\
+\end{tabularx}
+\caption[Objekte und ihre Verteilung in den Szenen]{Die Tabelle enthält alle Objekte und welchen Klassen sie zugeordnet sind, sowie die Zuordnung zu den Szenarien und wie häufig sie insgesamt in den Szenen vorkommen.}
+\label{tab:objects}
+\end{table}

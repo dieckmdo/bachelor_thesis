@@ -1,7 +1,7 @@
 \graphicspath{{./images/}}      
 \def\CHAPTERONE{./chapters/Chapter-1} 
 
-\chapter{Umsetzung}
+\chapter{Implementierung}
 \label{chap:implementation}
 %	\input{\CHAPTERONE /motivation}
 
@@ -135,7 +135,10 @@ Der \texttt{PrimitiveShapeAnnotator} berechnet die primitive geometrische Form d
 Der \texttt{ClusterColorHistogramCalculator} berechnet für jeden Cluster die Farbverteilung. Daraus bildet er ein Farbhistogramm, das der \gls{cas} hinzugefügt wird. Die unterschiedenen Farben sind: red, yellow, green, cyan, blue, magenta, white, black und gray. Die am häufigsten auftretende Farbe wird später als logisches Prädikat in der Form $color(cluster,  color)$ ausgegeben. Je nach Häufigkeitsverteilung kann ein Cluster auch zwei Farben haben, die in dem Fall auch beide ausgegeben werden. 
 
 \subsubsection{GogglesAnnotator}
-Der \texttt{GooglesAnnotator} benutzt den Webservice \textsc{Google Googles}. Dazu werden die Bilder des Clusters an den Server des Webservices gesendet, der nun Webseiten mit ähnlichen Bildern sucht und zurückgibt. Aus den Ergebnissen werden Logo, Text und Textur Annotationen erstellt. Die Werte dafür sind abhängig von den Ergebnissen. Da es häufig vorkommt, dass keine Ergebnisse vorliegen, werden in solchen Fällen auch keine Annotationen zur \gls{cas} hinzugefügt. Die logischen Prädikate sind $goggles\_Logo(cluster, logo)$, $googles\_Text(cluster, text)$ und $googles\_Product(cluster, product)$. 
+Der \texttt{GooglesAnnotator} benutzt den Webservice \textsc{Google Googles}. Dazu werden die Bilder des Clusters an den Server des Webservices gesendet, der nun Informationen zu den Bildern sucht und zurückgibt. Aus den Ergebnissen werden Logo, Text und Produkt Annotationen erstellt. Die Werte dafür sind abhängig von den Ergebnissen. Da es häufig vorkommt, dass keine Ergebnisse vorliegen, werden in solchen Fällen auch keine Annotationen zur \gls{cas} hinzugefügt. Die logischen Prädikate sind $goggles\_Logo(cluster, logo)$, $googles\_Text(cluster, text)$ und $googles\_Product(cluster, product)$. \par
+
+Theoretisch können die Domänen der Prädikate unendlich groß sein und Störungen unterliegen, da für jeden Cluster ein anderes Atom zustande kommen könnte. Um die Anzahl der Atome zu reduzieren und so jedes Wort durch ein explizit bekanntes Wort zu ersetzen, wird vor dem Training mit den Daten \textit{Clustering} auf die Worte der jeweiligen Prädikate angewandt. Als Algorithmus wurde Affinity-Propagation gewählt und für die Ähnlichkeitsfunktion kommt die Levenshtein-Distanz zum Einsatz. So wird jedes Wort einer Gruppe mit ähnlichen Worten zugeordnet und letztendlich wird jedes Wort durch den zentralen Cluster seiner Gruppe ersetzt. 
+
 
 \subsubsection{CaffeAnnotator}
 \label{sec:caffeAnno}

@@ -5,15 +5,15 @@
 \label{chap:implementation}
 %	\input{\CHAPTERONE /motivation}
 \glsresetall
-In diesem Kapitel wird beschrieben, wie die einzelnen Arbeitsschritte umgesetzt wurden. Zuerst wird aufgezeigt, wie die Bildern in der \unreal erstellt wurden. Zur Vereinfachung werden diese  im Folgenden \textit{Unreal-Bilder} genannt. Danach wird die verwendete \gls{ae} erläutert, die die Bilder annotiert. \todo{was kommt dann?}
+In diesem Kapitel wird beschrieben, wie die implementierten Lösungen vorgestellt. Zuerst wird aufgezeigt, wie die Bildern in der \unreal erstellt wurden. Zur Vereinfachung werden diese  im Folgenden \textit{Unreal-Bilder} genannt. Danach wird die verwendete \gls{ae} erläutert, die die Bilder annotiert und so das Wissen zum \gls{mln}-Training extrahiert. \todo{was kommt dann?}
 
 \section{Erstellen der Unreal-Bilder}
 \label{sec:takingpics}
 Um Unreal-Bilder zum Trainieren eines \gls{mln} zur Verfügung zu haben, müssen diese in der \unreal erstellt werden. Dazu wurde die in Kapitel \ref{subsec:kitchenenvironment} auf Seite \pageref{subsec:kitchenenvironment} vorgestellte Küchenumgebung benutzt. Hier wurden Objekte des täglichen Gebrauchs in der Küche manuell drapiert und mittels des \textit{URoboVision}-Plugins Bilder davon gemacht und an \robosherlock gesendet. Eine solche Anordnung von Objekten in der Küche wird \textit{Szene} genannt. Von jeder Szene wurden Bilder aus mehreren festgelegten Blickwinkeln mittels der \textit{SpawnBox} erstellt. \par 
 
-\textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \textit{ARGBDCameraActor}. Die verwendeten Parameter sind \todo{hier einfügren}. Damit wird an \robosherlock ein Farb- und Tiefenbild, sowie ein \textit{ObjectImage} und eine \textit{ObjectMap} gesendet. Auf dem ObjectImage ist jedes Objekt innerhalb der Szene in einer anderen Farbe eingefärbt. Die ObjectMap weist jeder im ObjectImage verwendeten Farbe den Namen des Objektes zu. So kann jedes sichtbare Objekt eindeutig identifiziert werden.   \par 
+\textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \textit{ARGBDCameraActor}. Damit wird an \robosherlock ein Farb- und Tiefenbild, sowie ein \textit{ObjectImage} und eine \textit{ObjectMap} gesendet. Auf dem ObjectImage ist jedes Objekt innerhalb der Szene in einer anderen Farbe eingefärbt. Die ObjectMap weist jeder im ObjectImage verwendeten Farbe den Namen des Objektes zu. So kann jedes sichtbare Objekt eindeutig identifiziert werden. Die Bilder habe eine Größe von $1280 \times 960$ Pixeln. \par 
 
-\textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{SpawnBox} besitzt eine \textit{UBoxComponent}, genannt \textit{SpawnVolume}, aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, damit sie im späteren Bild noch zu sehen sind und nicht außerhalb den Blickfeldes der Kamera liegen. Der Mittelpunkt der Box dient als Rotationspunkt, um den eine referenzierte Kamera basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer bestimmten Zeit in einem einstellbaren Radius $i$-mal um den Mittelpunkt rotiert. Dabei wird die Kamerarotation an der x-Achse der SpawnVolume gespiegelt. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ erwünscht, beginnt die Kamera $30^\circ$ links von der x-Achse. Die zweite Position befindet sich dann auf der x-Achse und die dritte Position ist $30^\circ$ rechts von der x-Achse. Der Startpunkt der Kamera auf dem Kreis um die SpawnVolume wird also in Abhängigkeit der Rotationsschritte und des Winkels berechnet. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Nach jeder Standortaktualisierung wird die Kamera noch so ausgerichtet, dass sie auf den Mittelpunkt der SpawnVolume schaut. Die Kamera kann auch auf zwei unterschiedlichen Höhen Operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. \par
+\textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{SpawnBox} besitzt eine \textit{UBoxComponent}, genannt \textit{SpawnVolume}, aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, denn der Mittelpunkt der Box dient als Rotationspunkt, um den ein referenzierter ARGBDCameraActor basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer bestimmten Zeit in einem einstellbaren Radius $i$-mal um den Mittelpunkt rotiert. Dabei wird die Kamerarotation an der x-Achse der SpawnVolume gespiegelt. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ erwünscht, beginnt die Kamera $30^\circ$ links von der x-Achse. Die zweite Position befindet sich dann auf der x-Achse und die dritte Position ist $30^\circ$ rechts von der x-Achse. Der Startpunkt der Kamera auf dem Kreis um die SpawnVolume wird also in Abhängigkeit der Rotationsschritte und des Winkels berechnet. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Nach jeder Standortaktualisierung wird die Kamera noch so ausgerichtet, dass sie auf den Mittelpunkt der SpawnVolume schaut. Die Kamera kann auch auf zwei unterschiedlichen Höhen Operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. \newline
 Die einzelnen Parameter und ihre Funktion werden in Tabelle \ref{tab:spawnboxParams} vorgestellt. Der Algorithmus ist in Algorithmus \ref{alg:SpawnBox} beschrieben.
 
 \begin{table}
@@ -37,7 +37,7 @@ bUseHeigthViewpoints & Ob die zweite Höhe verwendet werden soll. \\  \hline
 \end{table}
 
 \begin{algorithm}[H]
-\KwData{$Kamera$, $Mittelpunkt$ der SpawnBox}
+\KwData{$Kamera$, $center$ der SpawnBox}
 \BlankLine
 $processedPoints \gets$ $NoOfViewpoints$ + $NoOfHeightViewpoints$\;
 \If{$ProcessedPoints$ == 0}{
@@ -53,21 +53,23 @@ $i \gets$ 0\;
 }
 $--ProcessedPoints$\;
 $Kamera$.SetPosition($i$)\;
-$Kamera$.RotateTo($Mittelpunkt$)\;
+$Kamera$.RotateTo($center$)\;
 \caption[SpawnBox]{Der Algorithmus der SpawnBox, der die neue Kameraposition berechnet.}
 \label{alg:SpawnBox}
 \end{algorithm}
 
-Bei der Erstellung der Unreal-Bilder, wurden die Parameter so eingestellt, dass die Kamera auf zwei verschiedenen Höhen Bilder aufnimmt und auf einem Kreis mit dem Radius von 70 Einheiten rotiert. Die Kameraposition wird dabei alle 3 Sekunden aktualisiert, um mit der RGBDKamera zusammen zu laufen. Die erste Höhe ist 35 Einheiten höher als der Mittelpunkt der SpawnVolume. Hier wurden drei Bilder in einem Winkel von $45^\circ$ aufgenommen. Die zweite Höhe ist 35 Einheiten höher als die vorherige. Hier wurden zwei Bilder im Winkel von $45^\circ$ aufgenommen. Die so entstehenden Bilder vermitteln den Eindruck, als würde ein Roboter auf die Szene drauf schauen. Die Bilder werden an \robosherlock geschickt und hier mittels der \texttt{StorageWriter}-\gls{ae} zur späteren Weiterverarbeitung in einer MongoDB-Instanz gespeichert.
+Bei der Erstellung der Unreal-Bilder, wurden die Parameter so eingestellt, dass die Kamera auf zwei verschiedenen Höhen Bilder aufnimmt und auf einem Kreis mit dem Radius von 70 Einheiten rotiert. Die Kameraposition wird dabei alle 3 Sekunden aktualisiert, was mit der Aufnahme der RGBD-Kamera synchronisiert wurde. Die erste Höhe ist 35 Einheiten höher als der Mittelpunkt der SpawnVolume. Hier wurden drei Bilder in einem Winkel von $45^\circ$ aufgenommen. Die zweite Höhe ist 35 Einheiten höher als die vorherige. Hier wurden zwei Bilder im Winkel von $45^\circ$ aufgenommen. Die Bilder werden an \robosherlock geschickt und hier mittels der \texttt{StorageWriter}-\gls{ae} zur späteren Weiterverarbeitung in einer MongoDB-Instanz gespeichert.
+
+\todo{Beispiel Bilder}
 
 \section{Analysis Engine}
 \label{sec:analysisengine}
-Die Unreal-Bilder können  von einer Perzeptionspipeline in \robosherlock annotiert werden und so die Objektattribute als logische Prädikate zum Training eines \gls{mln} erhalten werden. Dazu werden die Unreal-Bilder aus der Datenbank herausgelesen und als Eingabe benutzt. Auf diesen werden zuerst eine Reihe von \textit{hypotheses generators} zur Segmentierung laufen lassen mit denen die Objekthypothesen erstellt werden. Dabei werden jedoch auch Objekthypothesen zu Formen und Teilen des Bildes erstellt, die keine Objekte sind, wie die Front eines Schrankes, oder keine für die Arbeit relevanten Objekte, wie die Herdplatte. Der \texttt{UnrealGTAnnotator} filtert diese \textit{Cluster} nun heraus und annotiert zu den übrig gebliebenen die \gls{gt}. Die gebliebenen Hypothesen werden von den Annotatoren auf Eigenschaften analysiert und die Ergebnisse als Annotationen in der \gls{cas} gespeichert. In einem letzten Schritt werden die Annotationen von dem \texttt{MLNInferencer} als logische Prädikate in einer Textdatei ausgeben. \par 
+Die Unreal-Bilder können  von einer Perzeptionspipeline in \robosherlock annotiert werden und so die Objektattribute als logische Prädikate zum Training eines \gls{mln} erhalten werden. Dazu werden die Unreal-Bilder aus der Datenbank herausgelesen und als Eingabe verwendet. Auf diesen werden zuerst eine Reihe von \textit{hypotheses generators} zur Segmentierung angewandt mit denen die Objekthypothesen erstellt werden. Dabei werden jedoch auch Objekthypothesen zu Formen und Teilen des Bildes erstellt, die keine für die Arbeit relevanten Objekte, wie die Herdplatte oder dir Front eines Schrankes, sind. Der \texttt{UnrealGTAnnotator} filtert diese \textit{Cluster} nun heraus und annotiert zu den übrig gebliebenen die \gls{gt}. Die noch vorhandenen Hypothesen werden von den Annotatoren auf Eigenschaften analysiert und die Ergebnisse als Annotationen in der \gls{cas} gespeichert. In einem letzten Schritt werden die Annotationen von dem \texttt{MLNInferencer} als logische Prädikate in einer Textdatei ausgeben. \par 
 
 Im Folgenden wird der \texttt{UnrealGTAnnotator} und seine Implementierung erläutert. Danach werden die Annotatoren der Perzeptionspipeline vorgestellt. Tabelle \ref{tab:annotators} bietet eine kurze Übersicht über die Annotatoren, die resultierenden logischen Prädikate und die möglichen Werte.
 
 \subsection{UnrealGTAnnotator}
-Der \texttt{UnrealGTAnnotator} filtert alle falschen Objekthypothesen heraus und annotiert für die übrig gebliebenen die \gls{gt}. Dazu wird das \textit{ObjectImage} der Unreal-Bilder verwendet. Der Algorithmus wird im folgenden beschrieben und ist in Algorithmus \ref{alg:UnrealGTAnnotator} in Pseudocode dargestellt. Die einzelnen Teilbilder der Unreal-Bilder sind deckungsgleich, das heißt die Koordinaten eines Pixels beschreiben in jedem Teilbild den gleichen Punkt. Für jeden Pixel eines Clusters wird nun seine Farbe im ObjectImage betrachtet und so die Anzahl der Pixel, die sich eine Farbe Teilen gezählt. Nun wird für die am meisten vorkommende Farbe in der ObjectMap nachgeschlagen, zu welchem Objekt die Farbe gehört. Der Name des Objektes wird mit einer anderen Map verglichen, die die Namen der verwendeten Objekte hält und den Namen die zu annotierende \gls{gt} zuweist (für eine Liste der Objektnamen und möglichen \gls{gt} siehe Tabelle \ref{tab:objects} auf S.\pageref{tab:unrealObjects}). Wird eine Übereinstimmung gefunden, wird für den Cluster eine \gls{gt}-Annotation zur \gls{cas} hinzugefügt. Die \gls{gt}, die als Annotation hinzugefügt wird, kann vor dem Starten der Pipeline in einer .yaml-Datei, die bei der Initialisierung des Annotators geladen wird, festgelegt werden. Wird keine Übereinstimmung gefunden, wird der Cluster verworfen. Es kann allerdings vorkommen, dass eine Objekthypothese korrekt ist, das entsprechende Objekt in seinem ObjectImage jedoch nicht die meisten Pixel belegt. Dies ist vor allem bei Besteck, wie Gabeln und Messern zu beobachten. Um dem vorzubeugen, wird rekursiv auch die zweit und dritt häufigste Farbe auf eine Übereinstimmung geprüft. Eine Rekursion von drei, hat sich als ausreichend erwiesen, da das Besteck meistens auf einem Tisch liegt, der Cluster also nur aus zwei Farben besteht, und damit schon bei dem zweiten Rekursionsschritt gefunden wird. Auch wenn ein weiteres größeres Objekt mit im Cluster zu finden ist, wird das Besteck spätestens im dritten Rekursionsschritt gefunden. Ein vierter Durchlauf würde den Algorithmus nur unnötig verlangsamen, da später verworfene Cluster dann immer die gesamte Rekursion komplett durchlaufen würden. 
+Der \texttt{UnrealGTAnnotator} filtert alle falschen Objekthypothesen heraus und annotiert für die übrig gebliebenen die \gls{gt}. Dazu wird das \textit{ObjectImage} der Unreal-Bilder verwendet. Der Algorithmus wird im folgenden beschrieben und ist in Algorithmus \ref{alg:UnrealGTAnnotator} in Pseudocode dargestellt. Die einzelnen Teilbilder der RGBD-Kamera pro Unreal-Bild sind deckungsgleich, das heißt die Koordinaten eines Pixels beschreiben in jedem Teilbild den gleichen Punkt. Für jeden Pixel eines Clusters wird nun seine Farbe im ObjectImage betrachtet und so die Anzahl der Pixel, die sich eine Farbe Teilen gezählt. Nun wird für die am meisten vorkommende Farbe in der ObjectMap nachgeschlagen, zu welchem Asset die Farbe gehört. Der Name des Objektes wird mit einer Map verglichen, die den Asset-Namen die \gls{gt} für dieses Objekt zuweist. Wird eine Übereinstimmung des Asset-Namens gefunden, wird für den Cluster die \gls{gt} als \gls{gt}-Annotation zur \gls{cas} hinzugefügt. Die \gls{gt}, die als Annotation hinzugefügt wird, kann vor dem Starten der Pipeline in einer .yaml-Datei, die bei der Initialisierung des Annotators geladen wird, festgelegt werden und ist entweder der Objektname oder der dem Objekt zugewiesene Klassename (für eine Liste der Objektnamen und möglichen \gls{gt} siehe Tabelle \ref{tab:objects} auf S.\pageref{tab:objects}). Wird keine Übereinstimmung gefunden, wird der Cluster verworfen. Es kann allerdings vorkommen, dass eine Objekthypothese korrekt ist, das entsprechende Objekt in seinem ObjectImage jedoch nicht die meisten Pixel belegt. Dies ist vor allem bei Besteck, wie Gabeln und Messern zu beobachten. Um dem vorzubeugen, wird rekursiv auch die zweit- und dritthäufigste Farbe auf eine Übereinstimmung geprüft. Eine Rekursion von drei, hat sich als ausreichend erwiesen, da das Besteck meistens auf einem Tisch liegt, der Cluster also nur aus zwei Farben besteht, und damit schon bei dem zweiten Rekursionsschritt gefunden wird. Auch wenn ein weiteres größeres Objekt mit im Cluster zu finden ist, das nicht zu den relevanten Objekten gehört, wird das Besteck dementsprechend spätestens im dritten Rekursionsschritt gefunden. Weitere Durchläufe sind nicht nötig, da die Objekte so angeordnet wurden, dass es nicht vorkommt, dass drei andere nicht relevante Objekte mehr Pixel innerhalb eines Clusters belegen können, als das relevante Objekt. Es kann allerdings vorkommen, dass ein relevantes Objekt mehr Pixel im Cluster belegt, weshalb die \gls{gt}-Annotationen hinterher manuell überprüft und in den wenigen nötigen Fällen korrigiert wurden.
 
 \begin{algorithm}[H]
 \KwData{$objectMap$ = [(ObjectName, Color)], $objectGTMap$ = [(ObjectName, GT)]}
@@ -105,7 +107,7 @@ $clusters \gets neueCluster$\;
 
 \subsection{Annotatoren}
 
-Im Folgenden werden die Annotatoren vorgestellt. Sie analysieren die Cluster der Objekthypothesen auf Eingenschaften. Es kommen dabei verschiedene Algorithmen zur Erkennung der Eigenschaften und Klassifizierer zum Einsatz. Sie sind in einer Perzeptionspipeline zusammengefasst und kommen auch in der Reihenfolge zum Einsatz, in der sie hier vorgestellt werden. Tabelle \ref{tab:annotators} bietet eine kurze Übersicht.
+Im Folgenden werden die Annotatoren vorgestellt. Sie analysieren die Cluster der Objekthypothesen auf Eigenschaften. Es kommen dabei verschiedene Algorithmen zur Erkennung der Eigenschaften und \glspl{klassifikator} zum Einsatz. Sie sind in einer Perzeptionspipeline zusammengefasst und kommen auch in der Reihenfolge zum Einsatz, in der sie hier vorgestellt werden. Tabelle \ref{tab:annotators} bietet eine kurze Übersicht.
 
 \begin{table}
 \rowcolors{1}{}{lightgray}
@@ -119,7 +121,7 @@ CaffeAnnotator					& --					& --	\\
 PCLFeatureExtractor				& --					& --	\\ 
 RfAnnotator						& shape(cluster, shape)	&	box, cylindrical, disk, flat, sphere, other	\\
 SVMAnnotator					& instance(cluster, i)	& Instanzname (siehe Tab.\ref{tab:objects}, S.\pageref{tab:objects}) \\
-UnrealGTAnnotator				& object(cluster, object)	& Klassenname (siehe Tab.\ref{tab:objects}, S.\pageref{tab:objects})	\\ \hline 
+UnrealGTAnnotator				& object(cluster, object)	& Klassen- oder Instanzname (siehe Tab.\ref{tab:objects}, S.\pageref{tab:objects})	\\ \hline 
 \end{tabularx}
 \caption[Kurzübersicht der Annotatoren]{Eine Kurzübersicht über die Annotatoren und die korrespondieren logischen Prädikate für das \gls{mln}.}
 \label{tab:annotators}
@@ -132,12 +134,12 @@ Basierend auf der Distanz zwischen Extrempunkten der Objekte, die mit der Entfer
 Der \texttt{PrimitiveShapeAnnotator} berechnet die primitive geometrische Form der Objekte.  Dabei wird zwischen $round$ und $box$ unterschieden. Das logische Prädikat ist von der Form $shape(cluster,  shape)$.
    
 \subsubsection{ClusterColorHistogramCalculator}
-Der \texttt{ClusterColorHistogramCalculator} berechnet für jeden Cluster die Farbverteilung. Daraus bildet er ein Farbhistogramm, das der \gls{cas} hinzugefügt wird. Die unterschiedenen Farben sind: red, yellow, green, cyan, blue, magenta, white, black und gray. Die am häufigsten auftretende Farbe wird später als logisches Prädikat in der Form $color(cluster,  color)$ ausgegeben. Je nach Häufigkeitsverteilung kann ein Cluster auch zwei Farben haben, die in dem Fall auch beide ausgegeben werden. 
+Der \texttt{ClusterColorHistogramCalculator} berechnet für jeden Cluster die Farbverteilung. Daraus bildet er ein Farbhistogramm, das der \gls{cas} hinzugefügt wird. Die unterschiedenen Farben sind: $red$, $yellow$, $green$, $cyan$, $blue$, $magenta$, $white$, $black$ und $gray$. Die am häufigsten auftretende Farbe wird später als logisches Prädikat in der Form $color(cluster,  color)$ ausgegeben. Je nach Häufigkeitsverteilung kann ein Cluster auch zwei Farben haben, die in dem Fall auch beide ausgegeben werden. 
 
 \subsubsection{GogglesAnnotator}
 Der \texttt{GooglesAnnotator} benutzt den Webservice \textsc{Google Googles}. Dazu werden die Bilder des Clusters an den Server des Webservices gesendet, der nun Informationen zu den Bildern sucht und zurückgibt. Aus den Ergebnissen werden Logo, Text und Produkt Annotationen erstellt. Die Werte dafür sind abhängig von den Ergebnissen. Da es häufig vorkommt, dass keine Ergebnisse vorliegen, werden in solchen Fällen auch keine Annotationen zur \gls{cas} hinzugefügt. Die logischen Prädikate sind $goggles\_Logo(cluster, logo)$, $googles\_Text(cluster, text)$ und $googles\_Product(cluster, product)$. \par
 
-Theoretisch können die Domänen der Prädikate unendlich groß sein und Störungen unterliegen, da für jeden Cluster ein anderes Atom zustande kommen könnte. Um die Anzahl der Atome zu reduzieren und so jedes Wort durch ein explizit bekanntes Wort zu ersetzen, wird vor dem Training mit den Daten \textit{Clustering} auf die Worte der jeweiligen Prädikate angewandt. Als Algorithmus wurde Affinity-Propagation gewählt und für die Ähnlichkeitsfunktion kommt die Levenshtein-Distanz zum Einsatz. So wird jedes Wort einer Gruppe mit ähnlichen Worten zugeordnet und letztendlich wird jedes Wort durch den zentralen Cluster seiner Gruppe ersetzt. 
+Theoretisch können die Domänen der Prädikate unendlich groß sein und Störungen unterliegen, da für jeden Cluster ein anderes Atom zustande kommen könnte. Um die Anzahl der Atome zu reduzieren und so jedes Wort durch ein explizit bekanntes Wort zu ersetzen, wird vor dem Training mit den Daten \textit{Clustering} auf die Worte der jeweiligen Prädikate angewandt. Als Algorithmus wurde Affinity-Propagation gewählt und für die Ähnlichkeitsfunktion kommt die Levenshtein-Distanz zum Einsatz. So wird jedes Wort einer Gruppe mit ähnlichen Worten zugeordnet und letztendlich wird jedes Wort durch den zentralen Cluster seiner Gruppe ersetzt. So kommen nur die zentralen Cluster als Atome zum Einsatz.
 
 
 \subsubsection{CaffeAnnotator}
@@ -145,19 +147,49 @@ Theoretisch können die Domänen der Prädikate unendlich groß sein und Störun
 Für den \texttt{CaffeAnnotator} wird das Deep-Learning Framework \textsc{Caffe}\footnote{\url{http://caffe.berkeleyvision.org/}} benötigt. Der Annotator extrahiert Merkmale aus den Bildern und speichert diese als Annotation in der \gls{cas}. Sie werden später für die Klassifikation benötigt.  
 
 \subsubsection{PCLFeatureExtractor}
-Wie der \texttt{CaffeAnnotator} fügt der \texttt{PCLFeatureExtractor} Merkmale als Annotationen zur \gls{cas} hinzu. Er extrahiert \gls{vfh}-Merkmale mittels der \gls{pcl} aus den Bildern. Diese werden für den Formklassifizierer benötigt.
+Wie der \texttt{CaffeAnnotator} fügt der \texttt{PCLFeatureExtractor} Merkmale als Annotationen zur \gls{cas} hinzu. Er extrahiert \gls{vfh}-Merkmale mittels der \gls{pcl} aus den Bildern. Diese werden für den Formklassifikator benötigt.
 
 \subsubsection{RfAnnotator}
-Der \texttt{RFAnnotator} klassifiziert die Form der Objekte. Der verwendete \gls{rf} wurde für die Masterarbeit von Rakibul Islam \cite{rakib} mit einem Objektset der Washington University trainiert. Der Klassifizierer unterscheidet dabei folgende Formen: box, cylindrical, disk, flat, sphere und other. Die logischen Prädikate sind von der Form  $shape(cluster, shape)$. Mehr Informationen zu Klassifizierern sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
+Der \texttt{RFAnnotator} klassifiziert die Form der Objekte. Der verwendete \gls{rf} Annotator wurde für die Masterarbeit von Rakibul Islam \cite{rakib} mit einem Objektset der Washington University trainiert. Der \gls{klassifikator} unterscheidet dabei folgende Formen: $box$, $cylindrical$, $disk$, $flat$, $sphere$ und $other$. Die logischen Prädikate sind von der Form  $shape(cluster, shape)$. Mehr Informationen zu den \glspl{klassifikator} sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
 
 \subsubsection{SVMAnnotator}
-Der \texttt{SVMAnnotator} klassifiziert die Instanz der Objekte. Dazu wurde eine \gls{svm} mit echten Bildern (zu finden im Repository odu\_iai\footnote{\url{https://github.com/bbferka/odu\_iai}}) der in den Experimenten vorkommenden Objekten trainiert. Die Instanz entspricht dabei dem Namen der Objekte und kann in Tabelle \ref{tab:objects} auf S.\pageref{tab:objects} nachgeschlagen werden. Die logischen Prädikate sind von der Form  $instance(cluster, i)$. Mehr Informationen zu Klassifizierern sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
+Der \texttt{SVMAnnotator} klassifiziert die Instanz der Objekte. Dazu wurde eine \gls{svm} mit echten Bildern (zu finden im Repository odu\_iai\footnote{\url{https://github.com/bbferka/odu\_iai}}), der in den Experimenten vorkommenden Objekten trainiert. Die Instanz entspricht dabei dem Namen der Objekte und kann in Tabelle \ref{tab:objects} auf S.\pageref{tab:objects} nachgeschlagen werden. Die logischen Prädikate sind von der Form  $instance(cluster, i)$. Mehr Informationen zu \glspl{klassifikator} sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
 
 \subsubsection{MLNInferencer}
 \label{sec:mlnInferencer}
-Der \texttt{MLNInferencer} liest die Annotationen aus der \gls{cas} aus gibt sie als logische Prädikate in einer Textdatei aus. Diese Dateien werden Datenbank genannt und bilden die Trainingsdaten für ein \gls{mln}. Der \texttt{MLNInferencer} kann die Prädikate sowohl in \gls{fo} ausgeben, als auch in \textit{Fuzzy-Logik}. Dabei werden für jedes Prädikat die Konfidenzen der Annotatoren mit ausgegeben.
+Der \texttt{MLNInferencer} liest die Annotationen aus der \gls{cas} aus und gibt sie als logische Prädikate in einer Textdatei aus. Diese Dateien werden Datenbanken genannt und können als Trainingsdaten für ein \gls{mln} verwendet werden. Der \texttt{MLNInferencer} kann die Prädikate sowohl in \gls{fo} ausgeben, als auch in \textit{Fuzzy-Logik}. Dabei werden für jedes Prädikat die Konfidenzen der Annotatoren mit ausgegeben. Zusätzlich wird noch ein manuell festgesetztes scene-Prädikat ausgegeben, dass näher in Kapitel \ref{chap:experiments} beschrieben wird. Abbildung \ref{inferencerExample} zeigt die Ausgabe für ein Bild mit 3 Objekten. 
 
+\begin{figure}
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+scene(cooking)
 
+shape(c0,round)
+size(c0,large)
+color(c0,red)
+color(c0,yellow)
+shape(c0,cylindrical)
+instance(c0,MondaminPancakeMix)
+object(c0,TomatoSauce)
+
+shape(c1,box)
+shape(c1,flat)
+size(c1,small)
+color(c1,white)
+shape(c1,box)
+instance(c1,MondaminPancakeMix)
+object(c1,PancakeMix)
+
+shape(c2,box)
+size(c2,small)
+color(c2,white)
+color(c2,blue)
+shape(c2,box)
+instance(c2,SpitzenReis)
+object(c2,Rice)
+\end{lstlisting}  
+\caption[Beispiel für die Ausgabe des MLNInferencer]{Beispiel für die Ausgabe der logischen Prädikate des MLNInferencer für ein Bild.}
+\label{inferencerExample}
+\end{figure}
 
 \begin{table}
 \rowcolors{1}{}{lightgray}

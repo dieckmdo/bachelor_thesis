@@ -123,8 +123,21 @@ Eine mögliche Welt besteht nun aus einem Vektor, der jedem Atom einen reellen W
 \label{subsec:pracmln}
 Um ein \gls{mln} mit Trainingsdaten zu trainieren und darüber zu schlussfolgern, wird die Toolbox \pracmln\footnote{\url{http://www.pracmln.org/}} benutzt, das vom \gls{iai} der Universität Bremen entwickelt wird. \pracmln ist in Python geschrieben und bietet als ein Python Modul die Möglichkeit die Funktionen in eigenen Python-Skripten zu verwenden. \par 
 Im folgenden wird das vorherige Beispiel (Seite \pageref{mlnexample}) ausgeweitet, indem es mit Trainingsdaten trainiert wird und Anfragen an das \gls{mln} gestellt werden. Das Beispiel hält sich dabei weiterhin an das Beispiel, das zu \pracmln gegeben ist.  \newline
-In einem ersten Schritt müssen die Gewichtungen erlernt werden. Dazu werden Trainingsdaten in benötigt. Im folgenden ist ein Auszug gegeben: 
-\todo{Auszug}
+In einem ersten Schritt müssen die Gewichtungen erlernt werden. Dazu werden Trainingsdaten benötigt. Im folgenden ist ein Auszug der im Beispiel verwendeten Trainingsdaten gegeben: 
+\begin{lstlisting}[backgroundcolor=\color{backcolour}]
+Friends(Anna, Bob)
+Friends(Bob, Anna)
+Friends(Anna, Edward)
+Friends(Edward, Anna)  
+
+Smokes(Anna)
+Smokes(Edward)
+Smokes(Frank)
+Smokes(Gary)
+
+Cancer(Anna)
+Cancer(Edward)
+\end{lstlisting}  
 Im Learning-Tool von \pracmln kann zusammen mit dem vorher spezifizierten \gls{mln} und einer auswählbaren Lernmethode nun ein \gls{mln} antrainiert werden, das auch die Gewichtungen errechnet.     
 \begin{lstlisting}[backgroundcolor=\color{backcolour}]
 1.126769 Raucht(p) => Krebs(p)

@@ -58,9 +58,32 @@ $Kamera$.RotateTo($center$)\;
 \label{alg:SpawnBox}
 \end{algorithm}
 
-Bei der Erstellung der Unreal-Bilder, wurden die Parameter so eingestellt, dass die Kamera auf zwei verschiedenen Höhen Bilder aufnimmt und auf einem Kreis mit dem Radius von 70 Einheiten rotiert. Die Kameraposition wird dabei alle 3 Sekunden aktualisiert, was mit der Aufnahme der RGBD-Kamera synchronisiert wurde. Die erste Höhe ist 35 Einheiten höher als der Mittelpunkt der SpawnVolume. Hier wurden drei Bilder in einem Winkel von $45^\circ$ aufgenommen. Die zweite Höhe ist 35 Einheiten höher als die vorherige. Hier wurden zwei Bilder im Winkel von $45^\circ$ aufgenommen. Die Bilder werden an \robosherlock geschickt und hier mittels der \texttt{StorageWriter}-\gls{ae} zur späteren Weiterverarbeitung in einer MongoDB-Instanz gespeichert.
+Bei der Erstellung der Unreal-Bilder, wurden die Parameter so eingestellt, dass die Kamera auf zwei verschiedenen Höhen Bilder aufnimmt und auf einem Kreis mit dem Radius von 70 Einheiten rotiert. Die Kameraposition wird dabei alle 3 Sekunden aktualisiert, was mit der Aufnahme der RGBD-Kamera synchronisiert wurde. Die erste Höhe ist 35 Einheiten höher als der Mittelpunkt der SpawnVolume. Hier wurden drei Bilder in einem Winkel von $45^\circ$ aufgenommen. Die zweite Höhe ist 35 Einheiten höher als die vorherige. Hier wurden zwei Bilder im Winkel von $45^\circ$ aufgenommen. Eine Szene und ihre fünf Bilder sind in Abbildung \ref{fig:exampleScene} zu sehen. Die Bilder werden an \robosherlock geschickt und hier mittels der \texttt{StorageWriter}-\gls{ae} zur späteren Weiterverarbeitung in einer MongoDB-Instanz gespeichert.
 
-\todo{Beispiel Bilder}
+\begin{figure}
+\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.1]{img/chapter3/sceneEx_1}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.1]{img/chapter3/sceneEx_2}	
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.1]{img/chapter3/sceneEx_3}	
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.1]{img/chapter3/sceneEx_4}	
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.1]{img/chapter3/sceneEx_5}	
+	\end{subfigure}
+\caption[Unreal-Bilder einer Szene]{Die Abbildung zeigt die Bilder der fünf Blickwinkel einer Szene.}
+\label{fig:exampleScene}
+\end{figure}
 
 \section{Analysis Engine}
 \label{sec:analysisengine}
@@ -150,7 +173,7 @@ Für den \texttt{CaffeAnnotator} wird das Deep-Learning Framework \textsc{Caffe}
 Wie der \texttt{CaffeAnnotator} fügt der \texttt{PCLFeatureExtractor} Merkmale als Annotationen zur \gls{cas} hinzu. Er extrahiert \gls{vfh}-Merkmale mittels der \gls{pcl} aus den Bildern. Diese werden für den Formklassifikator benötigt.
 
 \subsubsection{RfAnnotator}
-Der \texttt{RFAnnotator} klassifiziert die Form der Objekte. Der verwendete \gls{rf} Annotator wurde für die Masterarbeit von Rakibul Islam \cite{rakib} mit einem Objektset der Washington University trainiert. Der \gls{klassifikator} unterscheidet dabei folgende Formen: $box$, $cylindrical$, $disk$, $flat$, $sphere$ und $other$. Die logischen Prädikate sind von der Form  $shape(cluster, shape)$. Mehr Informationen zu den \glspl{klassifikator} sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
+Der \texttt{RFAnnotator} klassifiziert die Form der Objekte. Der verwendete \gls{rf} Annotator wurde für die Masterarbeit von Rakibul Islam \cite{rakib} mit einem Objektset der Washington University trainiert. Der \gls{klassifikator} unterscheidet dabei folgende Formen: $box$, $cylindrical$, $disk$, $flat$, $sphere$ und $other$. $shape(cluster, shape)$ ist die Form der logischen Prädikate. Mehr Informationen zu den \glspl{klassifikator} sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
 
 \subsubsection{SVMAnnotator}
 Der \texttt{SVMAnnotator} klassifiziert die Instanz der Objekte. Dazu wurde eine \gls{svm} mit echten Bildern (zu finden im Repository odu\_iai\footnote{\url{https://github.com/bbferka/odu\_iai}}), der in den Experimenten vorkommenden Objekten trainiert. Die Instanz entspricht dabei dem Namen der Objekte und kann in Tabelle \ref{tab:objects} auf S.\pageref{tab:objects} nachgeschlagen werden. Die logischen Prädikate sind von der Form  $instance(cluster, i)$. Mehr Informationen zu \glspl{klassifikator} sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.

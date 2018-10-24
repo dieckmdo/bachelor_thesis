@@ -49,7 +49,7 @@ TableSalt & 0.88 & 0.41 & 0.78 & 0.54 \\
 Tea-Iced & 0.9 & 1.0 & 0.05 & 0.09 \\  
 TomatoSauce & 0.94 & 0.59 & 0.36 & 0.44 \\  
 \end{tabularx}
-\caption[Objekt spezifische Kenngrößen des RFAnnotators]{Kenngrößen für die einzelnen Objekte aus der Klassifizierung der Unreal-Bilder mit dem RFAnnotator.}
+\caption[Objekt-spezifische Kenngrößen des RFAnnotators]{Kenngrößen für die einzelnen Objekte aus der Klassifizierung der Unreal-Bilder mit dem RFAnnotator.}
 \label{tab:classiRF_Ex_classMetrics}
 \end{table}
 
@@ -117,7 +117,7 @@ Zum Testen werden Anfragen, um welche Objekte es sich bei den Clustern handelt, 
 
 Um dieses Modell zu evaluieren, wird 10-fache Kreuzvalidierung durchgeführt. Dabei wird der gesamte Datensatz, also alle 570 Bilder, in 10 Teilmengen aufgeteilt. Jedes Bild bleibt für den gesamten Prozess in seiner Teilmenge. Nun werden 9 Teilmengen als Trainingsdaten für ein \gls{mln} benutzt, während die übrige 10. Teilmenge zum Testen zur Verfügung steht. Dieser Vorgang wird 10 mal durchgeführt, sodass jede Teilmenge genau einmal zum Testen verwendet wurde. Die Ergebnisse der einzelnen Durchgänge können nun gemittelt werden. Dies verhindert Überanpassung des Modells, also die Anpassung an die Trainingsdaten und damit einen Verlust der Generalität des Modells. \par
 
-Die Ergebnisse der Kreuzvalidierung sind in Abbildung \ref{fig:unreal_1_confMatrix} und Tabelle \ref{tab:unreal_1_classMetrics} dargestellt. Insgesamt werden eine hohe \gls{accuracy} für alle Objektklassen als auch Werte über 90\% für \gls{precision}, \gls{recall} und \gls{f1score} erreicht. Einzig das Besteck und der Reis erreicht nicht ganz so Hohe Werte. Sie liegen jedoch noch immer über 83\%. Bei dem Besteck war dies erwartet, da Messer, Gabeln und Löffeln kleiner sind als viele andere Objekte und damit visuelle Eigenschaften schwieriger auszumachen sind. Im Gegensatz zu den Ergebnissen der \glspl{klassifikator} ist eine deutliche Verbesserung zu erkennen. Vor allem gibt es keine Objekte, die gar nicht erkannt werden. Die bessere Erkennungsrate war jedoch erwartet, da \glspl{mln} die Ergebnisse verschiedener Experten, also Annotatoren in \robosherlock, kombiniert und solche Ensembles, wie bereits zuvor dargelegt, zu besseren Ergebnissen kommen können. \todo{einzelne Annos könnten das unterstützen.}    
+Die Ergebnisse der Kreuzvalidierung sind in Abbildung \ref{fig:unreal_1_confMatrix} und Tabelle \ref{tab:unreal_1_classMetrics} dargestellt. Insgesamt werden eine hohe \gls{accuracy} für alle Objektklassen als auch Werte über 90\% für \gls{precision}, \gls{recall} und \gls{f1score} erreicht. Einzig das Besteck und der Reis schneiden etwas schlechter ab. Bei dem Besteck war dies erwartet, da Messer, Gabeln und Löffeln kleiner sind als viele andere Objekte und damit visuelle Eigenschaften schwieriger auszumachen sind. Im Gegensatz zu den Ergebnissen der \glspl{klassifikator} ist eine deutliche Verbesserung zu erkennen. Vor allem gibt es keine Objekte, die gar nicht erkannt werden. Die bessere Erkennungsrate war jedoch erwartet, da \glspl{mln} die Ergebnisse verschiedener Experten, also Annotatoren in \robosherlock, kombiniert und solche Ensembles, wie bereits zuvor dargelegt, zu besseren Ergebnissen kommen können. \todo{einzelne Annos könnten das unterstützen.}    
 
 \begin{figure}
 	\includegraphics[scale=.5]{img/chapter6/unrealEx1_cof_matrix.png}
@@ -129,32 +129,51 @@ Die Ergebnisse der Kreuzvalidierung sind in Abbildung \ref{fig:unreal_1_confMatr
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
-Bowl & 0.99 & 0.95 & 0.97 & 0.96 \\  
-BreakfastCereal & 1.0 & 0.99 & 0.97 & 0.98 \\  
+Bowl & 0.99 & 0.95 & 0.98 & 0.97 \\  
+BreakfastCereal & 1.0 & 1.0 & 0.98 & 0.99 \\  
 Buttermilk & 1.0 & 1.0 & 1.0 & 1.0 \\  
 Coffee & 1.0 & 1.0 & 1.0 & 1.0 \\  
 Cup & 1.0 & 1.0 & 1.0 & 1.0 \\  
-DinnerPlate & 0.99 & 0.93 & 0.96 & 0.95 \\  
-DrinkingBottle & 1.0 & 0.93 & 0.93 & 0.93 \\  
-DrinkingMug & 1.0 & 0.99 & 0.93 & 0.95 \\  
-Fork & 0.99 & 0.89 & 0.88 & 0.88 \\  
+DinnerPlate & 0.99 & 0.95 & 0.95 & 0.95 \\  
+DrinkingBottle & 1.0 & 0.89 & 0.91 & 0.9 \\  
+DrinkingMug & 0.99 & 0.97 & 0.9 & 0.94 \\  
+Fork & 0.99 & 0.89 & 0.89 & 0.89 \\  
 Juice & 1.0 & 1.0 & 0.98 & 0.99 \\  
-Knife & 0.99 & 0.84 & 0.83 & 0.84 \\  
-Milk & 0.99 & 0.97 & 0.97 & 0.97 \\  
-PancakeMaker & 1.0 & 0.86 & 1.0 & 0.92 \\  
-PancakeMix & 1.0 & 0.91 & 0.98 & 0.95 \\  
-Rice & 0.99 & 0.85 & 0.89 & 0.87 \\  
-Spatula & 0.99 & 0.89 & 0.89 & 0.89 \\  
-Spoon & 0.99 & 0.94 & 0.87 & 0.9 \\  
-TableSalt & 0.99 & 0.93 & 0.9 & 0.91 \\  
-Tea-Iced & 0.99 & 0.95 & 0.92 & 0.94 \\  
-TomatoSauce & 0.99 & 0.89 & 0.92 & 0.9 \\   
+Knife & 0.99 & 0.86 & 0.87 & 0.86 \\  
+Milk & 0.99 & 0.97 & 0.98 & 0.98 \\  
+PancakeMaker & 0.99 & 0.83 & 1.0 & 0.91 \\  
+PancakeMix & 1.0 & 0.91 & 0.93 & 0.92 \\  
+Rice & 0.99 & 0.87 & 0.91 & 0.89 \\  
+Spatula & 1.0 & 0.91 & 0.91 & 0.91 \\  
+Spoon & 0.99 & 0.94 & 0.89 & 0.92 \\  
+TableSalt & 0.99 & 0.94 & 0.9 & 0.92 \\  
+Tea-Iced & 0.99 & 0.98 & 0.95 & 0.96 \\  
+TomatoSauce & 0.99 & 0.91 & 0.92 & 0.91 \\  
 \end{tabularx}
-\caption[Objekt spezifische Kenngrößen des gesamten Unreal-Bilder Datensatzes]{Kenngrößen für die einzelnen Objekte aus der 10-fachen Kreuzvalidierung der gesamten Unreal-Bilder.}
+\caption[Objekt-spezifische Kenngrößen des gesamten Unreal-Bilder Datensatzes]{Kenngrößen für die einzelnen Objekte aus der 10-fachen Kreuzvalidierung der gesamten Unreal-Bilder.}
 \label{tab:unreal_1_classMetrics}
 \end{table}
 
 
-\section{Echte Bilder}
-  
-Leider sind LinuxCup und YellowPlate nicht mehr zur Hand. Plate mit weißer Platte ersetzt. Cup fehlt.
+\section{Reale Bilder als Testdaten}
+
+Im folgenden Experiment werden reale Bilder als Testdaten verwendet. Dazu wurden mit dem PR2-Roboter des \gls{iai} Bilder in der realen Küchenumgebung aufgenommen. Die verwendeten Objekte sind dabei die echten Gegenstücke zu den eingescannten Objekten. Unglücklicherweise stand zu dem Zeitpunkt der Aufnahme der LinuxCup und die YellowPlate nicht mehr zur Verfügung. Für die YellowPlate wurde stattdessen ein weißer Teller als Ersatz Objekt verwendet. Es wurden wieder 114 zufällig aufgebaute Szenen mit der gleichen Szenarien-Verteilung erstellt. Die Bedingungen für das gemeinsame Auftreten von Objekten innerhalb der Szenarien bleibt ebenfalls gleich. Auf Grund des erhöhten Aufwandes bei der Aufnahme der Szenen, wurden von jeder Szene nur drei Bilder aufgenommen, womit insgesamt 342 reale Bilder zur Verfügung stehen. Im Gegensatz zu den Unreal-Bildern sind die Blickwinkel nicht exakt die Gleichen für jede Szene, da der Roboter bei der Aufnahme manuell bewegt werden muss (eine Szene ist in Abbildung \ref{fig:exampleSceneReal} zu sehen). Die Bilder wurden von der in Kapitel \ref{chap:sec:analysisengine} beschriebenen \gls{ae} annotiert, allerdings ohne den \texttt{UnrealGTAnnotator} zu verwenden, da dieser nur für Bilder aus der \unreal geeignet ist, da echte Bilder keine Asset-Namen zur Bestimmung der \gls{gt} aufweisen. Dementsprechend wurde die \gls{gt} manuell annotiert.
+
+\begin{figure}
+\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.1]{img/chapter6/real1}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.1]{img/chapter6/real2}	
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.1]{img/chapter6/real3}	
+	\end{subfigure}
+\caption[Reale Bilder einer Szene]{Ein Bildersatz für die realen Szenen.}
+\label{fig:exampleSceneReal}
+\end{figure}
+
+Es wurde nun ein \gls{mln} mit allen 570 Unreal-Bildern trainiert. Damit die Atome für den \texttt{GogglesAnnotator} in beiden Datensätzen übereinstimmen, wurde das Clustering mit den Annotationen aus beiden Datensätzen durchgeführt. Die Deklaration des \gls{mln} und Parameter beim Lernen sind unverändert wie im vorherigen Experiment, bei dem nur Unreal-Bilder zum Einsatz kamen.   

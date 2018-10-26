@@ -155,6 +155,27 @@ TomatoSauce & 0.99 & 0.91 & 0.92 & 0.91 \\
 \end{table}
 
 
+\begin{figure}
+\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/unrealEx1_color}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/unrealEx1_shape}	
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/unrealEx1_size}	
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/unrealEx1_instance}	
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/unrealEx1_goggles}	
+	\end{subfigure}
+\caption[Konfusionsmatrizen für die Klassifikation mit Evidenz von nur einem Experten]{Konfusionsmatrizen für die Klassifikation mit Evidenz von nur jeweils einem Experten.}
+\label{fig:singleEvidences}
+\end{figure}
+
 \section{Reale Bilder als Testdaten}
 
 Im folgenden Experiment werden reale Bilder als Testdaten verwendet. Dazu wurden mit dem PR2-Roboter des \gls{iai} Bilder in der realen Küchenumgebung aufgenommen. Die verwendeten Objekte sind dabei die echten Gegenstücke zu den eingescannten Objekten. Unglücklicherweise stand zu dem Zeitpunkt der Aufnahme der LinuxCup und die YellowPlate nicht mehr zur Verfügung. Für die YellowPlate wurde stattdessen ein weißer Teller als Ersatz Objekt verwendet. Es wurden wieder 114 zufällig aufgebaute Szenen mit der gleichen Szenarien-Verteilung erstellt. Die Bedingungen für das gemeinsame Auftreten von Objekten innerhalb der Szenarien bleibt ebenfalls gleich. Auf Grund des erhöhten Aufwandes bei der Aufnahme der Szenen, wurden von jeder Szene nur drei Bilder aufgenommen, womit insgesamt 342 reale Bilder zur Verfügung stehen. Im Gegensatz zu den Unreal-Bildern sind die Blickwinkel nicht exakt die Gleichen für jede Szene, da der Roboter bei der Aufnahme manuell bewegt werden muss (eine Szene ist in Abbildung \ref{fig:exampleSceneReal} zu sehen). Die Bilder wurden von der in Kapitel \ref{chap:sec:analysisengine} beschriebenen \gls{ae} annotiert, allerdings ohne den \texttt{UnrealGTAnnotator} zu verwenden, da dieser nur für Bilder aus der \unreal geeignet ist, da echte Bilder keine Asset-Namen zur Bestimmung der \gls{gt} aufweisen. Dementsprechend wurde die \gls{gt} manuell annotiert.
@@ -176,4 +197,41 @@ Im folgenden Experiment werden reale Bilder als Testdaten verwendet. Dazu wurden
 \label{fig:exampleSceneReal}
 \end{figure}
 
-Es wurde nun ein \gls{mln} mit allen 570 Unreal-Bildern trainiert. Damit die Atome für den \texttt{GogglesAnnotator} in beiden Datensätzen übereinstimmen, wurde das Clustering mit den Annotationen aus beiden Datensätzen durchgeführt. Die Deklaration des \gls{mln} und Parameter beim Lernen sind unverändert wie im vorherigen Experiment, bei dem nur Unreal-Bilder zum Einsatz kamen.   
+Es wurde nun ein \gls{mln} mit allen 570 Unreal-Bildern trainiert. Damit die Atome für den \texttt{GogglesAnnotator} in beiden Datensätzen übereinstimmen, wurde das Clustering mit den Annotationen aus beiden Datensätzen durchgeführt. Die Deklaration des \gls{mln} und Parameter beim Lernen sind unverändert wie im vorherigen Experiment, bei dem nur Unreal-Bilder zum Einsatz kamen. Die Bedingungen und Parameter für die Anfragen sind ebenfalls gleich \par
+
+\todo{Ergebnisse erläutern}
+
+\begin{figure}
+	\includegraphics[scale=.4]{img/chapter6/unrealReal_conf_matrix}
+\caption[Konfusionsmatrix der Klassifikation mit Unreal-Trainingsset und Real-Testset]{Die Konfusionsmatrix für die Klassifikation aller realen Bilder durch ein \gls{mln}, das mit allen Unreal-Bildern trainiert wurde.}
+\label{fig:unrealRealconfMatrix}
+\end{figure}  
+
+\begin{table}
+\rowcolors{1}{}{lightgray}
+\begin{tabularx}{\textwidth}{Xllll}
+\textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
+Bowl & 0.98 & 0.88 & 0.99 & 0.93 \\  
+BreakfastCereal & 0.96 & 0.8 & 0.96 & 0.87 \\  
+Buttermilk & 1.0 & 1.0 & 1.0 & 1.0 \\  
+Coffee & 0.99 & 1.0 & 0.81 & 0.9 \\  
+Cup & 0.99 & 0.97 & 0.92 & 0.95 \\  
+DinnerPlate & 0.96 & 0.67 & 0.86 & 0.75 \\  
+DrinkingBottle & 0.98 & 0.73 & 0.41 & 0.52 \\  
+DrinkingMug & 1.0 & 0.95 & 0.88 & 0.91 \\  
+Fork & 0.96 & 0.61 & 0.6 & 0.6 \\  
+Juice & 0.99 & 1.0 & 0.74 & 0.85 \\  
+Knife & 0.94 & 0.37 & 0.27 & 0.31 \\  
+Milk & 0.96 & 0.99 & 0.77 & 0.86 \\  
+PancakeMaker & 0.98 & 0.7 & 0.47 & 0.56 \\  
+PancakeMix & 0.98 & 0.57 & 0.33 & 0.42 \\  
+Rice & 0.97 & 0.35 & 0.5 & 0.41 \\  
+Spatula & 0.95 & 0.16 & 0.25 & 0.2 \\  
+Spoon & 0.95 & 0.75 & 0.66 & 0.7 \\  
+TableSalt & 0.95 & 0.66 & 0.81 & 0.72 \\  
+Tea-Iced & 0.96 & 0.75 & 0.72 & 0.73 \\  
+TomatoSauce & 0.97 & 0.63 & 0.89 & 0.74 \\  
+\end{tabularx}
+\caption[Objekt-spezifische Kenngrößen der Klassifikation mit Unreal-Trainingsset und Real-Testset]{Kenngrößen für die einzelnen Objekte der Klassifikation der realen Bilder durch ein \gls{mln}, das mit allen Unreal-Bildern trainiert wurde.}
+\label{tab:unreal_1_classMetrics}
+\end{table}

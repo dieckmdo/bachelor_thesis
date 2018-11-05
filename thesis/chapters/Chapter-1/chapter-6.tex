@@ -20,7 +20,7 @@ Die so erhaltene Klassifizierung für jedes Objekt wird mit der \gls{gt} verglic
 
 \begin{figure}
 	\includegraphics[scale=.4]{img/chapter6/classifierRFconf_matrix.png}
-\caption[Konfusionsmatrix der Klassifizierung durch den RFAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den RFAnnotator.}
+\caption[Konfusionsmatrix der Klassifizierung durch den RFAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten RFAnnotator.}
 \label{fig:classiRF_Ex_confMatrix}
 \end{figure}
 
@@ -57,7 +57,7 @@ In einem zweiten Versuch wurde statt des RFAnnotators der SVMAnnotator verwendet
 
 \begin{figure}
 	\includegraphics[scale=.4]{img/chapter6/classifierSVMconf_matrix.png}
-\caption[Konfusionsmatrix der Klassifizierung durch den SVMAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den SVMAnnotator.}
+\caption[Konfusionsmatrix der Klassifizierung durch den SVMAnnotators]{Die Konfusionsmatrix für die Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten SVMAnnotator.}
 \label{fig:classiSVM_Ex_confMatrix}
 \end{figure}
 
@@ -174,13 +174,13 @@ TomatoSauce & 0.99 & 0.91 & 0.92 & 0.91 \\
 		\includegraphics[scale=.27]{img/chapter6/unrealEx1_instance}	
 		\subcaption{Instanz}
 	\end{subfigure}
-\caption[Konfusionsmatrizen für die Klassifikation mit Evidenz von nur einem Experten]{Konfusionsmatrizen für die Klassifikation mit Evidenz von nur jeweils einem Experten.}
+\caption[Konfusionsmatrizen für die Klassifikation mit Evidenz von nur einem Experten]{Konfusionsmatrizen für die 10-fache Kreuzvalidierung mit Evidenz von nur jeweils einem Experten.}
 \label{fig:singleEvidences}
 \end{figure}
 
 \begin{figure}
 	\includegraphics[scale=.27]{img/chapter6/unrealEx1_goggles}	
-\caption[Konfusionsmatrix für die Klassifikation nur durch den \texttt{GogglesAnnotator}]{Konfusionsmatrix für die Klassifikation nur durch den \texttt{GogglesAnnotator}}
+\caption[Konfusionsmatrix für die Klassifikation nur durch den \texttt{GogglesAnnotator}]{Konfusionsmatrix für die 10-fache Kreuzvalidierung nur durch den \texttt{GogglesAnnotator}}
 \label{fig:singleEvidencesGog}
 \end{figure}
 

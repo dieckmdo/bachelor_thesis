@@ -27,7 +27,12 @@
 
 using namespace uima;
 
-
+/**
+* Filters out any object hypotheses from Unreal-Images that are not wanted. 
+* Which objets are wanted is defined in a .yaml file, where the asset name from unreal is mapped to a groundtruth.
+* Checks wether an object hypotheses is a desired object by counting pixel colors in the objectMap from the RGDBCameraActor from Unreal.
+* Sets the groundtruth for the desired objects based on the .yaml file.
+*/
 class UnrealGTAnnotator : public DrawingAnnotator
 {
 private:
@@ -46,6 +51,9 @@ public:
 
   UnrealGTAnnotator() : DrawingAnnotator(__func__), dispMode(gtImage) {}
 
+  /**
+   * initilizes the annotator. Gets the path to the groundtruth .yaml file and gets the asset->gt pairs 
+   */
   TyErrorId initialize(AnnotatorContext &ctx)
   {
     outInfo("initialize");
@@ -71,6 +79,9 @@ public:
     return UIMA_ERR_NONE;
   }
 
+  /**
+   * processes an image. Main functionality
+   */
   TyErrorId processWithLock(CAS &tcas, ResultSpecification const &res_spec)
   {
     MEASURE_TIME;
@@ -92,6 +103,7 @@ public:
 
     outInfo("Found " << clusters.size() << " clusters");
 
+	// find which asset each cluster might be
     for(auto cluster : clusters)
     {
       cv::Rect roi;
@@ -127,7 +139,7 @@ public:
       }
 
       // for small objects, that do not have the most pixels in their roi (cutlery)
-      for(int i = 0; i < 2; ++i)
+      for(int i = 0; i < 3; ++i)
       {
         if(colorCount.empty())
         {
@@ -135,11 +147,6 @@ public:
         }
 
         std::string mostColor = getObjectWithMostOccurences(colorCount);
-
-        if(mostColor == "SM_WindowTypARight1_12")
-        {
-          break;
-        }
 
         //object names should follow Unreal Engine naming standard: SM_ObjectName_X
         //if that standard not given, the object does not belong to the experiment/the objects that should be annotated
@@ -179,14 +186,14 @@ public:
     outInfo("Reduced to " << cleanedClusters.size() << " clusters");
     scene.identifiables.set(cleanedClusters);
 
-    //when running with multiple images and therefor with multiple objectMaps, the map gets expanded by the new occuring objects per image.
+    //when running with multiple images and therefore with multiple objectMaps, the map gets expanded by the new occuring objects per image.
     //clearing the map prevents that
     objectMap.clear();
 
     return UIMA_ERR_NONE;
   }
 
-  // find the most occuring color
+  // find the most occuring color in the map
   std::string getObjectWithMostOccurences(std::map<std::string, int> map)
   {
     std::map<std::string, int>::iterator mostColor = map.begin();

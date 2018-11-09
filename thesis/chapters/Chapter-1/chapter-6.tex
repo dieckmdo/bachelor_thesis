@@ -306,8 +306,9 @@ Um dieses Modell zu evaluieren, wird 10-fache Kreuzvalidierung durchgeführt. Da
 
 \subsection{Objektklassen}
 
-Die Ergebnisse der Kreuzvalidierung mit Objektklassen als \gls{gt} sind in Abbildung \ref{fig:UnrealGTClass_confMatrix} und Tabelle \ref{tab:UnrealGTClass_metrics} dargestellt. Insgesamt werden eine hohe \gls{accuracy} für alle Objektklassen als auch Werte über 90\% für \gls{precision}, \gls{recall} und \gls{f1score} erreicht. Einzig das Besteck und der Reis schneiden etwas schlechter ab. Bei dem Besteck war dies erwartet, da Messer, Gabeln und Löffeln kleiner sind als viele andere Objekte und damit visuelle Eigenschaften schwieriger auszumachen sind. Im Gegensatz zu den Ergebnissen der \glspl{klassifikator} ist eine deutliche Verbesserung zu erkennen. Vor allem gibt es keine Objekte, die gar nicht erkannt werden. \todo{Die bessere Erkennungsrate war jedoch erwartet, da \glspl{mln} die Ergebnisse verschiedener Experten, also Annotatoren in \robosherlock, kombiniert und solche Ensembles, wie bereits zuvor dargelegt, zu besseren Ergebnissen kommen können. \newline
-In den Abbildungen \ref{fig:singleEvidences} und \ref{fig:singleEvidencesGog} sind die Ergebnisse der Erkennung mit nur jeweils einer Evidenz, also einem logischen Prädikat, abgebildet. Es ist zu erkennen, dass bei Farbe, Form und Größe einige bestimmte Objekte bei der entsprechenden Evidenz präferiert werden. Bei der Instanz fällt auf, dass vieles als PancakeMaker eingeordnet wird, während viele Objekt auch richtig zugeordnet sind, was auf eine schlechte Performance des entsprechenden \gls{klassifikator}s hinweist. Der \texttt{GogglesAnnotator} annotiert vor allem texturierte Objekte, jedoch auch einige andere, welche er dann auch selten wiedererkennt. Insgesamt unterstützen diese Ergebnisse die Idee einer besseren Erkennung durch Ensembles, da jeder Annotator seine stärken und Schwächen aufweist, und erst durch die Zusammenführung der einzelnen Ergebnisse eine gute Erkennungsrate erreicht wird.}
+Die Ergebnisse der Kreuzvalidierung mit Objektklassen als \gls{gt} sind in Abbildung \ref{fig:UnrealGTClass_confMatrix} und Tabelle \ref{tab:UnrealGTClass_metrics} dargestellt. Insgesamt werden eine hohe \gls{accuracy} für alle Objektklassen als auch Werte über 90\% für \gls{precision}, \gls{recall} und \gls{f1score} erreicht. Einzig das Besteck und der Reis schneiden etwas schlechter ab. Bei dem Besteck war dies erwartet, da Messer, Gabeln und Löffeln kleiner sind als viele andere Objekte und damit visuelle Eigenschaften schwieriger auszumachen sind. Im Gegensatz zu den Ergebnissen der \glspl{klassifikator} ist eine deutliche Verbesserung zu erkennen. Vor allem gibt es keine Objekte, die gar nicht erkannt werden. Die bessere Erkennungsrate war jedoch erwartet, da \glspl{mln} die Ergebnisse verschiedener Experten, also Annotatoren in \robosherlock, kombiniert und solche Ensembles, wie bereits zuvor dargelegt, zu besseren Ergebnissen kommen können. \newline
+Um zu beweisen, dass dies auch hier der Fall ist, sind in den Abbildungen \ref{fig:singleEvidences} und \ref{fig:singleEvidencesGog} sind die Ergebnisse der 10-fachen Kreuzvalidierung mit nur jeweils einem Prädikat abgebildet. Dazu wurden die \glspl{mln} mit nur einem Prädikat von \robosherlock und dem $scene$-Prädikat trainiert und befragt. \newline
+Es ist zu erkennen, dass bei Farbe, Form und Größe einige bestimmte Objekte präferiert werden. Die Anzahl er präferierten Objekte korrespondiert stark mit der Anzahl der möglichen Atome für jedes Prädikat. Es gibt zum Beispiel 10 Atome für Farbe, und in der Konfusionsmatrix 9-10 Objekte die regelmäßig klassifiziert werden. Bei der Form scheinen sich die 3 Atome auf circa 2 Objekte zu verteilen: Fork, Knife, Spoon für \textit{small}, Eistee und Flaschen für \textit{medium} und PancakeMaker und Eistee für \textit{large}. Bei der Instanz fällt auf, dass vieles als Löffel eingeordnet wird, während viele Objekt auch richtig zugeordnet sind. Diese Neigung war bei den \glspl{klassifikator}, der \texttt{SVMAnnotator} ist für die Instanz Annotation verantwortlich, interessanterweise nicht zu erkennen. Insgesamt scheinen sich die Fehler des \texttt{SVMAnnotators} im \gls{mln} nicht zu wiederholen, stattdessen tun sich andere auf. Der \texttt{GogglesAnnotator} hat sehr gut Ergebnisse auf den Objekten, die Texturen mit Schrift aufweisen. Insgesamt unterstützen diese Ergebnisse die Idee einer besseren Erkennung durch Ensembles, da jeder Annotator seine stärken und Schwächen aufweist, und erst durch die Zusammenführung der einzelnen Ergebnisse eine gute Erkennungsrate erreicht wird.
 
 \begin{figure}
 	\includegraphics[scale=.5]{img/chapter6/UnrealGTClass.png}
@@ -346,33 +347,33 @@ TomatoSauce & 0.99 & 0.91 & 0.92 & 0.91 \\  \hline
 \end{table}
 
 
-%\begin{figure}
-%\centering
-%	\begin{subfigure}[b]{0.48\textwidth}
-%		\includegraphics[scale=.27]{img/chapter6/unrealEx1_color}
-%		\subcaption{Farbe}
-%	\end{subfigure}
-%	\begin{subfigure}[b]{0.48\textwidth}
-%		\includegraphics[scale=.27]{img/chapter6/unrealEx1_shape}	
-%		\subcaption{Form}
-%	\end{subfigure}
-%	\begin{subfigure}[b]{0.48\textwidth}
-%		\includegraphics[scale=.27]{img/chapter6/unrealEx1_size}	
-%		\subcaption{Größe}
-%	\end{subfigure}
-%	\begin{subfigure}[b]{0.48\textwidth}
-%		\includegraphics[scale=.27]{img/chapter6/unrealEx1_instance}	
-%		\subcaption{Instanz}
-%	\end{subfigure}
-%\caption[Konfusionsmatrizen für die Klassifikation mit Evidenz von nur einem Experten]{\todo{Konfusionsmatrizen für die 10-fache Kreuzvalidierung mit Evidenz von nur jeweils einem Experten.}}
-%\label{fig:singleEvidences}
-%\end{figure}
+\begin{figure}
+\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/UnrealGTClass_color.png}
+		\subcaption{Farbe}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/UnrealGTClass_shape.png}	
+		\subcaption{Form}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/UnrealGTClass_size.png}	
+		\subcaption{Größe}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[scale=.27]{img/chapter6/UnrealGTClass_instance.png}	
+		\subcaption{Instanz}
+	\end{subfigure}
+\caption[Konfusionsmatrizen für die Klassifikation mit nur einem Annotatoren Prädikat]{Konfusionsmatrizen der 10-fachen Kreuzvalidierung des gesamten Unreal-Bilder Satzes, wobei nur ein \robosherlock Prädikat (Form, Farbe, Größe, Instanz) und das $scene$-Prädikat zum Trainieren und Testen verwendet wurde.}
+\label{fig:singleEvidences}
+\end{figure}
 
-%\begin{figure}
-%	\includegraphics[scale=.27]{img/chapter6/unrealEx1_goggles}	
-%\caption[Konfusionsmatrix für die Klassifikation nur durch den \texttt{GogglesAnnotator}]{\todo{Konfusionsmatrix für die 10-fache Kreuzvalidierung nur durch den \texttt{GogglesAnnotator}}}
-%\label{fig:singleEvidencesGog}
-%\end{figure}
+\begin{figure}
+	\includegraphics[scale=.27]{img/chapter6/UnrealGTClass_goggles.png}	
+\caption[Konfusionsmatrix für die Klassifikation nur durch den \texttt{GogglesAnnotator}]{Konfusionsmatrix für die 10-fache Kreuzvalidierung der Unreal-Bilder, wobei nur die \texttt{GogglesAnnotator} und $scene$-Prädikate zum Trainieren und Testen verwendet wurden.}
+\label{fig:singleEvidencesGog}
+\end{figure}
 
 \subsection{Instanznamen}
 

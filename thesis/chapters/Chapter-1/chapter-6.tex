@@ -6,7 +6,7 @@
 %	\input{\CHAPTERONE /motivation}
 \glsresetall
 Im folgenden Kapitel werden zuerst die für die Arbeit erstellten Datensätze erläutert. Danach werden die Experimente beschrieben, die im Rahmen dieser Arbeit durchgeführt wurden, um die Objekterkennung in fotorealistischen Bildern zu evaluieren. \newline
-In einem ersten Experiment werden \glspl{klassifikator} trainiert und mit den Unreal-Bildern getestet. Danach wird ein \gls{mln} mit den Unreal-Bildern trainiert und getestet. Zur Evaluation wird 10-fache Kreuzvalidierung durchgeführt. Zum Schluss wird ein \gls{mln} mit den Unreal-Bildern trainiert und mit realen Bildern getestet. Jedes Experiment wird zweimal durchgeführt: einmal mit den Objektklassen als \gls{gt} und einmal mit den Instanznamen der Objekte. 
+In einem ersten Experiment werden \glspl{klassifikator} trainiert und mit den Unreal-Bildern getestet. Danach wird ein \gls{mln} mit den Unreal-Bildern trainiert und getestet. Zur Evaluation wird 10-fache Kreuzvalidierung durchgeführt. Danach wird ein \gls{mln} mit den Unreal-Bildern trainiert und mit realen Bildern getestet. Zum Abschluss wird ein Teil der realen Bilder mit in die Trainingsdaten aufgenommen und mit dem Rest getestet. Jedes Experiment wird zweimal durchgeführt: einmal mit den Objektklassen als \gls{gt} und einmal mit den Instanznamen der Objekte. 
 
 \section{Erklärung und Analyse der Datensätze}
 
@@ -78,12 +78,14 @@ Als \glspl{klassifikator} werden der \texttt{RFAnnotator} und der \texttt{SVMAnn
 Die Ergebnisse des \texttt{RFAnnotators} sind in Abbildung \ref{fig:RFClassifierGTClass_confMatrix} und Tabelle \ref{tab:RFClassifierGTClass_metrics} abgebildet. Während nahezu alle Objekte eine \gls{accuracy} über 90\% aufweisen, zeigen \gls{precision}, \gls{recall} und \gls{f1score}, dass der \texttt{RFAnnotator} große Schwierigkeiten hat, visuell ähnliche Objekte auseinander zu halten. Besonders häufig werden Objekte fälschlicherweise als Milch (Milk) und Salz (TableSalt)  eingeordnet. Dies ist auf die box-artige Form und die Ähnlichkeit der Farbe vieler Objekte zu der Milch und dem Salz zurückzuführen, welche insgesamt in größerer Zahl in den Daten vorkommen als andere Objektklassen. Des weiteren hat der \gls{klassifikator} Schwierigkeiten das Geschirr auseinander zu halten, was auf die Größe dessen zurückzuführen ist. Besonders schlecht schneidet der Pfannenwender (Spatula) ab, der nicht einmal korrekt erkannt wurde. Mit einem \gls{f1score} über 0,8 schneiden die Objektklassen Buttermilch (Buttermilk), Kaffee (Coffee), Becher (Cup) und PancakeMix am besten ab. Diese Klassen unterscheiden sich in Form (Buttermilk, PancakeMix) und Farbe (Coffee, Cup) stark von den anderen Objekten.  
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.4]{img/chapter6/RFClassifierGTClass.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektklassen durch den RFAnnotator]{Die Konfusionsmatrix für die Objektklassen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{RFAnnotator}.}
 \label{fig:RFClassifierGTClass_confMatrix}
 \end{figure}
 
 \begin{table}
+\centering
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -116,12 +118,14 @@ TomatoSauce & 0.94 & 0.59 & 0.36 & 0.44 \\  \hline
 Die Ergebnisse des \texttt{SVMAnnotators} sind in Abbildung  \ref{fig:SVMClassifierGTClass_confMatrix} zu sehen. Insgesamt sind die Ergebnisse gegenüber dem \texttt{RFAnnotator} etwas besser, da der \texttt{SVMAnnotator} mit 62\% eine etwas höhere \gls{accuracy} als 60\% aufweist. Jedoch werden vom \texttt{SVMAnnotator} neben dem Pfannenwender auch der PancakeMaker gar nicht richtig eingeordnet und auch die Flasche (DrinkingBottle) schneidet sehr schlecht ab. Der SVMAnnotator ist insgesamt bei einigen Klassen etwas zuverlässiger, hat jedoch auch einige größere Fehlerquellen, was insgesamt zu dem gleichen \gls{f1score} des \texttt{RFAnnotators} von 57\% führt.  
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.4]{img/chapter6/SVMClassifierGTClass.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektklassen durch den SVMAnnotator]{Die Konfusionsmatrix für die Objektklassen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{SVMAnnotator}.}
 \label{fig:SVMClassifierGTClass_confMatrix}
 \end{figure}
 
 \begin{table}
+\centering
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -157,12 +161,15 @@ Die Ergebnisse der Klassifikation der Instanzen des \texttt{RFAnnotators} ist in
 Interessanterweise werden sowohl die BluePlasticBowl als auch die WhiteCeramicIkeaBowl nicht einmal richtig erkannt. Erstere wird häufig für Letztere gehalten. Die IkeaBowl stattdessen für die EdekaRedBowl. Dies fiel bei der Klassenklassifikation noch nicht auf, da alle unter Bowl zusammengefasst sind und so trotzdem richtig eingeordnet wurden.   
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.4]{img/chapter6/RFClassifierGTInstance.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektinstanzen durch den RFAnnotator]{Die Konfusionsmatrix für die Objektinstanzen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{RFAnnotator}.}
 \label{fig:RFClassifierGTInstance_confMatrix}
 \end{figure}
 
 \begin{table}
+\centering
+\small
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -218,12 +225,15 @@ YellowCeramicPlate & 0.96 & 0.0 & 0.0 & 0.0 \\   \hline
 Der \texttt{SVMAnnotator} schneidet bei den Instanzen etwas besser ab als bei den Klassen. Dementsprechend auch besser als der \texttt{RFAnnotator} bei den Instanzen. Auch hier sind die Fehler aus der Klassenklassifikation übertragbar. Die SiggBottle wird selten erkannt oder als ReineButterMilch oder MondaminPancakeMix eingeordnet. Zu Verwirrung scheint es hier zu kommen, da sie alle rund sind und eine ähnlich helle Farbe aufweisen. Insgesamt sind die Fehlerquellen jedoch wieder nahezu deckungsgleich mit dem \texttt{RFAnnotator}.
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.4]{img/chapter6/SVMClassifierGTInstance.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektinstanzen durch den SVMAnnotator]{Die Konfusionsmatrix für die Objektinstanzen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{SVMAnnotator}.}
 \label{fig:SVMClassifierGTInstance_confMatrix}
 \end{figure}
 
 \begin{table}
+\centering
+\small
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -311,12 +321,14 @@ Um zu beweisen, dass dies auch hier der Fall ist, sind in den Abbildungen \ref{f
 Es ist zu erkennen, dass bei Farbe, Form und Größe einige bestimmte Objekte präferiert werden. Die Anzahl er präferierten Objekte korrespondiert stark mit der Anzahl der möglichen Atome für jedes Prädikat. Es gibt zum Beispiel 10 Atome für Farbe, und in der Konfusionsmatrix 9-10 Objekte die regelmäßig klassifiziert werden. Bei der Form scheinen sich die 3 Atome auf circa 2 Objekte zu verteilen: Fork, Knife, Spoon für \textit{small}, Eistee und Flaschen für \textit{medium} und PancakeMaker und Eistee für \textit{large}. Bei der Instanz fällt auf, dass vieles als Löffel eingeordnet wird, während viele Objekt auch richtig zugeordnet sind. Diese Neigung war bei den \glspl{klassifikator}, der \texttt{SVMAnnotator} ist für die Instanz Annotation verantwortlich, interessanterweise nicht zu erkennen. Insgesamt scheinen sich die Fehler des \texttt{SVMAnnotators} im \gls{mln} nicht zu wiederholen, stattdessen tun sich andere auf. Der \texttt{GogglesAnnotator} hat sehr gut Ergebnisse auf den Objekten, die Texturen mit Schrift aufweisen. Insgesamt unterstützen diese Ergebnisse die Idee einer besseren Erkennung durch Ensembles, da jeder Annotator seine stärken und Schwächen aufweist, und erst durch die Zusammenführung der einzelnen Ergebnisse eine gute Erkennungsrate erreicht wird.
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.5]{img/chapter6/UnrealGTClass.png}
 \caption[Konfusionsmatrix des gesamten Unreal-Bilder Datensatzes mit Objektklassen als GT]{Die Konfusionsmatrix für die 10-fache Kreuzvalidierung der gesamten 570 Unreal-Bilder. Als \gls{gt} fungierten die Objektklassen.}
 \label{fig:UnrealGTClass_confMatrix}
 \end{figure}
 
 \begin{table}
+\centering
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -370,6 +382,7 @@ TomatoSauce & 0.99 & 0.91 & 0.92 & 0.91 \\  \hline
 \end{figure}
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.27]{img/chapter6/UnrealGTClass_goggles.png}	
 \caption[Konfusionsmatrix für die Klassifikation nur durch den \texttt{GogglesAnnotator}]{Konfusionsmatrix für die 10-fache Kreuzvalidierung der Unreal-Bilder, wobei nur die \texttt{GogglesAnnotator} und $scene$-Prädikate zum Trainieren und Testen verwendet wurden.}
 \label{fig:singleEvidencesGog}
@@ -380,12 +393,15 @@ TomatoSauce & 0.99 & 0.91 & 0.92 & 0.91 \\  \hline
 Die Ergebnisse der 10-fachen Kreuzvalidierung mit Instanznamen als \gls{gt} sind in Abbildung \ref{fig:UnrealGTInstance_confMatrix} und Tabelle \ref{tab:UnrealGTInstance_metrics} einzusehen. Wieder werden Werte über 90\% für fast alle Objekte erreicht. Ausnahmen sind wieder das Besteck und der SeverinPancakeMaker und der LargeGreySpoon. Bei letzteren wird der LargeGreySpoon häufig als PancakeMaker eingestuft, während der PancakeMaker selber meistens korrekt klassifiziert wird, zu sehen am hohen \gls{recall} gegenüber der \gls{precision}. Das Selbe konnte für den SeverinPancakeMaker und seine Klasse PancakeMaker auch schon bei der Klassifikation der Objektklassen beobachtet werden. Bei den \glspl{klassifikator} verhält es sich dagegen genau anderes herum. Die Ausreißer beim Besteck sind interessanterweise nur bei der RedPlasticFork und dem RedPlasticKnife zu beobachten. Diese liegen mit \gls{precision}, \gls{recall} und \gls{f1score} von unter 80\% deutlich unter dem Schnitt der anderen Objekte und auch unter dem Schnitt des anderen Bestecks, denn selbst die blauen Gegenstücke der Gabel und des Messers erreichen Werte über 90\%. Insgesamt schneidet die Klassifikation der Objektinstanzen in allen Kenngrößen um 1\% besser ab, als die Klassifikation der Objektklassen.
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.4]{img/chapter6/UnrealGTInstance.png}
 \caption[Konfusionsmatrix des gesamten Unreal-Bilder Datensatzes mit den Instanznamen als GT]{Die Konfusionsmatrix für die 10-fache Kreuzvalidierung der gesamten 570 Unreal-Bilder. Die \gls{gt} sind die Instanznamen.}
 \label{fig:UnrealGTInstance_confMatrix}
 \end{figure}
 
 \begin{table}
+\centering
+\small
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -447,12 +463,14 @@ Im folgenden Experiment wird ein \gls{mln} mit den Unreal-Bildern trainiert und 
 Bei der Klassifizierung der Objektklassen (Abbildung \ref{fig:UnrealRealGTClass_confMatrix}, Tabelle \ref{tab:UnrealRealGTClass_metrics}) ist die \gls{accuracy} für alle Klassen über 90\%, während auch die Werte für \gls{precision}, \gls{recall} und \gls{f1score} in den meisten Fällen mit über 70\% relativ hoch ausfallen. Ausnahmen bilden wie erwartet das Geschirr, aber auch die Trinkflasche, PancakeMix und Maker und der Reis. Interessanterweise schneiden Löffel und Gabeln dabei deutlich besser ab als Messer. Besonders schlecht schneidet auch der Pfannenwender ab, was auch schon bei den \glspl{klassifikator} aufgefallen ist. Da die 10-fache Kreuzvalidierung, bei der nur Unreal-Bilder verwendet wurden, dieses Problem nicht zeigt, kann angenommen werden, dass das 3D-Modell keine gute Repräsentation des echten Objektes ist. Dass die Performance bei Reis so stark abfällt, ist interessant, da die Erkennungsrate für andere texturierte Objekte (Müsli, Milch, Salz, Eistee, Tomaten Sauce) zwar auch sinkt, jedoch nicht so stark, wie beim Reis. Der wahrscheinlich wegen seiner Form von den \glspl{klassifikator} noch gut erkannte PancakeMix, scheint diesen Vorteil hier nicht ausspielen zu können, während das für die Buttermilch mit einer 100 prozentigen Erkennungsrate nicht gilt. Für den PancakeMaker scheint das Selbe zu gelten, wie für den Pfannenwender, da auch er schon bei den \glspl{klassifikator} eine Problemquelle darstellte. 
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.3]{img/chapter6/UnrealRealGTClass.png}
 \caption[Konfusionsmatrix der Objektklassen Klassifikation mit Unreal-Trainingsset und realem Testset]{Die Konfusionsmatrix für die Klassifikation aller realen Bilder durch ein \gls{mln}, das mit allen Unreal-Bildern trainiert wurde. Als \gls{gt} wurden die Objektklassen verwendet.}
 \label{fig:UnrealRealGTClass_confMatrix}
 \end{figure}  
 
 \begin{table}
+\centering
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -487,12 +505,15 @@ TomatoSauce & 0.97 & 0.63 & 0.89 & 0.74 \\   \hline
 Die Ergebnisse für die Klassifikation mit den Instanznamen als \gls{gt} sind in Abbildung \ref{fig:UnrealRealGTInstance_confMatrix} und Tabelle \ref{tab:UnrealRealGTInstance_metrics} zu finden. Im Gegensatz zur 10-fachen Kreuzvalidierung des gesamten Unreal-Bilder Satzes, steigert sich die Erkennungsrate gegenüber der Objektklassen nicht leicht, sondern verschlechtert sich. Als Probleme fallen mal wieder der SlottedSpatula und der LargeGreySpoon ins Auge, die wieder häufig verwechselt werden. Am schlechtesten schneidet die WhiteCermaicIkeaBowl ab, die meistens für die BluePlasticBowl gehalten wird, welche auch häufiger falsch klassifiziert wurde. Ähnliche Ergebnisse der beiden Schüsseln waren auch bei den \glspl{klassifikator} zu beobachten. Das kleine Besteck schneidet wie üblich nicht so gut ab. Allerdings schneiden die Löffel in allen \gls{mln} Klassifikationen deutlich besser ab, als bei den \glspl{klassifikator}, wo sie das Schlusslicht unter dem Besteck waren. In den \gls{mln} Klassifikationen sind sie jedoch fast immer, das am besten erkannte Besteck. Ansonsten gibt es, die wie zuvor schon erwähnten Ungenauigkeiten bei ähnlich farbigen, texturierten Objekten aus den Klassen des Salzes, der Milch, des Eistees, der Cornflakes und dem PancakeMix.
 
 \begin{figure}
+\centering
 	\includegraphics[scale=.3]{img/chapter6/UnrealRealGTInstance.png}
 \caption[Konfusionsmatrix der Objektinstanzen Klassifikation mit Unreal-Trainingsset und realem Testset]{Die Konfusionsmatrix für die Klassifikation aller realen Bilder durch ein \gls{mln}, das mit allen Unreal-Bildern trainiert wurde. Als \gls{gt} wurden die Objektinstanzen verwendet.}
 \label{fig:UnrealRealGTInstance_confMatrix}
 \end{figure}  
 
 \begin{table}
+\centering
+\small
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -547,6 +568,7 @@ YellowCeramicPlate & 0.98 & 0.67 & 0.26 & 0.38 \\     \hline
 
 
 \begin{table}
+\centering
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xlllll}
 \textbf{Experiment}	&	\textbf{\gls{gt}}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -557,8 +579,118 @@ SVMAnnotator			&Instanz	&0.66	&0.72	&0.66	&0.62	\\ \hline
 Kreuzvalidierung		&Klasse		&0.95	&0.95	&0.95	&0.95	\\
 Kreuzvalidierung		&Instanz	&0.96	&0.96	&0.96	&0.96	\\ \hline
 Test mit realen Bildern	&Klasse		&0.76	&0.78	&0.76	&0.76	\\
-Test mit realen Bildern	&Instanz	&0.66	&0.69	&0.66	&0.65	\\
+Test mit realen Bildern	&Instanz	&0.66	&0.69	&0.66	&0.65	\\ \hline
+Gemischtes Trainingsset	&Klasse		&0.9	&0.91	&0.9	&0.9	\\
+Gemischtes Trainingsset	&Instanz	&0.88	&0.88	&0.88	0.88	\\
 \end{tabularx}
 \caption[Übersicht der Kenngrößen der einzelnen Experimente]{Die Tabelle enthält die einzelnen Kenngrößen der Klassifikationen aus den jeweiligen Experimenten. Die Reihenfolge folgt dem Beschreiben der Experimente innerhalb der Arbeit.}
 \label{tab:classification_all}
 \end{table}
+
+\section{Ein gemischtes Trainigsset}
+\label{unrealrealmixed}
+
+Im letzten Experiment wurde ein Teil der realen Bilder zusätzlich zu den Unreal-Bildern zum Trainieren verwendet. Dazu wurde zufällig ein drittel der realen Bilder ausgewählt, womit insgesamt mit 684 Bildern trainiert wurde. Die restlichen 228 realen Bildern wurden wieder als Testdaten verwendet. \par
+
+Die Konfusionmatrizen sind in den Abbildungen \ref{fig:UnrealRealMixedGTClass_confMatrix} und \ref{fig:UnrealRealMixedGTInstance_confMatrix} zu finden. Die Kenngrößen für die gesamte Klassifikation findet sich in Tabelle \ref{tab:classification_all} in den letzten beiden Zeilen. Für beide \gls{gt}s hat sich die Performance gesteigert, sodass die beide bei allen Werten im Bereich um die 90\% liegen. Die meisten großen Fehlerquellen wurden durch das gemischte Trainingsset eliminiert. Nur die Messer und Gabeln bleiben deutlich hinter dem Rest zurück. Allerdings haben sich die Werte für die Messer deutlich verbessert und liegen nun im Bereich der Gabeln und nicht wie zuvor deutlich drunter.   
+
+\begin{figure}
+\centering
+	\includegraphics[scale=.3]{img/chapter6/UnrealRealMixedGTClass.png}
+\caption[Konfusionsmatrix der Objektklassen Klassifikation mit gemischtem Trainingsset und realem Testset]{Die Konfusionsmatrix für die Klassifikationdurch ein \gls{mln}, das mit allen Unreal-Bildern und einem drittel der realen Bilder trainiert wurde. Getestet wurde mit den restlichen realen Bildern. Als \gls{gt} wurden die Objektklassen verwendet.}
+\label{fig:UnrealRealMixedGTClass_confMatrix}
+\end{figure}  
+
+%\begin{table}
+%\centering
+%\rowcolors{1}{}{lightgray}
+%\begin{tabularx}{\textwidth}{Xllll}
+%\textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
+%Bowl & 1.0 & 0.99 & 1.0 & 0.99 \\  
+%BreakfastCereal & 1.0 & 0.99 & 0.99 & 0.99 \\  
+%Buttermilk & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%Coffee & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%Cup & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%DinnerPlate & 0.98 & 0.98 & 0.81 & 0.88 \\  
+%DrinkingBottle & 0.99 & 0.77 & 1.0 & 0.87 \\  
+%DrinkingMug & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%Fork & 0.94 & 0.46 & 0.4 & 0.43 \\  
+%Juice & 1.0 & 1.0 & 0.91 & 0.96 \\  
+%Knife & 0.95 & 0.51 & 0.64 & 0.57 \\  
+%Milk & 1.0 & 0.99 & 0.98 & 0.99 \\  
+%PancakeMaker & 1.0 & 1.0 & 0.84 & 0.91 \\  
+%PancakeMix & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%Rice & 0.99 & 0.68 & 0.89 & 0.77 \\  
+%Spatula & 0.99 & 0.71 & 0.91 & 0.8 \\  
+%Spoon & 0.99 & 0.93 & 0.92 & 0.93 \\  
+%TableSalt & 0.98 & 0.96 & 0.81 & 0.88 \\  
+%Tea-Iced & 0.99 & 0.93 & 0.93 & 0.93 \\  
+%TomatoSauce & 0.99 & 0.86 & 1.0 & 0.92 \\  \hline
+%\textbf{Gesamt}	&	\textbf{0.9}   &	\textbf{0.91}  & \textbf{0.9}   & \textbf{0.91} \\
+%\end{tabularx}
+%\caption[Objektklassen-spezifische Kenngrößen der Klassifikation mit gemischtem Trainingsset und realem Testset]{Kenngrößen für die einzelnen Objekte der Klassifikation durch ein \gls{mln}, das mit allen Unreal-Bildern und einem drittel der realen Bilder trainiert wurde. Getestet wurde mit den restlichen realen Bildern. Als \gls{gt} wurden die Objektklassen verwendet.}
+%\label{tab:UnrealRealMixedGTClass_metrics}
+%\end{table}
+
+
+\begin{figure}
+\centering
+	\includegraphics[scale=.3]{img/chapter6/UnrealRealMixedGTInstance.png}
+\caption[Konfusionsmatrix der Objektinstanzen Klassifikation mit gemischtem Trainingsset und realem Testset]{Die Konfusionsmatrix für die Klassifikation durch ein \gls{mln}, das mit allen Unreal-Bildern und einem drittel der realen Bilder trainiert wurde. Getestet wurde mit den restlichen realen Bildern. Als \gls{gt} wurden die Objektinstanzen verwendet.}
+\label{fig:UnrealRealMixedGTInstance_confMatrix}
+\end{figure}  
+
+%\begin{table}
+%\centering
+%\small
+%\rowcolors{1}{}{lightgray}
+%\begin{tabularx}{\textwidth}{Xllll}
+%\textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
+%AlbiHimbeerJuice & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%BlueCeramicIkeaMug & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%BlueMetalPlateWhiteSpeckles & 1.0 & 0.91 & 0.95 & 0.93 \\  
+%BluePlasticBowl & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%BluePlasticFork & 0.98 & 0.53 & 0.47 & 0.5 \\  
+%BluePlasticKnife & 0.98 & 0.53 & 0.59 & 0.56 \\  
+%BluePlasticSpoon & 1.0 & 1.0 & 0.95 & 0.97 \\  
+%CupEcoOrange & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%EdekaRedBowl & 0.99 & 0.93 & 0.65 & 0.76 \\  
+%ElBrygCoffee & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%JaMilch & 0.99 & 0.9 & 0.96 & 0.93 \\  
+%JodSalz & 0.99 & 0.89 & 0.85 & 0.87 \\  
+%KelloggsCornFlakes & 1.0 & 1.0 & 0.95 & 0.97 \\  
+%KelloggsToppasMini & 1.0 & 0.9 & 0.95 & 0.93 \\  
+%KnusperSchokoKeks & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%KoellnMuesliKnusperHonigNuss & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%LargeGreySpoon & 0.99 & 0.87 & 0.87 & 0.87 \\  
+%LinuxCup & 1.0 & 0.0 & 0.0 & 0.0 \\  
+%LionCerealBox & 1.0 & 0.95 & 1.0 & 0.97 \\  
+%MarkenSalz & 0.99 & 0.83 & 0.88 & 0.86 \\  
+%MeerSalz & 1.0 & 0.94 & 1.0 & 0.97 \\  
+%MondaminPancakeMix & 1.0 & 1.0 & 0.93 & 0.97 \\  
+%NesquikCereal & 0.99 & 0.76 & 1.0 & 0.86 \\  
+%PfannerGruneIcetea & 0.98 & 0.75 & 0.75 & 0.75 \\  
+%PfannerPfirsichIcetea & 0.98 & 0.76 & 0.68 & 0.72 \\  
+%RedMetalBowlWhiteSpeckles & 1.0 & 0.89 & 1.0 & 0.94 \\  
+%RedMetalCupWhiteSpeckles & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%RedMetalPlateWhiteSpeckles & 0.99 & 0.68 & 0.76 & 0.72 \\  
+%RedPlasticFork & 0.97 & 0.53 & 0.5 & 0.51 \\  
+%RedPlasticKnife & 0.97 & 0.5 & 0.36 & 0.42 \\  
+%RedPlasticSpoon & 1.0 & 1.0 & 0.95 & 0.98 \\  
+%ReineButterMilch & 0.99 & 0.96 & 0.79 & 0.86 \\  
+%SeverinPancakeMaker & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%SiggBottle & 0.99 & 0.81 & 1.0 & 0.89 \\  
+%SlottedSpatula & 0.99 & 0.84 & 0.89 & 0.86 \\  
+%SojaMilch & 1.0 & 1.0 & 0.88 & 0.94 \\  
+%SpitzenReis & 0.99 & 0.86 & 0.75 & 0.8 \\  
+%TomatoAlGustoBasilikum & 1.0 & 1.0 & 0.86 & 0.92 \\  
+%TomatoSauceOroDiParma & 1.0 & 1.0 & 1.0 & 1.0 \\  
+%VollMilch & 1.0 & 1.0 & 0.91 & 0.95 \\  
+%WeideMilchSmall & 0.99 & 0.83 & 1.0 & 0.91 \\  
+%WhiteCeramicIkeaBowl & 0.99 & 0.71 & 1.0 & 0.83 \\  
+%YellowCeramicPlate & 1.0 & 0.88 & 0.93 & 0.9 \\   \hline
+%\textbf{Gesamt}	& \textbf{0.88}   &	\textbf{0.88}  & \textbf{0.88} & \textbf{0.88}   \\
+%\end{tabularx}
+%\caption[Objektinstanzen-spezifische Kenngrößen der Klassifikation mit gemischtem Trainingsset und realem Testset]{Kenngrößen für die einzelnen Objekte der Klassifikation durch ein \gls{mln}, das mit allen Unreal-Bildern und einem drittel der realen Bilder trainiert wurde. Getestet wurde mit den restlichen realen Bildern. Als \gls{gt} wurden die Objektinstanzen verwendet.}
+%\label{tab:UnrealRealMixedGTInstance_metrics}
+%\end{table}

@@ -17,24 +17,24 @@ Für die Experimente wurden mit dem in Kapitel \ref{sec:takingpics} vorgestellte
 
 In Abbildung \ref{fig:Unreal-Images_analysis} ist die Verteilung der Objekte in den gesamten Unreal-Bildern zu sehen. Ein Großteil der Objektinstanzen kommt in einer ähnlichen Anzahl in den Bildern vor. Objekte, die mehreren Szenarien zugeordnet sind, wie der AlbiHimbeerJuice dem \textit{breakfast} und \textit{cooking}, jedoch bis zu doppelt so häufig. Dies ist durch die Art der Erstellung der Unreal-Bilder zu erklären: Es wurde versucht pro Szenario eine gleichmäßige Verteilung zu erreichen. \newline
 Die ungleiche Verteilung der Objektklassen ist bedingt durch die unterschiedliche Anzahl an Objektinstanzen pro Klasse. Es gibt nur eine ein Objekt, dass der Coffee Klasse angehört, jedoch vier Objekte die der Bowl Klasse angehören. \newline
-Es wird dementsprechend von einem ungleich verteilten Datensatz ausgegangen. Bei der Berechnung der Fehlergrößen \gls{precision}, \gls{recall} und \gls{f1score} der Klassifikation des gesamten Datensatzes, wird deshalb der \textit{gewichtete} Durchschnitt der Fehlergrößen pro Instanz/Klasse verwendet. 
+Es wird dementsprechend von einem ungleich verteilten Datensatz ausgegangen. Bei der Berechnung der Fehlergrößen \gls{precision}, \gls{recall} und \gls{f1score} der Klassifikation des gesamten Datensatzes, wird deshalb der \textit{gewichtete} Durchschnitt der Fehlergrößen pro Instanz/Klasse verwendet. \par
 
 \begin{figure}
 \centering
-	\begin{subfigure}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{img/chapter6/UnrealGTClass_analysis.png}
+	\begin{subfigure}[b]{0.4\textwidth}
+	\centering
+		\includegraphics[scale=.4]{img/chapter6/UnrealGTClass_analysis.png}
 	\end{subfigure}
-	\begin{subfigure}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{img/chapter6/UnrealGTInstance_analysis.png}	
+	\begin{subfigure}[b]{0.58\textwidth}
+	\centering
+		\includegraphics[scale=.4]{img/chapter6/UnrealGTInstance_analysis.png}	
 	\end{subfigure}
 \caption[Verteilung der Objekte in den Unreal-Bildern]{Verteilung der Objektklassen und Instanzen in den gesamten Unreal-Bildern.}
 \label{fig:Unreal-Images_analysis}
 \end{figure}
 
-
-
 \subsection{Reale Bilder}
-Mit dem PR2-Roboter des \gls{iai} wurden Bilder in der realen Küchenumgebung aufgenommen. Die verwendeten Objekte sind dabei die echten Gegenstücke zu den eingescannten Objekten. Unglücklicherweise stand zu dem Zeitpunkt der Aufnahme der LinuxCup und die YellowPlate nicht mehr zur Verfügung. Für die YellowPlate wurde stattdessen ein weißer Teller als Ersatz Objekt verwendet. Es wurden wieder 114 zufällig aufgebaute Szenen mit der gleichen Szenarien-Verteilung und den gleichen Bedingungen erstellt. Auf Grund des erhöhten Aufwandes bei der Aufnahme der Szenen, wurden von jeder Szene nur drei Bilder aufgenommen, womit insgesamt \textbf{342 reale Bilder} zur Verfügung stehen. Im Gegensatz zu den Unreal-Bildern sind die Blickwinkel nicht exakt die Gleichen für jede Szene, da der Roboter bei der Aufnahme manuell bewegt werden muss (eine Szene ist in Abbildung \ref{fig:exampleSceneReal} zu sehen).
+Mit dem PR2-Roboter des \gls{iai} wurden Bilder in der realen Küchenumgebung aufgenommen. Die verwendeten Objekte sind dabei die echten Gegenstücke zu den eingescannten Objekten. Unglücklicherweise stand zu dem Zeitpunkt der Aufnahme der LinuxCup und die YellowPlate nicht mehr zur Verfügung. Für die YellowPlate wurde stattdessen ein weißer Teller als Ersatz Objekt verwendet. Es wurden wieder 114 zufällig aufgebaute Szenen mit der gleichen Szenarien-Verteilung und den gleichen Bedingungen erstellt. Auf Grund des erhöhten Aufwandes bei der Aufnahme der Szenen, wurden von jeder Szene nur drei Bilder aufgenommen, womit insgesamt \textbf{342 reale Bilder} zur Verfügung stehen. Im Gegensatz zu den Unreal-Bildern sind die Blickwinkel nicht exakt die Gleichen für jede Szene, da der Roboter bei der Aufnahme manuell bewegt werden muss (eine Szene ist in Abbildung \ref{fig:exampleSceneReal} zu sehen). \par
 
 \begin{figure}
 \centering
@@ -53,19 +53,21 @@ Mit dem PR2-Roboter des \gls{iai} wurden Bilder in der realen Küchenumgebung au
 \label{fig:exampleSceneReal}
 \end{figure}
 
-Die Verteilung der Objektklassen und Instanzen in den realen Bildern, zu sehen in Abbildung \ref{fig:Real-Images_analysis}, zeigt die gleichen Eigenschaften, wie die Verteilung der Unreal-Bilder. Es wird auch hier von einem ungleich verteilten Datensatz ausgegangen. 
-
 \begin{figure}
 \centering
-	\begin{subfigure}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{img/chapter6/RealGTClass_analysis.png}
+	\begin{subfigure}[b]{0.4\textwidth}
+	\centering
+		\includegraphics[scale=.4]{img/chapter6/RealGTClass_analysis.png}
 	\end{subfigure}
-	\begin{subfigure}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{img/chapter6/RealGTInstance_analysis.png}	
+	\begin{subfigure}[b]{0.58\textwidth}
+	\centering
+		\includegraphics[scale=.4]{img/chapter6/RealGTInstance_analysis.png}	
 	\end{subfigure}
-\caption[Verteilung der Objekte in den realen Bildern]{Verteilung der Objektklassen und Instanzen in den gesamten realen Bildern.}
+\caption[Verteilung der Objekte in den Unreal-Bildern]{Verteilung der Objektklassen und Instanzen in den gesamten Unreal-Bildern.}
 \label{fig:Real-Images_analysis}
 \end{figure}
+
+Die Verteilung der Objektklassen und Instanzen in den realen Bildern, zu sehen in Abbildung \ref{fig:Real-Images_analysis}, zeigt die gleichen Eigenschaften, wie die Verteilung der Unreal-Bilder. Es wird auch hier von einem ungleich verteilten Datensatz ausgegangen. 
 
 \section{Klassifizierung mit Klassifikatoren}
 \label{sec:classificationExperiment}
@@ -75,17 +77,18 @@ Als \glspl{klassifikator} werden der \texttt{RFAnnotator} und der \texttt{SVMAnn
 
 
 \subsection{Objektklassen}
-Die Ergebnisse des \texttt{RFAnnotators} sind in Abbildung \ref{fig:RFClassifierGTClass_confMatrix} und Tabelle \ref{tab:RFClassifierGTClass_metrics} abgebildet. Während nahezu alle Objekte eine \gls{accuracy} über 90\% aufweisen, zeigen \gls{precision}, \gls{recall} und \gls{f1score}, dass der \texttt{RFAnnotator} große Schwierigkeiten hat, visuell ähnliche Objekte auseinander zu halten. Besonders häufig werden Objekte fälschlicherweise als Milch (Milk) und Salz (TableSalt)  eingeordnet. Dies ist auf die box-artige Form und die Ähnlichkeit der Farbe vieler Objekte zu der Milch und dem Salz zurückzuführen, welche insgesamt in größerer Zahl in den Daten vorkommen als andere Objektklassen. Des weiteren hat der \gls{klassifikator} Schwierigkeiten das Geschirr auseinander zu halten, was auf die Größe dessen zurückzuführen ist. Besonders schlecht schneidet der Pfannenwender (Spatula) ab, der nicht einmal korrekt erkannt wurde. Mit einem \gls{f1score} über 0,8 schneiden die Objektklassen Buttermilch (Buttermilk), Kaffee (Coffee), Becher (Cup) und PancakeMix am besten ab. Diese Klassen unterscheiden sich in Form (Buttermilk, PancakeMix) und Farbe (Coffee, Cup) stark von den anderen Objekten.  
+Die Ergebnisse des \texttt{RFAnnotators} sind in Abbildung \ref{fig:RFClassifierGTClass_confMatrix} und Tabelle \ref{tab:RFClassifierGTClass_metrics} abgebildet. Während nahezu alle Objekte eine \gls{accuracy} über 90\% aufweisen, zeigen \gls{precision}, \gls{recall} und \gls{f1score}, dass der \texttt{RFAnnotator} große Schwierigkeiten hat, visuell ähnliche Objekte auseinander zu halten. Besonders häufig werden Objekte fälschlicherweise als Milch (Milk) und Salz (TableSalt)  eingeordnet. Dies ist auf die box-artige Form und die Ähnlichkeit der Farbe vieler Objekte zu der Milch und dem Salz zurückzuführen, welche insgesamt in größerer Zahl in den Daten vorkommen als andere Objektklassen. Des weiteren hat der \gls{klassifikator} Schwierigkeiten das Geschirr auseinander zu halten, was auf die Größe dessen zurückzuführen ist. Besonders schlecht schneidet der Pfannenwender (Spatula) ab, der nicht einmal korrekt erkannt wurde. Mit einem \gls{f1score} über 0,8 schneiden die Objektklassen Buttermilch (Buttermilk), Kaffee (Coffee), Becher (Cup) und PancakeMix am besten ab. Diese Klassen unterscheiden sich in Form (Buttermilk, PancakeMix) und Farbe (Coffee, Cup) stark von den anderen Objekten.  \par
 
 \begin{figure}
 \centering
-	\includegraphics[scale=.4]{img/chapter6/RFClassifierGTClass.png}
+	\includegraphics[scale=.3]{img/chapter6/RFClassifierGTClass.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektklassen durch den RFAnnotator]{Die Konfusionsmatrix für die Objektklassen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{RFAnnotator}.}
 \label{fig:RFClassifierGTClass_confMatrix}
 \end{figure}
 
 \begin{table}
 \centering
+\small
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -119,13 +122,14 @@ Die Ergebnisse des \texttt{SVMAnnotators} sind in Abbildung  \ref{fig:SVMClassif
 
 \begin{figure}
 \centering
-	\includegraphics[scale=.4]{img/chapter6/SVMClassifierGTClass.png}
+	\includegraphics[scale=.3]{img/chapter6/SVMClassifierGTClass.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektklassen durch den SVMAnnotator]{Die Konfusionsmatrix für die Objektklassen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{SVMAnnotator}.}
 \label{fig:SVMClassifierGTClass_confMatrix}
 \end{figure}
 
 \begin{table}
 \centering
+\small
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -162,7 +166,7 @@ Interessanterweise werden sowohl die BluePlasticBowl als auch die WhiteCeramicIk
 
 \begin{figure}
 \centering
-	\includegraphics[scale=.4]{img/chapter6/RFClassifierGTInstance.png}
+	\includegraphics[scale=.3]{img/chapter6/RFClassifierGTInstance.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektinstanzen durch den RFAnnotator]{Die Konfusionsmatrix für die Objektinstanzen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{RFAnnotator}.}
 \label{fig:RFClassifierGTInstance_confMatrix}
 \end{figure}
@@ -226,7 +230,7 @@ Der \texttt{SVMAnnotator} schneidet bei den Instanzen etwas besser ab als bei de
 
 \begin{figure}
 \centering
-	\includegraphics[scale=.4]{img/chapter6/SVMClassifierGTInstance.png}
+	\includegraphics[scale=.3]{img/chapter6/SVMClassifierGTInstance.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektinstanzen durch den SVMAnnotator]{Die Konfusionsmatrix für die Objektinstanzen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{SVMAnnotator}.}
 \label{fig:SVMClassifierGTInstance_confMatrix}
 \end{figure}
@@ -322,13 +326,14 @@ Es ist zu erkennen, dass bei Farbe, Form und Größe einige bestimmte Objekte pr
 
 \begin{figure}
 \centering
-	\includegraphics[scale=.5]{img/chapter6/UnrealGTClass.png}
+	\includegraphics[scale=.3]{img/chapter6/UnrealGTClass.png}
 \caption[Konfusionsmatrix des gesamten Unreal-Bilder Datensatzes mit Objektklassen als GT]{Die Konfusionsmatrix für die 10-fache Kreuzvalidierung der gesamten 570 Unreal-Bilder. Als \gls{gt} fungierten die Objektklassen.}
 \label{fig:UnrealGTClass_confMatrix}
 \end{figure}
 
 \begin{table}
 \centering
+\small
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -394,7 +399,7 @@ Die Ergebnisse der 10-fachen Kreuzvalidierung mit Instanznamen als \gls{gt} sind
 
 \begin{figure}
 \centering
-	\includegraphics[scale=.4]{img/chapter6/UnrealGTInstance.png}
+	\includegraphics[scale=.3]{img/chapter6/UnrealGTInstance.png}
 \caption[Konfusionsmatrix des gesamten Unreal-Bilder Datensatzes mit den Instanznamen als GT]{Die Konfusionsmatrix für die 10-fache Kreuzvalidierung der gesamten 570 Unreal-Bilder. Die \gls{gt} sind die Instanznamen.}
 \label{fig:UnrealGTInstance_confMatrix}
 \end{figure}
@@ -471,6 +476,7 @@ Bei der Klassifizierung der Objektklassen (Abbildung \ref{fig:UnrealRealGTClass_
 
 \begin{table}
 \centering
+\small
 \rowcolors{1}{}{lightgray}
 \begin{tabularx}{\textwidth}{Xllll}
 \textbf{Objekt}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
@@ -581,7 +587,7 @@ Kreuzvalidierung		&Instanz	&0.96	&0.96	&0.96	&0.96	\\ \hline
 Test mit realen Bildern	&Klasse		&0.76	&0.78	&0.76	&0.76	\\
 Test mit realen Bildern	&Instanz	&0.66	&0.69	&0.66	&0.65	\\ \hline
 Gemischtes Trainingsset	&Klasse		&0.9	&0.91	&0.9	&0.9	\\
-Gemischtes Trainingsset	&Instanz	&0.88	&0.88	&0.88	0.88	\\
+Gemischtes Trainingsset	&Instanz	&0.88	&0.88	&0.88	&0.88	\\
 \end{tabularx}
 \caption[Übersicht der Kenngrößen der einzelnen Experimente]{Die Tabelle enthält die einzelnen Kenngrößen der Klassifikationen aus den jeweiligen Experimenten. Die Reihenfolge folgt dem Beschreiben der Experimente innerhalb der Arbeit.}
 \label{tab:classification_all}

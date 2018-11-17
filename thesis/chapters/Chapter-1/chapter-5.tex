@@ -4,7 +4,7 @@
 \chapter{Implementierung}
 \label{chap:implementation}
 %	\input{\CHAPTERONE /motivation}
-\glsresetall
+
 In diesem Kapitel werden die implementierten Lösungen vorgestellt. Zuerst wird aufgezeigt, wie die Bildern in der \unreal erstellt wurden. Zur Vereinfachung werden diese im Rest der Arbeit \textit{Unreal-Bilder} genannt. Danach wird die verwendete \gls{ae} erläutert, die die Bilder annotiert und so das Wissen zum  Training eines \gls{mln} extrahiert. \par
 
 \section{Erstellen der Unreal-Bilder}
@@ -12,7 +12,7 @@ In diesem Kapitel werden die implementierten Lösungen vorgestellt. Zuerst wird 
 
 Um Unreal-Bilder zum Trainieren eines \gls{mln} zur Verfügung zu haben, müssen diese in der \unreal erstellt werden. Dazu wurde die in Kapitel \ref{subsec:kitchenenvironment} auf Seite \pageref{subsec:kitchenenvironment} vorgestellte Küchenumgebung benutzt. Hier wurden Objekte des täglichen Gebrauchs in der Küche manuell drapiert und mittels des \textit{URoboVision}-Plugins Bilder davon gemacht und an \robosherlock gesendet. Eine solche Anordnung von Objekten in der Küche wird \textit{Szene} genannt. Von jeder Szene wurden Bilder aus mehreren festgelegten Blickwinkeln mittels der \textit{RSpawnBox} erstellt. \par 
 
-\textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \textit{ARGBDCameraActor}. Damit wird an \robosherlock ein Farb- und Tiefenbild, sowie ein \textit{ObjectImage} und eine \textit{ObjectMap} gesendet. Auf dem ObjectImage ist jedes Objekt innerhalb der Szene in einer anderen Farbe eingefärbt. Die ObjectMap weist jeder im ObjectImage verwendeten Farbe die eindeutige \textit{Reference-ID} des Objektes zu. So kann jedes sichtbare Objekt eindeutig identifiziert werden. Die Bilder habe eine Größe von $1280 \times 960$ Pixeln. \par 
+\textbf{URoboVisionPlugin:} Das Plugin bietet einen in die Szene einfügbaren \textit{ARGBDCameraActor}. Damit wird an \robosherlock ein \gls{rgb}- und Tiefenbild, sowie ein \textit{ObjectImage} und eine \textit{ObjectMap} gesendet. Auf dem ObjectImage ist jedes Objekt innerhalb der Szene in einer anderen Farbe eingefärbt. Die ObjectMap weist jeder im ObjectImage verwendeten Farbe die eindeutige \textit{Reference-ID} des Objektes zu. So kann jedes sichtbare Objekt eindeutig identifiziert werden. Die Bilder habe eine Größe von $1280 \times 960$ Pixeln. \par 
 
 \textbf{Aufnahme aus verschiedene Blickwinkeln:} Die veränderte \textit{RSpawnBox} besitzt eine \textit{UBoxComponent}, genannt \textit{SpawnVolume}, aus der vorherigen Iteration. Sie wurde beibehalten, da sie eine visuelle Markierung bietet, wo die Objekte drapiert werden sollten, denn der Mittelpunkt der Box dient als Rotationspunkt, um den ein referenzierter ARGBDCameraActor basierend auf einigen Parametern rotiert wird. Die Kamera wird dabei nach einer bestimmten Zeit in einem einstellbaren Radius $i$-mal um den Mittelpunkt rotiert. Dabei wird die Kamerarotation an der x-Achse (weist in der \unreal nach vorne) der SpawnVolume gespiegelt. Werden zum Beispiel drei Rotationsschritte mit einem Winkel von $30^\circ$ gewünscht, beginnt die Kamera $30^\circ$ links von der x-Achse. Die zweite Position befindet sich dann auf der x-Achse und die dritte Position ist $30^\circ$ rechts von der x-Achse. Der Startpunkt der Kamera auf dem Kreis um die SpawnVolume wird also in Abhängigkeit der Rotationsschritte und des Winkels berechnet. Die Höhe der Kamera kann ebenfalls eingestellt werden, wobei der Mittelpunkt der Box als ebenerdig, also die Höhe 0, angesehen wird. Nach jeder Positionsaktualisierung wird die Kamera so ausgerichtet, dass sie auf den Mittelpunkt der SpawnVolume schaut. Die Kamera kann auch auf zwei unterschiedlichen Höhen operieren, wobei der Winkel und die Rotationsschritte unabhängig voneinander eingestellt werden können. \newline
 Die einzelnen Parameter und ihre Funktion werden in Tabelle \ref{tab:spawnboxParams} vorgestellt. Der Algorithmus ist in Algorithmus \ref{alg:SpawnBox} beschrieben. \par
@@ -172,13 +172,13 @@ Theoretisch können die Domänen der Prädikate unendlich groß sein und Störun
 Für den \texttt{CaffeAnnotator} wird das Deep-Learning Framework \textsc{Caffe}\footnote{\url{http://caffe.berkeleyvision.org/}} benötigt. Der Annotator extrahiert \gls{feature} aus den Bildern und speichert diese als Annotationen in der \gls{cas}. Sie werden später für die Klassifikation durch den \texttt{SVMAnnotator} benötigt.  
 
 \subsubsection{PCLFeatureExtractor}
-Wie der \texttt{CaffeAnnotator} fügt der \texttt{PCLFeatureExtractor} \gls{feature} als Annotationen zur \gls{cas} hinzu. Er extrahiert \gls{vfh}-Merkmale mittels der \gls{pcl} aus den Bildern. Diese werden für den Formklassifikator benötigt.
+Wie der \texttt{CaffeAnnotator} fügt der \texttt{PCLFeatureExtractor} \gls{feature} als Annotationen zur \gls{cas} hinzu. Er extrahiert mittels der \gls{pcl} und einem \gls{vfh} Merkmale aus den Bildern. Diese werden für den Formklassifikator benötigt.
 
 \subsubsection{RFAnnotator}
 Der \texttt{RFAnnotator} klassifiziert die Form der Objekte. Der verwendete \gls{rf} Annotator wurde für die Masterarbeit von Rakibul Islam \cite{rakib} mit einem Objektset der Washington University trainiert. Der \gls{klassifikator} unterscheidet dabei folgende Formen: $box$, $cylindrical$, $disk$, $flat$, $sphere$ und $other$. $shape(cluster, shape)$ ist die Form der logischen Prädikate. Mehr Informationen zu den \glspl{klassifikator} sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
 
 \subsubsection{SVMAnnotator}
-Der \texttt{SVMAnnotator} klassifiziert die Objekte nach ihrer Instanz. Dazu wurde eine \gls{svm} mit echten Bildern (zu finden im Repository odu\_iai\footnote{\url{https://github.com/bbferka/odu\_iai}}), der in den Experimenten vorkommenden Objekte trainiert. Die Instanz entspricht dabei dem Assetnamen der Objekte in der \unreal und kann in Tabelle \ref{tab:objects} auf S.\pageref{tab:objects} nachgeschlagen werden. Die logischen Prädikate sind von der Form  $instance(cluster, i)$. Mehr Informationen zu den \glspl{klassifikator} sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
+Der \texttt{SVMAnnotator} klassifiziert die Objekte nach ihrer Instanz. Dazu wurde eine \gls{svm} mit echten Bildern (zu finden im Repository odu\_iai\footnote{\url{https://github.com/bbferka/odu\_iai}}), der in den Experimenten vorkommenden Objekte trainiert. Die Instanz entspricht dabei dem Assetnamen der Objekte in der \acrshort{engine} und kann in Tabelle \ref{tab:objects} auf S.\pageref{tab:objects} nachgeschlagen werden. Die logischen Prädikate sind von der Form  $instance(cluster, i)$. Mehr Informationen zu den \glspl{klassifikator} sind in Kapitel \ref{sec:classifiers} auf S. \pageref{sec:classifiers} zu finden.
 
 \subsubsection{MLNInferencer}
 \label{sec:mlnInferencer}
@@ -212,7 +212,7 @@ shape(c2,box)
 instance(c2,SpitzenReis)
 object(c2,Rice)
 \end{lstlisting}  
-\caption[Beispiel für die Ausgabe des MLNInferencer]{Beispiel für die Ausgabe der logischen Prädikate des MLNInferencer für ein Bild mit drei Objekten. Die Objekte befinden sich in einem \textit{cooking} Szenario. Das Objekt in Cluster c0 ist ein Objekt der Klasse TomatoSauce. c1 gehört dem PancakeMix an und c2 der Rice Klasse. Die Cluster c0 und c2 haben zwei $color$ Annotationen. c0 und c2 haben durch den \texttt{PrimitiveShapeAnnotator} und den \texttt{RFAnnotator} zwei $shape$ Annotationen, während Ersterer bei c1 zwei Annotationen hinzugefügt hat.}
+\caption[Beispiel für die Ausgabe des MLNInferencer]{Beispiel für die Ausgabe der logischen Prädikate des \texttt{MLNInferencer} für ein Bild mit drei Objekten. Die Objekte befinden sich in einem \textit{cooking} Szenario. Das Objekt in Cluster c0 ist ein Objekt der Klasse TomatoSauce. c1 gehört dem PancakeMix an und c2 der Rice Klasse. Die Cluster c0 und c2 haben zwei $color$ Annotationen. c0 und c2 haben durch den \texttt{PrimitiveShapeAnnotator} und den \texttt{RFAnnotator} zwei $shape$ Annotationen, während Ersterer bei c1 zwei Annotationen hinzugefügt hat.}
 \label{inferencerExample}
 \end{figure}
 

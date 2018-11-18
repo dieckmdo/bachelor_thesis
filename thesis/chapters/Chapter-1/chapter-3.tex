@@ -89,7 +89,7 @@ In Dokumenten werden \textit{Schlüssel-Wert-Paare} gespeichert, die jeweils unt
 
 \section{Markov-Logik-Netzwerke}
 \label{sec:mln}
-\glspl{mln} kombinieren die Ausdrucksstärke der \gls{fo} mit der Effizienz von \glspl{pgm}, Unsicherheit und Inkonsistenz zu behandeln und haben deshalb in den letzten Jahren großen Anklang in der Wissenschaft gefunden. Gerade in nicht-deterministischen Umgebungen stoßen \gls{fo} und \gls{pgm} \glspl{kb} an ihre Grenzen: \gls{fo} mit ihrer datenbankähnlichen Repräsentation ist unpraktisch und unzumutbar mit zufälligen Ereignissen umzugehen, während bei \glspl{pgm} die Anzahl an Zufallsvariablen fest, die Menge der Variablen zu Beginn jedoch meistens nicht bekannt ist. \cite{nyga17} \par 
+\glspl{mln} kombinieren die Ausdrucksstärke der \gls{fo} mit der Effizienz von \glspl{pgm}, Unsicherheit und Inkonsistenz zu behandeln und haben deshalb in den letzten Jahren großen Anklang in der Wissenschaft gefunden. Gerade in nicht-deterministischen Umgebungen stoßen \gls{fo} und \gls{pgm} \glspl{kb} an ihre Grenzen: \gls{fo} mit ihrer datenbankähnlichen Repräsentation ist unpraktisch und unzumutbar mit zufälligen Ereignissen umzugehen, während bei \glspl{pgm} die Anzahl an Zufallsvariablen fest geschrieben, die eigentliche Menge der Variablen zu Beginn jedoch meistens nicht bekannt ist. \cite{nyga17} \par 
 
 Ein \gls{mln} besteht aus einer Menge von Formeln in \gls{fo} als \acrlong{kb} und einer reell-zahligen Gewichtung für jede Formel. Die möglichen Welten beschreiben alle möglichen Belegungen der Variablen innerhalb einer \gls{kb}. Eine Formel beschreibt eine \textit{Beschränkung (oder constraint)} auf eine Teilmenge der Welten. Normalerweise gelten Welten, die eine Formel verletzten, als unmöglich, sie tritt nicht auf. \glspl{mln} schwächen die constraints nun ab. Welten sind nicht unmöglich, sondern weniger wahrscheinlich, wenn sie eine Formel verletzen. Die Gewichtung gibt an, wie stark ein constraint ist. Ein höheres Gewicht besagt, dass der Unterschied der Wahrscheinlichkeit zwischen einer Welt, die die Formel erfüllt und einer Welt, die sie nicht erfüllt, größer ist; wie wichtig die Formel also ist \cite{mln}. Ein \gls{mln} kann nun ein \textit{\gls{mn}} aufspannen, indem für jedes Atom eine boolesche Variable eingeführt wird, die den Wahrheitswert des Atoms beschreibt. Dieses \gls{mn} repräsentiert eine Wahrscheinlichkeitsverteilung über alle möglichen Welten. Eine Welt kann als Vektor von booleschen Variablen gesehen werden, der jedem Atom einen Wahrheitswert zuordnet. Die Menge aller Welten ist folglich die Menge aller möglichen Kombinationen von Wahrheitszuweisungen der Atome \cite{nyga17}. \par
 
@@ -97,14 +97,14 @@ Ein \gls{mln} besteht aus einer Menge von Formeln in \gls{fo} als \acrlong{kb} u
 
 Im Rahmen dieser Arbeit soll \robosherlock mit einem \gls{mln} über die Objekthypothesen schlussfolgern, um welches Objekt es sich handelt. In \cite{pr2looking} führen die Autoren aus, warum \glspl{mln} für die Repräsentation von Wissen und Inferenz in einem Perzeptionsframework von Vorteil sind: 
 \begin{itemize}
-	\item \glspl{mln} sind in der Lage, die Beziehung zwischen Objekten abzubilden, da sie gleichzeitig eine beliebige aber endliche Menge von Objekten berücksichtigen können.
+	\item \glspl{mln} sind in der Lage, die Beziehung zwischen Objekten abzubilden, da sie gleichzeitig eine beliebige, aber endliche Menge von Objekten berücksichtigen können.
 	\item \glspl{mln} bilden sich ihre Entscheidung durch die unabhängige Anwendung der Experten und können so Inkonsistenzen kompensieren.
 	\item \glspl{mln} können Antworten zu beliebigen Anfragen über jeden Aspekt innerhalb des Models liefern. 
 	\item indem neue oder zusätzliche Annotationen zu den Objekthypothesen hinzugefügt werden, können diese einfach in ein \gls{mln} integriert werden.    
 \end{itemize}   
 Für eine ausführlichere Vorstellung von \glspl{pgm}, \gls{fo}, \glspl{mln} und Markov Netzwerken verweise ich den Leser auf \cite{jain, nyga17, mln}. \par 
 
-\textbf{Beispiel}\label{mlnexample} Es folgt ein Beispiel für ein simples \gls{mln} übernommen von dem Beispiel\footnote{\url{http://www.pracmln.org/mlntutorial.html}} das zu dem Programm \pracmln gegeben ist, mit kleinen Abwandlungen basierend auf einem Besipiel aus \cite{nyga17}. Inhalt des Beispiels ist es, die Korrelation zwischen Rauchen und Krebs zu modellieren und den Einfluss auf das soziale Umfeld. \par
+\textbf{Beispiel}\label{mlnexample} Es folgt ein Beispiel für ein simples \gls{mln}, übernommen von dem Beispiel\footnote{\url{http://www.pracmln.org/mlntutorial.html}}, das zu dem Programm \pracmln gegeben ist, mit kleinen Abwandlungen basierend auf einem Besipiel aus \cite{nyga17}. Inhalt des Beispiels ist es, die Korrelation zwischen Rauchen und Krebs und den Einfluss auf das soziale Umfeld zu modellieren. \par
 Zuerst werden die Prädikate definiert. Sie definieren, dass eine Person raucht oder Krebs haben kann und zwei Personen Freunde sein können:
 \begin{lstlisting}[backgroundcolor=\color{backcolour}]
 Raucht(person)
@@ -149,8 +149,8 @@ Im Learning-Tool von \pracmln kann zusammen mit dem vorher spezifizierten \gls{m
 1.126769 Raucht(p) => Krebs(p)
 1.577776 Freunde(p1,p2) => (Raucht(p1) <=> Raucht(p2))
 \end{lstlisting}  
-Es ist zu sehen, dass es mit den gegeben Daten typisch ist, dass Raucher auch Krebs haben, noch typischer jedoch, dass unter Freunden geraucht oder nicht geraucht wird.\newline
-Um nun Wissen aus der \gls{kb} zu inferieren, wird das Query-Tool benutzt. Hier wird eine Evidenz angegeben, also eine Bedingung für unsere Anfragen: Anna hat Krebs, Bob nicht und Freunde sind sie auch nicht. 
+Es ist zu sehen, dass es mit den gegebenen Daten typisch ist, dass Raucher auch Krebs haben, noch typischer jedoch, dass unter Freunden geraucht oder nicht geraucht wird.\newline
+Um nun Wissen aus der \gls{kb} zu inferieren, wird das Query-Tool benutzt. Hier wird eine Evidenz angegeben, also eine Bedingung für unsere Anfragen: Anna hat Krebs, Bob nicht, und Freunde sind sie auch nicht. 
 \begin{lstlisting}[backgroundcolor=\color{backcolour}]
 Krebs(Anna)
 !Krebs(Bob)
@@ -164,8 +164,8 @@ Es kann mit exakter Inferenz folgendes berechnet werden:
 0.528921  Raucht(Anna) v Raucht(Bob)
 0.244758  Raucht(Bob)
 \end{lstlisting} 
-Es ist zu sehen, dass Anna mit größerer Wahrscheinlichkeit raucht als Bob. Die Wahrscheinlichkeit dass mindestens einer der Beiden raucht, ist sogar noch höher. Jedoch ist es unwahrscheinlich das beide rauchen. \newline
-Anstatt exakter Inferenz kann auch ein approximiertes Verfahren benutzt werden, was im Falle des Beispiels auch eine gute Annäherung bietet, bei einer kleinen Evidenz jedoch nicht nötig ist. Denn die Anzahl aller möglichen Welten beträgt lediglich $2^8 = 256$, was im Gegensatz zu Anwendungsfällen noch gering ist. Das Query-Tool kann auch die möglichen Welten ausgeben. Im folgenden sind die ersten drei, also die wahrscheinlichsten Welten, abgebildet. Eine Welt in der Anna und Bob Rauchen, Krebs haben und Freunde sind ist mit $0,81\%$ am wahrscheinlichsten:
+Es ist zu sehen, dass Anna mit größerer Wahrscheinlichkeit raucht als Bob. Die Wahrscheinlichkeit, dass mindestens einer der beiden raucht, ist sogar noch höher. Jedoch ist es unwahrscheinlich, dass beide rauchen. \newline
+Anstatt exakter Inferenz kann auch ein approximiertes Verfahren benutzt werden, was im Falle des Beispiels auch eine gute Annäherung bietet, bei einer kleinen Evidenz jedoch nicht nötig ist. Denn die Anzahl aller möglichen Welten beträgt lediglich $2^8 = 256$, was im Gegensatz zu Anwendungsfällen noch gering ist. Das Query-Tool kann auch die möglichen Welten ausgeben. Im folgenden sind die ersten drei, also die wahrscheinlichsten Welten, abgebildet. Eine Welt in der Anna und Bob rauchen, Krebs haben und Freunde sind, ist mit $0,81\%$ am wahrscheinlichsten:
 \begin{lstlisting}[backgroundcolor=\color{backcolour}]
 1   0.81%   Freunde(Anna,Anna)  Freunde(Anna,Bob)  Freunde(Bob,Anna)  Freunde(Bob,Bob)
             Raucht(Anna)  Raucht(Bob)  Krebs(Ann)   Krebs(Bob)

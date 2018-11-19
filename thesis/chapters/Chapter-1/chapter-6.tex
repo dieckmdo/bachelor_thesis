@@ -6,7 +6,7 @@
 %	\input{\CHAPTERONE /motivation}
 
 Im folgenden Kapitel werden zuerst die für die Arbeit erstellten Datensätze erläutert. Danach werden die Experimente beschrieben, die im Rahmen dieser Arbeit durchgeführt wurden, um die Objektklassifikation mit fotorealistischen Bildern zu evaluieren. \newline
-In einem ersten Experiment werden \glspl{klassifikator} trainiert und mit den Unreal-Bildern getestet. Danach wird ein \gls{mln} mit den Unreal-Bildern trainiert und getestet. Zur Evaluation wird 10-fache Kreuzvalidierung durchgeführt. Danach wird ein \gls{mln} mit den Unreal-Bildern trainiert und mit realen Bildern getestet. Zum Abschluss wird ein Teil der realen Bilder mit in die Trainingsdaten aufgenommen und mit dem Rest getestet. Jedes Experiment wird zweimal durchgeführt: einmal mit den Objektklassen als \gls{gt} und einmal mit den Instanznamen der Objekte. Eine Übersicht  der Ergebnisse kann auf Seite \pageref{tab:classification_all} in Tabelle \ref{tab:classification_all} gefunden werden.
+In einem ersten Experiment werden \glspl{klassifikator} trainiert und mit den Unreal-Bildern getestet. Danach wird ein \gls{mln} mit den Unreal-Bildern trainiert und getestet. Zur Evaluation wird 10-fache Kreuzvalidierung durchgeführt. Danach wird ein \gls{mln} mit den Unreal-Bildern trainiert und mit realen Bildern getestet. Zum Abschluss wird ein Teil der realen Bilder mit in die Trainingsdaten aufgenommen und mit dem Rest getestet. Jedes Experiment wird zweimal durchgeführt: einmal mit den Objektklassen als \gls{gt} und einmal mit den Instanznamen der Objekte. Eine Übersicht  der Ergebnisse kann auf Seite \pageref{tab:classification_all} in Tabelle \ref{tab:classification_all} gefunden werden. Dabei werden auch die Ergebnisse aus \cite{pr2looking} mit angegeben. Darin wurde ein \gls{mln} mit realen Bildern trainiert und getestet und die Ergebnisse dienen als Vergleichswerte der in dieser Arbeit durchgeführten Experimente.
 
 \section{Erklärung und Analyse der Datensätze}
 
@@ -69,14 +69,17 @@ Mit dem PR2-Roboter des \gls{iai} wurden Bilder in der realen Küchenumgebung au
 
 Die Verteilung der Objektklassen und Instanzen in den realen Bildern, zu sehen in Abbildung \ref{fig:Real-Images_analysis}, zeigt die gleichen Eigenschaften, wie die Verteilung der Unreal-Bilder. Es wird auch hier von einem ungleich verteilten Datensatz ausgegangen. 
 
+
 \section{Klassifizierung mit Klassifikatoren}
 \label{sec:classificationExperiment}
 Die zuvor erstellten Unreal-Bilder wurden in ersten Experimenten über \gls{feature} klassifiziert. Dazu wurde ein Annotator aus dem \robosherlock-Paket \textit{rs\_addons} als \gls{klassifikator} mit echten Bildern der verwendeten Objekte trainiert. Mehr zu dem Paket und den \glspl{klassifikator} ist in Kapitel \ref{sec:classifiers} auf Seite \pageref{sec:classifiers} zu finden. \par
 
 Als \glspl{klassifikator} wurden der \texttt{RFAnnotator} und der \texttt{SVMAnnotator} verwendet, die jeweils auf einer \gls{rf} oder \gls{svm} Implementierung basieren. Die Objekte sollten in zwei Versuchsreihen entweder den Objektklassen oder den Instanznamen zugeordnet werden. Vor dem Training der \glspl{klassifikator} wurden die Bilder der echten Objekte den Klassen/Instanzen zugeordnet. Da es sich um Annotatoren für \robosherlock handelt, wurde eine \gls{ae} mit einigen \textit{hyotheses generators}, dem \texttt{CaffeAnnotator} zum Extrahieren der Merkmale (siehe Kap. \ref{sec:caffeAnno}, S.\pageref{sec:caffeAnno}), dem\linebreak \texttt{UnrealGTAnnotator} zum extrahieren der \gls{gt} und dem jeweiligen \gls{klassifikator} erstellt. Um die Ergebnisse später verarbeiten zu können, wurden sie mit dem \texttt{MLNInferencer} (siehe Kap. \ref{sec:mlnInferencer}, S. \pageref{sec:mlnInferencer}) als logische Prädikate ausgegeben. Die so erhaltene Klassifizierung wird für jedes Objekt mit der \gls{gt} verglichen, um so die Klassifikationsrate des \gls{klassifikator}s zu ermitteln.
 
+
 \subsection{Objektklassen}
 Die Ergebnisse des \texttt{RFAnnotators} sind in Abbildung \ref{fig:RFClassifierGTClass_confMatrix} und Tabelle \ref{tab:RFClassifierGTClass_metrics} abgebildet. Während nahezu alle Objekte eine \gls{accuracy} über 90\% aufweisen, zeigen \gls{precision}, \gls{recall} und \gls{f1score}, dass der \texttt{RFAnnotator} große Schwierigkeiten hat, visuell ähnliche Objekte auseinander zu halten. Besonders häufig werden Objekte fälschlicherweise als \textit{Milk} und \textit{TableSalt} eingeordnet. Dies ist auf die box-artige Form und die Farbähnlichkeit vieler Objekte der beiden Klassen zurückzuführen, welche insgesamt auch in größerer Zahl in den Daten vorkommen als andere Objektklassen. Des weiteren hat der \gls{klassifikator} Schwierigkeiten, das Geschirr auseinander zu halten, was auf die Größe dessen zurückzuführen ist. Besonders schlecht schneidet der \textit{Spatula} ab, der nicht einmal korrekt erkannt wurde. Mit einem \gls{f1score} über 80\% schneiden die Objektklassen \textit{Buttermilk}, \textit{Coffee}, \textit{Cup} und \textit{PancakeMix} am besten ab. Diese Klassen unterscheiden sich in Form (\textit{Buttermilk}, \textit{PancakeMix}) und Farbe (\textit{Coffee}, \textit{Cup}) stark von den anderen Objekten.  \par
+
 
 \begin{figure}
 \centering
@@ -117,14 +120,15 @@ TomatoSauce & 0.94 & 0.59 & 0.36 & 0.44 \\  \hline
 \label{tab:RFClassifierGTClass_metrics}
 \end{table}
 
-Die Ergebnisse des \texttt{SVMAnnotators} sind in Abbildung  \ref{fig:SVMClassifierGTClass_confMatrix} zu sehen. Insgesamt sind die Ergebnisse gegenüber dem \texttt{RFAnnotator} etwas besser, da der \texttt{SVMAnnotator} mit 62\% eine etwas höhere \gls{accuracy} aufweist. Jedoch werden vom \texttt{SVMAnnotator} neben dem \textit{Spatula} auch der \textit{PancakeMaker} gar nicht richtig eingeordnet und auch die \textit{DrinkingBottle} schneidet sehr schlecht ab. Der \texttt{SVMAnnotator} ist insgesamt bei einigen Klassen etwas zuverlässiger, hat jedoch auch einige größere Fehlerquellen, was insgesamt zu dem gleichen \gls{f1score} des \texttt{RFAnnotators} von 57\% führt.  
-
 \begin{figure}
 \centering
 	\includegraphics[scale=.315]{img/chapter6/SVMClassifierGTClass.png}
 \caption[Konfusionsmatrix der Klassifizierung der Objektklassen durch den SVMAnnotator]{Die Konfusionsmatrix für die Objektklassen Klassifikation der Unreal-Bilder durch den mit echten Bildern trainierten \texttt{SVMAnnotator}.}
 \label{fig:SVMClassifierGTClass_confMatrix}
 \end{figure}
+
+
+Die Ergebnisse des \texttt{SVMAnnotators} sind in Abbildung  \ref{fig:SVMClassifierGTClass_confMatrix} zu sehen. Insgesamt sind die Ergebnisse gegenüber dem \texttt{RFAnnotator} etwas besser, da der \texttt{SVMAnnotator} mit 62\% eine etwas höhere \gls{accuracy} aufweist. Jedoch werden vom \texttt{SVMAnnotator} neben dem \textit{Spatula} auch der \textit{PancakeMaker} gar nicht richtig eingeordnet und auch die \textit{DrinkingBottle} schneidet sehr schlecht ab. Der \texttt{SVMAnnotator} ist insgesamt bei einigen Klassen etwas zuverlässiger, hat jedoch auch einige größere Fehlerquellen, was insgesamt zu dem gleichen \gls{f1score} des \texttt{RFAnnotators} von 57\% führt.  
 
 \begin{table}
 \centering
@@ -574,20 +578,21 @@ YellowCeramicPlate & 0.98 & 0.67 & 0.26 & 0.38 \\     \hline
 \begin{table}
 \centering
 \rowcolors{1}{}{lightgray}
-\begin{tabularx}{\textwidth}{Xlllll}
-\textbf{Experiment}	&	\textbf{\gls{gt}}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
-RFAnnotator				&Klasse		&0.6	&0.67	&0.6	&0.57	\\
-SVMAnnotator			&Klasse		&0.62	&0.7	&0.62	&0.57	\\
-RFAnnotator				&Instanz	&0.6	&0.62	&0.6	&0.58	\\
-SVMAnnotator			&Instanz	&0.66	&0.72	&0.66	&0.62	\\ \hline
-Kreuzvalidierung		&Klasse		&0.95	&0.95	&0.95	&0.95	\\
-Kreuzvalidierung		&Instanz	&0.96	&0.96	&0.96	&0.96	\\ \hline
-Test mit realen Bildern	&Klasse		&0.76	&0.78	&0.76	&0.76	\\
-Test mit realen Bildern	&Instanz	&0.66	&0.69	&0.66	&0.65	\\ \hline
-Gemischtes Trainingsset	&Klasse		&0.9	&0.91	&0.9	&0.9	\\
-Gemischtes Trainingsset	&Instanz	&0.88	&0.88	&0.88	&0.88	\\
+\begin{tabularx}{\textwidth}{Xlllllll}
+\textbf{Klassifi.}	&\textbf{Training}&\textbf{Test}&	\textbf{\gls{gt}}	& \textbf{\gls{accuracy}} & \textbf{\gls{precision}}	& \textbf{\gls{recall}}	& \textbf{\gls{f1score}} \\ \hline
+RF	&-	&U	&Klasse		&0.6	&0.67	&0.6	&0.57	\\
+SVM	&-	&U	&Klasse		&0.62	&0.7	&0.62	&0.57	\\
+RF	&-	&U	&Instanz	&0.6	&0.62	&0.6	&0.58	\\
+SVM	&-	&U	&Instanz	&0.66	&0.72	&0.66	&0.62	\\ \hline
+MLN	&U	&U	&Klasse		&0.95	&0.95	&0.95	&0.95	\\
+MLN	&U	&U	&Instanz	&0.96	&0.96	&0.96	&0.96	\\ \hline
+MLN	&U	&R	&Klasse		&0.76	&0.78	&0.76	&0.76	\\
+MLN	&U	&R	&Instanz	&0.66	&0.69	&0.66	&0.65	\\ \hline
+MLN	&U/R&R	&Klasse		&0.9	&0.91	&0.9	&0.9	\\
+MLN	&U/R&R	&Instanz	&0.88	&0.88	&0.88	&0.88	\\ \hline \hline
+MLN &R	&R	&Klasse 	&0.69	&0.69	&0.69	&0.69 \\ 
 \end{tabularx}
-\caption[Übersicht der Kenngrößen der einzelnen Experimente]{Die Tabelle enthält die einzelnen Kenngrößen der Klassifikationen aus den jeweiligen Experimenten.}
+\caption[Übersicht der Kenngrößen der einzelnen Experimente]{Die Tabelle enthält die einzelnen Mittelwerte der Kenngrößen der Klassifikationen aus den jeweiligen Experimenten. Die erste Spalte beschreibt den verwendeten Klassifikator bzw. ob ein \gls{mln} verwendet wurde und richtet sich nach der Reihenfolge der Experimente in dieser Arbeit. Die Spalten Training und Test beschreiben die jeweils verwendeten Datensätze: U für Unreal-Bilder, R für reale Bilder. Die letzte Zeile enthält die Ergebnisse der Klassifikation aus \cite{pr2looking}. Dabei wurde ein \gls{mln} mit realen Bildern trainiert und getestet. Die verwendeten Bilder und Klassen sind allerdings andere als in dieser Arbeit.}
 \label{tab:classification_all}
 \end{table}
 

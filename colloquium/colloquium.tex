@@ -1,0 +1,93 @@
+\documentclass[]{beamer}
+
+\usepackage[british,english,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+\usecolortheme{beaver}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titlepage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Short version]{Probabilistic Scene Understanding using\\ Virtual Reality and Markov Logic Networks}
+\subtitle[]{}
+\date[]{18.12.2018}
+\author[D. Dieckmann]{Dominik Dieckmann}
+\institute[Uni Bremen]{Institute for Artificial Intelligence \\ University Bremen}
+%\logo{\includegraphics[scale=.1]{unihb/unilogo-transp.pdf} \includegraphics[scale=.1]{unihb/logo-ai.pdf}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\beamertemplatenavigationsymbolsempty
+
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}{Autonomous Robots in Houshold Environments}
+	\begin{itemize}
+		\item perception component
+			\begin{itemize}
+				\item detect objects
+				\item analyse objects
+			\end{itemize}
+		\item reasoning component
+			\begin{itemize}
+				\item identify/classify objects based on their visual cues
+				\item needs to be trained
+				\item needs a lot of training data at hand
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Creation of Training Data}
+time and resource intensive:
+	\begin{itemize}
+		\item manually creating scenarios and images
+		\item no groundtruth
+	\end{itemize}
+$\rightarrow$ use synthetic images \\[1cm]
+Modern game engines can render photorealistic images in realtime.
+\end{frame}
+
+
+\begin{frame}{Question}
+
+\textbf{Can synthetic images be used as training data?}
+
+\end{frame}
+
+
+\begin{frame}{Unreal Images}
+used Unreal Engine to create images\\
+- how? 
+\end{frame}
+
+
+\begin{frame}{robosherlock}
+robosherlock as perception framework\\
+- what does it annotate?\\
+- get groundtruth\\
+- databases 
+\end{frame}
+
+
+\begin{frame}{Markov Logic Networks}
+what are they?\\
+advantages for object classification
+\end{frame}
+
+\begin{frame}{Experiments}
+
+baseline: PR2 paper
+
+show results...
+
+\end{frame}
+
+
+\begin{frame}{Conclusion}
+it just works
+\end{frame}
+
+\end{document}
+

@@ -34,7 +34,6 @@
 			\begin{itemize}
 				\item identify/classify objects based on their visual cues
 				\item needs to be trained
-				\item needs a lot of training data at hand
 			\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -45,29 +44,89 @@ time and resource intensive:
 		\item manually creating scenarios and images
 		\item no groundtruth
 	\end{itemize}
-$\rightarrow$ use synthetic images \\[1cm]
-Modern game engines can render photorealistic images in realtime.
+	
+$\rightarrow$ synthetic images from a game engine
 \end{frame}
 
-
-\begin{frame}{Question}
-
-\textbf{Can synthetic images be used as training data?}
-
+\begin{frame}{System Setup}
+	\begin{itemize}
+		\item list of objects, classes and scenarios
+		\item \textsc{Unreal Engine} to create \textit{Unreal Images}
+		\item \textsc{RoboSherlock} analysis the images
+		\item learn a \textit{Markov Logic Network} 
+		\item classify the objects in the images
+	\end{itemize}
 \end{frame}
 
+\begin{frame}{Unreal Engine}
+	\begin{itemize}
+		\item photorealism
+		\item rendering in realtime
+		\item open source
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{Unreal Images}
-used Unreal Engine to create images\\
-- how? 
+	\begin{itemize}
+		\item Assets
+			\begin{itemize}
+				\item scanned 3D-models of the objects
+				\item kitchen environment
+			\end{itemize}
+		\item URoboVision plugin
+			\begin{itemize}
+				\item create RGBD image from a scene
+				\item create \textit{ObjectImage} and  \textit{ObjectMap} 
+				\item send them to \textsc{RoboSherlock}
+			\end{itemize}
+		\item RSpawnBox class
+			\begin{itemize}
+				\item visual representation of scene space
+				\item rotates camera around the scene
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Unreal Images}
+	\begin{itemize}
+		\item 114 scenes
+		\item 2 - 5 objects per scene
+		\item 5 viewpoints per scene
+		\item only objects of one scenario per scene
+		\item total of 570 images
+	\end{itemize}
 \end{frame}
 
 
-\begin{frame}{robosherlock}
-robosherlock as perception framework\\
-- what does it annotate?\\
-- get groundtruth\\
-- databases 
+\begin{frame}{RoboSherlock}
+	\begin{itemize}
+		\item based on \textit{UIMA}
+		\item segments images and creates object hypotheses
+		\item annotates attributes of the hypotheses
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Perceptionpipeline}
+Annotates the following attributes:
+	\begin{itemize}
+		\item color
+		\item size
+		\item shape
+		\item goggles\_\{Logo, Text, Product\}
+		\item instance
+		\item object
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{UnrealGTAnnotator}
+Annotates the groundtruth by:
+	\begin{itemize}
+		\item counting the color of pixels in the ObjectImage
+		\item looking up the corresponding asset 
+		\item looking up the groundtruth for that asset
+		\item setting the groundtruth 
+	\end{itemize}
+
 \end{frame}
 
 

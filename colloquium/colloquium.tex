@@ -25,28 +25,33 @@
 	\maketitle
 \end{frame}
 
-\begin{frame}{Autonomous Robots in Houshold Environments}
-	\begin{figure}
-		\includegraphics[scale=.25]{img/pr2.jpg}\footnote{\tiny{\url{Source: https://www.focus.de/digital/handy/technik-roboter-pr2-kann-popcorn-oder-pfannkuchen-machen\_aid\_929326.html} last viewed: 11.12.2018}}
-	\end{figure}
+\begin{frame}{PR2 Looking at Things}
 	\begin{itemize}
-		\item perception component
+		\item combine output of specialized perception algorithms 
+		\item \textsc{RoboSherlock}
 			\begin{itemize}
 				\item detect objects
 				\item analyse objects
 			\end{itemize}
-		\item reasoning component
+		\item Markov Logic Networks (MLNs)
 			\begin{itemize}
-				\item identify/classify objects based on their visual cues
-				\item needs to be trained
+				\item combine Information and compensate inconsistencies
+				\item model object relations
+				\item classify objects
 			\end{itemize}
+	\end{itemize}
+	\bigskip
+Results:
+	\begin{itemize}
+		\item Annotators are complementary
+		\item classification rate of 69\%
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Creation of Training Data}
 time and resource intensive:
 	\begin{itemize}
-		\item manually creating scenarios and images
+		\item manually creating scenes and images
 		\item no groundtruth
 	\end{itemize}
 	\bigskip
@@ -55,16 +60,14 @@ $\rightarrow$ synthetic images from a game engine
 
 \begin{frame}{System Setup}
 	\begin{itemize}
-		\item list of objects, classes and scenarios
+		\item list of objects and classes
 			\begin{itemize}
 				\item 43 objects
 				\item 20 classes
-				\item 3 scenarios (breakfast, cooking, fridge)
 			\end{itemize}
 		\item \textsc{Unreal Engine} to create \textit{Unreal Images}
 		\item \textsc{RoboSherlock} analysis the images
-		\item learn a \textit{Markov Logic Network} 
-		\item classify the objects in the images
+		\item textit{MLNs} to classify the objects
 	\end{itemize}
 \end{frame}
 
@@ -95,31 +98,28 @@ $\rightarrow$ synthetic images from a game engine
 \begin{frame}{Unreal Images}
 	\begin{itemize}
 		\item 114 scenes
-		\item 2 - 5 objects per scene
-		\item 5 viewpoints per scene
-		\item only objects of one scenario per scene
 		\item total of \textbf{570} images
 	\end{itemize}
 	\begin{figure}
 \centering
 	\begin{subfigure}[b]{0.3\textwidth}
-		\includegraphics[scale=.07]{../thesis/img/chapter3/sceneEx_1}
+		\includegraphics[scale=.08]{../thesis/img/chapter3/sceneEx_1}
 	\end{subfigure}
 	\quad
 	\begin{subfigure}[b]{0.3\textwidth}
-		\includegraphics[scale=.07]{../thesis/img/chapter3/sceneEx_2}	
+		\includegraphics[scale=.08]{../thesis/img/chapter3/sceneEx_2}	
 	\end{subfigure}
 	\quad
 	\begin{subfigure}[b]{0.3\textwidth}
-		\includegraphics[scale=.07]{../thesis/img/chapter3/sceneEx_3}	
+		\includegraphics[scale=.08]{../thesis/img/chapter3/sceneEx_3}	
 	\end{subfigure}
 	\quad
 	\begin{subfigure}[b]{0.3\textwidth}
-		\includegraphics[scale=.07]{../thesis/img/chapter3/sceneEx_4}	
+		\includegraphics[scale=.08]{../thesis/img/chapter3/sceneEx_4}	
 	\end{subfigure}
 	\quad
 	\begin{subfigure}[b]{0.3\textwidth}
-		\includegraphics[scale=.07]{../thesis/img/chapter3/sceneEx_5}	
+		\includegraphics[scale=.08]{../thesis/img/chapter3/sceneEx_5}	
 	\end{subfigure}
 \end{figure}
 \end{frame}
@@ -131,7 +131,7 @@ $\rightarrow$ synthetic images from a game engine
 	\end{figure}
 	\begin{itemize}
 		\item segments images and creates object hypotheses
-		\item annotates the following attributes of the hypotheses
+		\item annotates the following attributes: 
 		\begin{itemize}
 			\item color
 			\item size
@@ -171,38 +171,17 @@ Annotates the groundtruth by:
 \begin{frame}{Markov Logic Networks}
 	\begin{itemize}
 		\item consist of formulas and real-valued weights
-		\item describe a \textit{Markov Network} with a joint probability distribution
-		\item are able to:
-		\begin{itemize}
-			\item model relations between objects
-			\item compensate inconsistencies
-			\item reason about every aspect represented in the model
-		\end{itemize}
+		\item describe a \textit{Markov Network} with a full joint probability distribution
 		\item used Toolbox: \textsc{pracmln}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{PR2 Looking at Things}
-Experiments:
-	\begin{itemize}
-		\item \textsc{RoboSherlock} + MLNs
-		\item 50 images 
-		\item 21 object categories
-		\item 4 scenarios
-	\end{itemize}
-\bigskip
-Results:
-	\begin{itemize}
-		\item Annotators are complementary
-		\item classification rate of 69\%
-	\end{itemize}
-\end{frame}
 
 \begin{frame}{Experiments}
 	\begin{itemize}
 		\item instance and class classification
-		\item 10 fold cross validation for Unreal Images
-		\item Unreal Images for Training, Real Images for Testing
+		\item 10-fold cross-validation for Unreal Images
+		\item Unreal Images for training, Real Images for testing
 		\item mixed trainingset
 	\end{itemize}
 \end{frame}
@@ -222,7 +201,7 @@ Results:
 
 \end{frame}
 
-\begin{frame}{Experiments - 10 fold cross validation}
+\begin{frame}{Experiments - 10-fold cross-validation}
 \begin{columns}
 	\begin{column}{0.7\textwidth}
 		\includegraphics[scale=.3]{../thesis/img/chapter6/UnrealGTClass.png}
@@ -326,6 +305,24 @@ Results:
 		\item mixed trainingsets can boost performance
 		\bigskip
 		\item automation of training data creation is possible
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Autonomous Robots in Houshold Environments}
+	\begin{figure}
+		\includegraphics[scale=.25]{img/pr2.jpg}\footnote{\tiny{\url{Source: https://www.focus.de/digital/handy/technik-roboter-pr2-kann-popcorn-oder-pfannkuchen-machen\_aid\_929326.html} last viewed: 11.12.2018}}
+	\end{figure}
+	\begin{itemize}
+		\item perception component
+			\begin{itemize}
+				\item detect objects
+				\item analyse objects
+			\end{itemize}
+		\item reasoning component
+			\begin{itemize}
+				\item identify/classify objects based on their visual cues
+				\item needs to be trained
+			\end{itemize}
 	\end{itemize}
 \end{frame}
 

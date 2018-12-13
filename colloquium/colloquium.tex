@@ -49,7 +49,7 @@ time and resource intensive:
 		\item manually creating scenarios and images
 		\item no groundtruth
 	\end{itemize}
-	
+	\bigskip
 $\rightarrow$ synthetic images from a game engine
 \end{frame}
 
@@ -68,18 +68,10 @@ $\rightarrow$ synthetic images from a game engine
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Unreal Engine}
-	\begin{figure}
-		\includegraphics[scale=.15]{img/Unreal_Engine_Horiz_Black.png}
-	\end{figure}	
-	\begin{itemize}
-		\item photorealism
-		\item rendering in realtime
-		\item open source
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Unreal Images}
+	\begin{figure}
+		\includegraphics[scale=.12]{img/Unreal_Engine_Horiz_Black.png}
+	\end{figure}
 	\begin{itemize}
 		\item Assets
 			\begin{itemize}
@@ -88,9 +80,9 @@ $\rightarrow$ synthetic images from a game engine
 			\end{itemize}
 		\item URoboVision plugin
 			\begin{itemize}
-				\item create RGBD image from a scene
-				\item create \textit{ObjectImage} and  \textit{ObjectMap} 
-				\item send them to \textsc{RoboSherlock}
+				\item creates RGBD image from a scene
+				\item creates \textit{ObjectImage} and  \textit{ObjectMap} 
+				\item sends them to \textsc{RoboSherlock}
 			\end{itemize}
 		\item RSpawnBox class
 			\begin{itemize}
@@ -106,7 +98,7 @@ $\rightarrow$ synthetic images from a game engine
 		\item 2 - 5 objects per scene
 		\item 5 viewpoints per scene
 		\item only objects of one scenario per scene
-		\item total of 570 images
+		\item total of \textbf{570} images
 	\end{itemize}
 	\begin{figure}
 \centering
@@ -138,25 +130,34 @@ $\rightarrow$ synthetic images from a game engine
 		\includegraphics[scale=.3]{img/rs_logo_text.png}
 	\end{figure}
 	\begin{itemize}
-		\item based on \textit{UIMA}
 		\item segments images and creates object hypotheses
-		\item annotates attributes of the hypotheses
-	\end{itemize}	
-\end{frame}
-
-\begin{frame}{Perceptionpipeline}
-Annotates the following attributes:
-	\begin{itemize}
-		\item color
-		\item size
-		\item shape
-		\item goggles\_\{Logo, Text, Product\}
-		\item instance
-		\item object
+		\item annotates the following attributes of the hypotheses
+		\begin{itemize}
+			\item color
+			\item size
+			\item shape
+			\item goggles\_\{Logo, Text, Product\}
+			\item instance
+			\item object
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{UnrealGTAnnotator}
+	\begin{figure}
+\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.16]{img/cluster.png}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.08]{img/objectImg.png}	
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[scale=.08]{img/gt.png}	
+	\end{subfigure}
+\end{figure}
 Annotates the groundtruth by:
 	\begin{itemize}
 		\item counting the color of pixels in the ObjectImage
@@ -164,15 +165,14 @@ Annotates the groundtruth by:
 		\item looking up the groundtruth for that asset
 		\item setting the groundtruth 
 	\end{itemize}
-
 \end{frame}
 
 
 \begin{frame}{Markov Logic Networks}
 	\begin{itemize}
-		\item consists of formulas and real-valued weights
-		\item describes a \textit{Markov Network} with a joint probability distribution
-		\item is able to:
+		\item consist of formulas and real-valued weights
+		\item describe a \textit{Markov Network} with a joint probability distribution
+		\item are able to:
 		\begin{itemize}
 			\item model relations between objects
 			\item compensate inconsistencies

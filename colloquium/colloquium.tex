@@ -27,13 +27,13 @@
 
 \begin{frame}{PR2 Looking at Things}
 	\begin{itemize}
-		\item combine output of specialized perception algorithms 
-		\item \textsc{RoboSherlock}
+		\item<1-> combine output of specialized perception algorithms 
+		\item<2-> \textsc{RoboSherlock}
 			\begin{itemize}
 				\item detect objects
 				\item analyse objects
 			\end{itemize}
-		\item Markov Logic Networks (MLNs)
+		\item<2-> Markov Logic Networks (MLNs)
 			\begin{itemize}
 				\item combine Information and compensate inconsistencies
 				\item model object relations
@@ -41,11 +41,12 @@
 			\end{itemize}
 	\end{itemize}
 	\bigskip
-Results:
-	\begin{itemize}
-		\item Annotators are complementary
-		\item classification rate of 69\%
-	\end{itemize}
+	\begin{block}<3->{Results}
+		\begin{itemize}
+			\item Annotators are complementary
+			\item classification rate of 69\%
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 \begin{frame}{Creation of Training Data}
@@ -55,7 +56,7 @@ time and resource intensive:
 		\item no groundtruth
 	\end{itemize}
 	\bigskip
-\textbf{Solution:} synthetic images from a game engine
+\uncover<2>{\textbf{Solution:} synthetic images from a game engine}
 \end{frame}
 
 \begin{frame}{System Setup}
@@ -76,20 +77,19 @@ time and resource intensive:
 		\includegraphics[scale=.12]{img/Unreal_Engine_Horiz_Black.png}
 	\end{figure}
 	\begin{itemize}
-		\item Assets
+		\item<1-> Assets
 			\begin{itemize}
 				\item scanned 3D-models of the objects
 				\item kitchen environment
 			\end{itemize}
-		\item URoboVision plugin
+		\item<2-> URoboVision plugin
 			\begin{itemize}
 				\item creates RGBD image from a scene
 				\item creates \textit{ObjectImage} and  \textit{ObjectMap} 
 				\item sends them to \textsc{RoboSherlock}
 			\end{itemize}
-		\item RSpawnBox class
+		\item<3-> RSpawnBox class
 			\begin{itemize}
-				\item visual representation of scene space
 				\item rotates camera around the scene
 			\end{itemize}
 	\end{itemize}
@@ -170,9 +170,9 @@ Annotates the groundtruth by:
 
 \begin{frame}{Markov Logic Networks}
 	\begin{itemize}
-		\item consist of formulas and real-valued weights
-		\item describe a \textit{Markov Network} with a full joint probability distribution
-		\item used Toolbox: \textsc{pracmln}
+		\item<1-> consist of formulas and real-valued weights
+		\item<2-> describe a \textit{Markov Network} with a full joint probability distribution
+		\item<2-> used Toolbox: \textsc{pracmln}
 	\end{itemize}
 \end{frame}
 
@@ -198,7 +198,6 @@ Annotates the groundtruth by:
 & w_{8} \ scene(+?s) \wedge object(?c, +?obj)\\
 & w_{9} \ object(?c1, +?t1) \wedge object(?c2, +?t2) \wedge ?c1 =/= ?c2
 \end{align*}
-
 \end{frame}
 
 \begin{frame}{Experiments - 10-fold cross-validation}
